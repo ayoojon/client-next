@@ -1,17 +1,18 @@
-const colors = require("tailwindcss/colors");
+const colors = require('tailwindcss/colors');
 module.exports = {
-  mode: "jit",
-  purge: ["./src/**/*.{js,ts,jsx,tsx}"],
-  plugins: [
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/aspect-ratio"),
+  mode: 'jit',
+  purge: [
+    './src/pages/**/*.{js,ts,jsx,tsx}',
+    './src/components/**/*.{js,ts,jsx,tsx}',
+    './src/layouts/**/*.{js,ts,jsx,tsx}',
   ],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/aspect-ratio')],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
-        transparent: "transparent",
-        current: "currentColor",
+        transparent: 'transparent',
+        current: 'currentColor',
         black: colors.black,
         white: colors.white,
         gray: colors.coolGray,
@@ -25,12 +26,12 @@ module.exports = {
         pink: colors.pink,
         rose: colors.rose,
         teal: colors.teal,
-        primary: "#005059",
+        primary: '#005059',
         customGray: {
-          450: "#BEBEBE",
-          550: "#707070",
+          450: '#BEBEBE',
+          550: '#707070',
         },
-        primaryLight: "#0050590d",
+        primaryLight: '#0050590d',
       },
     },
   },
