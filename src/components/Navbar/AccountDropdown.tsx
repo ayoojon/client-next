@@ -1,0 +1,218 @@
+import React, { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { s3FileUrl } from '@/config/index';
+import { useRouter } from 'next/router';
+
+interface props {
+  className?: string | undefined;
+  setIsNavbarOpen: (value: React.SetStateAction<boolean>) => void;
+}
+
+export const AccountDropdown: React.FC<props> = ({ className, setIsNavbarOpen }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+  // const user = useSelector((state: IReducer) => state.userReducer.user);
+  return (
+    <>
+      <div className={`relative hidden sm:block sm:ml-3" ${className || ''}`}>
+        <button
+          // relative z-10
+          className="relative block h-10 w-10 rounded-full overflow-hidden focus:outline-none "
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <Image
+            className="h-full w-full object-cover"
+            src={'/resources/user-avatar.jpg'}
+            alt="user-img"
+            width="100%"
+            height="100%"
+          />
+        </button>
+        {isOpen && (
+          <button
+            className="fixed inset-0 h-full w-full opacity-50 cursor-default"
+            onClick={() => setIsOpen(false)}
+            tabIndex={-1}
+          ></button>
+        )}
+        {isOpen && (
+          <div
+            // bg-black
+            className="absolute right-0 mt-3 py-2 w-48 border bg-white rounded-lg shadow-lg"
+          >
+            <Link href="/user">
+              <a
+                className="transition duration-300 ease-in-out block px-4 py-2 text-gray-800 hover:bg-gray-300"
+                onClick={() => {
+                  setIsOpen(false);
+                  setIsNavbarOpen(false);
+                }}
+              >
+                <div className="flex flex-col">
+                  <span className="font-semibold">John Doe</span>
+                  <span className="text-gray-600">See your profile</span>
+                </div>
+              </a>
+            </Link>
+            <Link href="/user/bookings">
+              <a
+                className="transition duration-300 ease-in-out block px-4 py-2 text-gray-800 hover:bg-gray-300"
+                onClick={() => {
+                  setIsOpen(false);
+                  setIsNavbarOpen(false);
+                }}
+              >
+                {' '}
+                My bookings
+              </a>
+            </Link>
+            <Link href="/user/tickets">
+              <a
+                className="transition duration-300 ease-in-out block px-4 py-2 text-gray-800 hover:bg-gray-300"
+                onClick={() => {
+                  setIsOpen(false);
+                  setIsNavbarOpen(false);
+                }}
+              >
+                My tickets
+              </a>
+            </Link>
+            {/* <Link
+              exact
+              to={`/user/messages`}
+              className="transition duration-300 ease-in-out block px-4 py-2 text-gray-800 hover:bg-gray-300"
+              onClick={() => {
+                setIsOpen(false);
+                setIsNavbarOpen(false);
+              }}
+            >
+              Messages
+            </Link>
+            <Link
+              exact
+              to={`/user/saved`}
+              className="transition duration-300 ease-in-out block px-4 py-2 text-gray-800 hover:bg-gray-300"
+              onClick={() => {
+                setIsOpen(false);
+                setIsNavbarOpen(false);
+              }}
+            >
+              Saved
+            </Link> */}
+            <Link href="/user/settings">
+              <a
+                className="transition duration-300 ease-in-out block px-4 py-2 text-gray-800 hover:bg-gray-300"
+                onClick={() => {
+                  setIsOpen(false);
+                  setIsNavbarOpen(false);
+                }}
+              >
+                Settings
+              </a>
+            </Link>
+            <Link href="/user/settings">
+              <a
+                className="transition duration-300 ease-in-out block px-4 py-2 text-gray-800 hover:bg-gray-300"
+                onClick={async (e: any) => {
+                  // let response = await userLogoutAction();
+                  // if (response.status && response.status === 200) {
+                  setIsOpen(false);
+                  setIsNavbarOpen(false);
+                  router.push('/');
+                  // }
+                }}
+              >
+                Logout
+              </a>
+            </Link>
+          </div>
+        )}
+      </div>
+      {/* mobile view */}
+      <div className="pt-2 pb-1 border-t sm:hidden">
+        <Link href="/user">
+          <a onClick={() => setIsNavbarOpen(false)}>
+            <div className="transition duration-300 ease-in-out flex items-center px-2 py-1 rounded hover:bg-gray-300">
+              <div className="h-10 w-10 rounded-full overflow-hidden object-cover">
+                <Image
+                  className="h-full w-full object-cover"
+                  src={'/resources/user-avatar.jpg'}
+                  alt="user-img"
+                  width="100%"
+                  height="100%"
+                />
+              </div>
+              <div className="ml-5 flex flex-col">
+                <span className="font-semibold">John Doe</span>
+                <span className="text-gray-600">See your profile</span>
+              </div>
+            </div>
+          </a>
+        </Link>
+        <div className="">
+          <Link href="/user/bookings">
+            <a
+              className="transition duration-300 ease-in-out block px-2 py-1 rounded hover:bg-gray-300"
+              onClick={() => setIsNavbarOpen(false)}
+            >
+              My bookings
+            </a>
+          </Link>
+          <Link href="/user/tickets">
+            <a
+              className="transition duration-300 ease-in-out block px-2 py-1 rounded hover:bg-gray-300"
+              onClick={() => setIsNavbarOpen(false)}
+            >
+              My tickets
+            </a>
+          </Link>
+          <Link href="/user/settings">
+            <a
+              className="transition duration-300 ease-in-out block px-2 py-1 rounded hover:bg-gray-300"
+              onClick={() => setIsNavbarOpen(false)}
+            >
+              Settings
+            </a>
+          </Link>
+          <Link href="/user/bookings">
+            <a
+              className="transition duration-300 ease-in-out block px-2 py-1 rounded hover:bg-gray-300"
+              onClick={() => setIsNavbarOpen(false)}
+            >
+              My bookings
+            </a>
+          </Link>
+          {/* <Link
+            exact
+            to={`/user/messages`}
+            className="transition duration-300 ease-in-out block px-2 py-1 rounded hover:bg-gray-300"
+            onClick={() => setIsNavbarOpen(false)}
+          >
+            Messages
+          </Link>
+          <Link
+            exact
+            to={`/user/saved`}
+            className="transition duration-300 ease-in-out block px-2 py-1 rounded hover:bg-gray-300"
+            onClick={() => setIsNavbarOpen(false)}
+          >
+            Saved
+          </Link> */}
+          <button
+            onClick={async (e: any) => {
+              // let response = await userLogoutAction();
+              // if (response.status === 200) {
+              setIsNavbarOpen(false);
+              router.push('/');
+              // }
+            }}
+            className="transition duration-300 ease-in-out block px-2 py-1 rounded hover:bg-gray-300"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </>
+  );
+};
