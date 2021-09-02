@@ -24,7 +24,7 @@ const Home: NextPage = () => {
                 Spend a unforgettable holiday in the enchanting surroundings of
                 the town of Cistercians reachable.
               </p>
-              <Link href="/home">
+              <Link href="/events">
                 <a className="bg-primary text-white flex justify-between items-center py-2 px-8 rounded-md">
                   <span className="font-semibold">Explore</span>
                   <FiArrowRight />
