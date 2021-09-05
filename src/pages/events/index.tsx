@@ -15,6 +15,7 @@ import MainLayout from 'src/layouts/main';
 
 // TOTO: add types and filters
 const Events: NextPage = ({ events, pagination }: any) => {
+  console.log(events);
   return (
     <MainLayout>
       <h2 className="text-4xl font-bold mb-8">Nearby Events</h2>
