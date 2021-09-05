@@ -1,7 +1,8 @@
 import React from 'react';
 import Icon from '../shared/icons';
 import { s3FileUrl } from '../../config';
-
+import Image from 'next/image';
+import { imgLoader } from '@/utils/next';
 interface Props {
   className?: string | undefined;
   service: any;
@@ -49,11 +50,19 @@ export const ServiceCard: React.FC<Props> = ({ className = '', service }) => {
     <div className={className}>
       <div className="aspect-ratio--16x9">
         <div className="aspect-ratio__inner-wrapper overflow-hidden border rounded-md cursor-pointer transition duration-500 ease-in-out transform hover:scale-105">
-          <img
+          {/* <img
             className="h-full w-full object-cover"
             // src={service.coverImages.length > 0 ? service.coverImages[0].url : card1}
             src={s3FileUrl + service.coverImage}
             alt={service.name}
+          /> */}
+          <Image
+            loader={imgLoader(s3FileUrl)}
+            src={service.coverImage}
+            alt="Picture of the author"
+            width="1600"
+            height="900"
+            layout="responsive"
           />
         </div>
       </div>

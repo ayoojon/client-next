@@ -15,7 +15,6 @@ import { ServiceCard } from '@/components/Cards/ServiceCard';
 
 // TOTO: add types and filters
 const Services: NextPage = ({ services, pagination }: any) => {
-  console.log(services);
   return (
     <MainLayout>
       <h2 className="text-4xl font-bold mb-8">Nearby Service</h2>
