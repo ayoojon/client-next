@@ -1,5 +1,6 @@
 import decode from 'jwt-decode';
 import {eventTypes} from "@/types/event"
+import { ayoojonApi } from '../config';
 
 interface IPayload {
   _id: string;
@@ -64,6 +65,75 @@ export const isTokenExpired = (token: string) => {
     return true;
   }
 };
+
+export const tokenConfig = async (authType: 'WITH-AUTH' | 'WITHOUT-AUTH') => {
+  if (authType === 'WITH-AUTH') {
+    const at = getAccessToken();
+    if (at !== null && !isTokenExpired(at)) {
+      return {
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: `Bearer ${at}`,
+        },
+      };
+    } else {
+      // let response: any = await getNewAccessTokenWithRefreshToken();
+      return {
+        headers: {
+          'Content-type': 'application/json',
+          // Authorization: `Bearer ${response.data.accessToken}`,
+        },
+      };
+    }
+  } else {
+    return {
+      headers: {
+        'Content-type': 'application/json',
+      },
+    };
+  }
+};
+
+// export const getNewAccessTokenWithRefreshToken = async () => {
+//   try {
+//     let refreshToken = getRefreshToken();
+//     if (refreshToken !== null) {
+//       const headers = await tokenConfig('WITHOUT-AUTH');
+//       const response = await ayoojonApi.post('accounts/refresh-token', { refreshToken }, headers);
+
+//       setAccessToken(response.data.accessToken);
+//       setRefreshToken(response.data.refreshToken);
+
+//       store.dispatch({
+//         type: USER_LOGGED_IN,
+//       });
+
+//       return response;
+//     } else {
+//       removeAccessToken();
+//       removeRefreshToken();
+//       await store.dispatch({ type: USER_LOGOUT });
+//       await persistor.purge();
+
+//       History.push('/signin?msg=session-expired');
+//       window.location.reload();
+//     }
+//   } catch (error) {
+//     // toast(ToastMsg, { className: 'bg-teal-900 m-0', bodyClassName: 'm-0' });
+//     removeAccessToken();
+//     removeRefreshToken();
+
+//     await store.dispatch({ type: USER_LOGOUT });
+//     await persistor.purge();
+
+//     // TODO show session expired message on signin page
+//     History.push('/signin?msg=session-expired');
+//     window.location.reload();
+
+//     return error.response;
+//   }
+// };
+
 
 export const isAuthenticate = (): boolean => {
   const accessToken = getAccessToken();
