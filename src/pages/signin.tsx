@@ -155,7 +155,7 @@ const Signin = () => {
                   <Icon name="arrow-right" className="h-8" fill="#fff" />
                 </Button>
               </div>
-              <Link href="/signup">
+              <Link href="/signup" passHref>
                 <div className="transition duration-500 ease-out h-full border-2 border-teal-900 text-center rounded-md py-2 mt-16 text-teal-900 hover:bg-teal-900 hover:text-white">
                   <span className="font-semibold">Sign Up Here</span>
                 </div>

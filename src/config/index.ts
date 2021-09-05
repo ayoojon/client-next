@@ -13,8 +13,7 @@ export const lambdaAPI = 'https://wpfl5av581.execute-api.ap-south-1.amazonaws.co
 
 export const localServer = 'http://localhost:4040/api/v1/';
 export const prodServer = 'https://api.ayoojon.com/api/v1/';
-// export const server = process.env.NODE_ENV === 'development' ? localServer : prodServer;
-export const server = prodServer;
+export const server = process.env.NODE_ENV === 'development' ? localServer : prodServer;
 
 export const ayoojonApi = axios.create({
   baseURL: server,
