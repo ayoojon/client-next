@@ -7,6 +7,8 @@ import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 import { useHistory } from 'react-router-dom';
 import { IService } from '@/types/service';
+import Image from 'next/image';
+import { imgLoader } from '@/utils/next';
 
 interface ParamTypes {
   serviceURL: string;
@@ -68,10 +70,19 @@ const AlbumPhotoList = () => {
       <div className="flex flex-wrap -m-3 mt-2">
         {data?.photos.map((photo, index) => (
           <div key={index} className="h-64 w-full sm:w-80 m-3 rounded-2xl border overflow-hidden	">
-            <img
+            {/* <img
               src={s3FileUrl + photo}
               alt=""
               className="h-full w-full object-cover"
+              onClick={() => handleClickImage(photo, index)}
+            /> */}
+            <Image
+              loader={imgLoader(s3FileUrl)}
+              className="absolute top-0 left-0 w-full h-full object-cover"
+              src={photo}
+              alt="user-img"
+              width="100%"
+              height="100%"
               onClick={() => handleClickImage(photo, index)}
             />
           </div>

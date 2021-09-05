@@ -1,5 +1,8 @@
 import React from 'react';
 import { s3FileUrl } from '../../../config';
+import Image from 'next/image';
+import { imgLoader } from '@/utils/next';
+
 interface ModalProps {
   isOpen: boolean;
   data: any;
@@ -30,10 +33,18 @@ export const SingleAlbumView: React.FC<ModalProps> = ({ isOpen, onClose, data })
               </div>
               <div className="flex flex-col px-6 py-4 bg-white rounded-bl-lg rounded-br-lg">
                 <div className="h-64 overflow-hidden rounded-md">
-                  <img
+                  {/* <img
                     className="inline-block w-full h-full object-cover"
                     src={s3FileUrl + item.photos[0]}
                     alt="product"
+                  /> */}
+                  <Image
+                    loader={imgLoader(s3FileUrl)}
+                    className="absolute top-0 left-0 w-full h-full object-cover"
+                    src={item.photos[0]}
+                    alt="user-img"
+                    width="100%"
+                    height="100%"
                   />
                 </div>
                 <div className="py-2">

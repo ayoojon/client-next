@@ -6,6 +6,8 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Pagination, { IPagination } from '@/components/Pagination';
 import userImg from '@/components/shared/resources/user-avatar.jpg';
+import Image from 'next/image';
+import { imgLoader } from '@/utils/next';
 
 interface Props {
   serviceId: string;
@@ -45,24 +47,16 @@ export const ServiceReview: React.FC<Props> = ({ serviceId }) => {
             <div className="flex-shrink-0">
               <div className="inline-block relative">
                 <div className="relative w-16 h-16 rounded-full overflow-hidden">
-                  {review.booking ? (
-                    <img
-                      // src={s3FileUrl + review.booking.account.avatar}
-                      src={
-                        review.booking.account && review.booking.account.avatar
-                          ? s3FileUrl + review.booking.account.avatar
-                          : userImg
-                      }
-                      alt="avatar"
-                      className="absolute top-0 left-0 w-full h-full bg-cover object-fit object-cover"
-                    />
-                  ) : (
-                    <img
-                      src={userImg}
-                      alt="avatar"
-                      className="absolute top-0 left-0 w-full h-full bg-cover object-fit object-cover"
-                    />
-                  )}
+                  <Image
+                    loader={imgLoader(s3FileUrl)}
+                    className="absolute top-0 left-0 w-full h-full object-cover"
+                    src={
+                      review?.booking?.account?.avatar ? review.booking.account.avatar : '/resources/user-avatar.jpg'
+                    }
+                    alt="user-img"
+                    width="100%"
+                    height="100%"
+                  />
                 </div>
               </div>
             </div>
