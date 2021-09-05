@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { s3FileUrl } from '@/config/index';
 import { useRouter } from 'next/router';
+import { useAppDispatch, useAppSelector } from '../shared/hooks/redux';
+import { logoutUser } from 'src/stores/UserReducer';
 
 interface props {
   className?: string | undefined;
@@ -10,9 +12,19 @@ interface props {
 }
 
 export const AccountDropdown: React.FC<props> = ({ className, setIsNavbarOpen }) => {
+  const dispatch = useAppDispatch();
+
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
-  // const user = useSelector((state: IReducer) => state.userReducer.user);
+  const user = useAppSelector((state) => state.userReducer.user);
+
+  const handleLogout = async (e: any) => {
+    setIsOpen(false);
+    setIsNavbarOpen(false);
+    dispatch(logoutUser());
+    router.push('/');
+  };
+
   return (
     <>
       <div className={`relative hidden sm:block sm:ml-3" ${className || ''}`}>
@@ -114,14 +126,7 @@ export const AccountDropdown: React.FC<props> = ({ className, setIsNavbarOpen })
             <Link href="/user/settings">
               <a
                 className="transition duration-300 ease-in-out block px-4 py-2 text-gray-800 hover:bg-gray-300"
-                onClick={async (e: any) => {
-                  // let response = await userLogoutAction();
-                  // if (response.status && response.status === 200) {
-                  setIsOpen(false);
-                  setIsNavbarOpen(false);
-                  router.push('/');
-                  // }
-                }}
+                onClick={handleLogout}
               >
                 Logout
               </a>
@@ -200,13 +205,7 @@ export const AccountDropdown: React.FC<props> = ({ className, setIsNavbarOpen })
             Saved
           </Link> */}
           <button
-            onClick={async (e: any) => {
-              // let response = await userLogoutAction();
-              // if (response.status === 200) {
-              setIsNavbarOpen(false);
-              router.push('/');
-              // }
-            }}
+            onClick={handleLogout}
             className="transition duration-300 ease-in-out block px-2 py-1 rounded hover:bg-gray-300"
           >
             Logout

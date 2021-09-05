@@ -4,15 +4,16 @@ import Image from 'next/image';
 import Icon from '@/components/shared/icons/index';
 import { AccountDropdown } from './AccountDropdown';
 import { IconButton } from '@material-ui/core';
+import { useAppSelector } from '../shared/hooks/redux';
 // import { useSelector } from 'react-redux';
 // import { IReducer } from '../../stores/IndexReducer';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
-  // const { isLogin } = useSelector((state: IReducer) => {
-  //   return { isAdmin: state.userReducer.user?.type === 'admin', isLogin: state.userReducer.isLogin };
-  // });
+
+  const { isLogin } = useAppSelector((state) => {
+    return { isLogin: !!state.userReducer.user };
+  });
 
   return (
     <>
