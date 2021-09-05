@@ -37,12 +37,18 @@ export interface IUser {
   location?: string;
 }
 
+export interface ICurrentPosition {
+  latitude: number;
+  longitude: number;
+}
+
 export interface IUserSignIn {
   email: IUser['email'];
   password: string;
 }
 
-export interface ICurrentPosition {
-  latitude: number;
-  longitude: number;
+export interface IUpdateUser {
+  name: IUser['name'];
+  address: IUser['address'];
+  contactNo: IUser['contactNo'];
 }
