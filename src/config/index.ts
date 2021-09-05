@@ -19,3 +19,7 @@ export const ayoojonApi = axios.create({
   baseURL: server,
   // withCredentials: true,
 });
+
+export const MAP_KEY = process.env.REACT_APP_GOOGLE_KEY!;
+export const REACT_APP_GMAIL_CLIENT_ID = process.env.REACT_APP_GMAIL_CLIENT_ID!;
+export const REACT_APP_GMAIL_CLIENT_SECRET = process.env.REACT_APP_GMAIL_CLIENT_SECRET!;

@@ -9,7 +9,7 @@ const MainLayout = ({ children }: props) => {
   return (
     <div className="antialiased min-h-screen flex flex-col relative">
       <Navbar />
-      <div className="flex-1 mt-14 max-w-6xl mx-auto">{children}</div>
+      <div className="flex-1 mt-14">{children}</div>
       <Footer />
     </div>
   );

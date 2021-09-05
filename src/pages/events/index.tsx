@@ -12,18 +12,46 @@ import { NextPage } from 'next';
 import Axios from 'axios';
 import Link from 'next/link';
 import MainLayout from 'src/layouts/main';
+import Backdrop from '@/components/shared/Backdrop';
+
+interface IData {
+  events: IEvent[];
+  pagination: IPagination;
+}
+interface IInitialData {
+  initialEvents: IEvent[];
+  pagination: IPagination;
+}
+
+const fetchAllEvents = async () => {
+  const response = await ayoojonApi.get(`events`);
+  return {
+    events: response.data.data,
+    pagination: response.data.pagination,
+  };
+};
 
 // TOTO: add types and filters
-const Events: NextPage = ({ events, pagination }: any) => {
-  console.log(events);
+const Events: NextPage<IInitialData> = ({ initialEvents, pagination }: IInitialData) => {
+  const {
+    data: { events },
+    isLoading,
+  } = useQuery<IData, Error>(['events'], () => fetchAllEvents(), {
+    initialData: { events: initialEvents, pagination },
+    refetchOnWindowFocus: false,
+    keepPreviousData: true,
+    retry: 1,
+  });
+
   return (
-    <MainLayout>
-      <h2 className="text-4xl font-bold mb-8">Nearby Events</h2>
+    <div className="my-12 px-6 md:px-10 lg:px-14">
+      <Backdrop open={isLoading} />
+      <h2 className="text-4xl font-bold mb-8 mt-6">Nearby Events</h2>
       {events && events?.length > 0 ? (
-        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid gap-x-3 gap-y-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {events.map((event) => (
             <Link key={event._id} href={`/events/${event.url}`}>
-              <a>
+              <a className="inline-block">
                 <EventCard key={event._id} event={event} />
               </a>
             </Link>
@@ -33,12 +61,12 @@ const Events: NextPage = ({ events, pagination }: any) => {
         <p>No events found</p>
       )}
       {pagination && <Pagination pagination={pagination} handler={() => {}} />}
-    </MainLayout>
+    </div>
   );
 };
 
 export async function getStaticProps() {
-  const { data } = await Axios.get(`${server}/events`);
+  const { data } = await Axios.get(`${server}events`);
 
   if (!data) {
     return {
@@ -47,7 +75,8 @@ export async function getStaticProps() {
   }
 
   return {
-    props: { events: data.data, pagination: data.pagination }, // will be passed to the page component as props
+    props: { initialEvents: data.data, pagination: data.pagination },
+    revalidate: 60, // increment in every 1 min.
   };
 }
 
