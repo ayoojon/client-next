@@ -16,7 +16,7 @@ import { ServiceCard } from '@/components/Cards/ServiceCard';
 // TOTO: add types and filters
 const Services: NextPage = ({ services, pagination }: any) => {
   return (
-    <MainLayout>
+    <div className="my-12 px-6 md:px-10 lg:px-14">
       <h2 className="text-4xl font-bold mb-8">Nearby Service</h2>
       {services && services?.length > 0 ? (
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -32,7 +32,7 @@ const Services: NextPage = ({ services, pagination }: any) => {
         <p>No events found</p>
       )}
       {pagination && <Pagination pagination={pagination} handler={() => {}} />}
-    </MainLayout>
+    </div>
   );
 };
 

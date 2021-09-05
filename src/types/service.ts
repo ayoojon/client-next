@@ -1,3 +1,5 @@
+import { IUser } from './user';
+
 export type serviceTypes =
   | 'venue'
   | 'event-management'
@@ -113,6 +115,16 @@ export interface IService {
     };
   };
   isEmailVerified: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface IReviewService {
+  booking: {
+    account: Pick<IUser, '_id' | 'name' | 'avatar'>;
+  };
+  rating: Number;
+  text?: string;
   createdAt: string;
   updatedAt: string;
 }

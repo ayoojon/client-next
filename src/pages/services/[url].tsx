@@ -14,6 +14,11 @@ import { IService } from '@/types/service';
 import { Helmet } from 'react-helmet';
 import Icon from '@/components/shared/icons';
 import { AlbumView } from '@/components/services/album/AlbumView';
+import { AmenitiesListView } from '@/components/services/Amenities/AmenitiesListView';
+import { ServiceReview } from '@/components/services/review/ServiceReview';
+import { LocationView } from '@/components/services/location/LocationView';
+import { ProductView } from '@/components/services/product/ProductView';
+import { PackageView } from '@/components/services/packages/PackageView';
 
 interface IData {
   service: IService;
@@ -28,45 +33,95 @@ const ServicePage: NextPage<IData> = ({ service }: IData) => {
 
   return (
     <>
-      <Helmet>
-        <title>{`${service.name} | ${APP_TITLE}`}</title>
-      </Helmet>
-      <div className="my-4">
-        <div className="container mx-auto px-6 mb-24">
-          <div className="aspect-w-9 aspect-h-3">
-            <div className="overflow-hidden border rounded-md shadow-md">
-              <div
-                className="h-full w-full"
-                style={{
-                  backgroundSize: 'cover',
-                  backgroundImage: `url(${s3FileUrl + service.coverImage})`,
-                }}
-              ></div>
-            </div>
-          </div>
-          <div className="py-6 border-b border-gray-300 last:border-0">
-            <div className="flex items-baseline">
-              <h6 className="font-medium text-xl sm:text-3xl">{service.name}</h6>
-              <div className="flex items-center ml-4">
-                <Icon name="star" className="h-4 sm:h-6 fill-current text-primary" />
-                <span className="ml-1 font-medium sm:text-lg">{service.avgRating.toFixed(1)}</span>
+      {service ? (
+        <>
+          <Helmet>
+            <title>{`${service.name} | ${APP_TITLE}`}</title>
+          </Helmet>
+          <div className="my-4">
+            <div className="container mx-auto px-6 mb-24">
+              <div className="aspect-w-9 aspect-h-3">
+                <div className="overflow-hidden border rounded-md shadow-md">
+                  <div
+                    className="h-full w-full"
+                    style={{
+                      backgroundSize: 'cover',
+                      backgroundImage: `url(${s3FileUrl + service.coverImage})`,
+                    }}
+                  ></div>
+                </div>
+              </div>
+              <div className="py-6 border-b border-gray-300 last:border-0">
+                <div className="flex items-baseline">
+                  <h6 className="font-medium text-xl sm:text-3xl">{service.name}</h6>
+                  <div className="flex items-center ml-4">
+                    <Icon name="star" className="h-4 sm:h-6 fill-current text-primary" />
+                    <span className="ml-1 font-medium sm:text-lg">{service.avgRating.toFixed(1)}</span>
+                  </div>
+                </div>
+                <p>{service.location.address}</p>
+                <p>{service.location.city}</p>
+                <p>{service.location.country}</p>
+              </div>
+              <div className="py-6 border-b border-gray-300 last:border-0">
+                <h6 className="font-medium text-xl mb-3">Description</h6>
+                <div dangerouslySetInnerHTML={createMarkup(service.placeDescription)} />
+              </div>
+
+              {service.type === 'venue' && (
+                <div className="py-6 border-b border-gray-300 last:border-0">
+                  <h6 className="font-medium text-xl mb-3">Location</h6>
+                  <LocationView data={service.pricing.location} />
+                </div>
+              )}
+
+              {(service.type === 'flowers' || service.type === 'caterings') && (
+                <div className="py-6 border-b border-gray-300 last:border-0">
+                  <h6 className="font-medium text-xl mb-3">Product</h6>
+                  <ProductView data={service.pricing.product} />
+                </div>
+              )}
+
+              {[
+                'event-management',
+                'photographer',
+                'music',
+                'lightening',
+                'invitation-card',
+                'videographer',
+                'honeymoon',
+              ].includes(service.type) && (
+                <div className="py-6 border-b border-gray-300 last:border-0">
+                  <h6 className="font-medium text-xl mb-3">Packege</h6>
+                  <PackageView data={service.pricing.package} />
+                </div>
+              )}
+
+              <div className="py-6 border-b border-gray-300 last:border-0">
+                <h6 className="font-medium text-xl mb-3">Albums</h6>
+                {service.albums.length > 0 ? <AlbumView data={service.albums} /> : <p>No albums found</p>}
+              </div>
+
+              <div className="py-6 border-b border-gray-300 last:border-0">
+                <h6 className="font-medium text-xl mb-3">Amenities</h6>
+                <AmenitiesListView amenities={service.amenities} />
+              </div>
+
+              <div className="py-6 border-b border-gray-300 last:border-0">
+                <h6 className="font-medium text-xl mb-3">Terms And Conditions</h6>
+                <div dangerouslySetInnerHTML={createMarkup(service.termsConditions)} />
+              </div>
+
+              <div className="py-6 border-b border-gray-300 last:border-0">
+                <h6 className="font-medium text-xl mb-3">Reviews</h6>
+                <ServiceReview serviceId={service._id} />
               </div>
             </div>
-            <p>{service.location.address}</p>
-            <p>{service.location.city}</p>
-            <p>{service.location.country}</p>
           </div>
-          <div className="py-6 border-b border-gray-300 last:border-0">
-            <h6 className="font-medium text-xl mb-3">Description</h6>
-            <div dangerouslySetInnerHTML={createMarkup(service.placeDescription)} />
-          </div>
-
-          <div className="py-6 border-b border-gray-300 last:border-0">
-            <h6 className="font-medium text-xl mb-3">Albums</h6>
-            {service.albums.length > 0 ? <AlbumView data={service.albums} /> : <p>No albums found</p>}
-          </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <div>No service found</div>
+      )}
     </>
   );
 };
