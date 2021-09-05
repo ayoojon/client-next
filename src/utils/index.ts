@@ -137,3 +137,9 @@ export const generateQueryString = <T>(data: T) => {
   }
   return queryString;
 };
+
+export const createMarkup = (data: string) => {
+  return {
+    __html: data,
+  };
+};

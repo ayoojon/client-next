@@ -37,7 +37,7 @@ const Events: NextPage = ({ events, pagination }: any) => {
 };
 
 export async function getStaticProps() {
-  const { data } = await Axios.get(`${server}/events`);
+  const { data } = await Axios.get(`${server}events`);
 
   if (!data) {
     return {
@@ -46,7 +46,8 @@ export async function getStaticProps() {
   }
 
   return {
-    props: { events: data.data, pagination: data.pagination }, // will be passed to the page component as props
+    props: { events: data.data, pagination: data.pagination },
+    revalidate: 60, // increment in every 1 min.
   };
 }
 

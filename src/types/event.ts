@@ -56,7 +56,12 @@ export interface IEvent {
   tags: string[];
 }
 
-export interface IEventMembers {
+export interface IEventTicket {
+  customerDetail: IEventMember;
+  slug: string;
+  event: IEvent;
+}
+export interface IEventMember {
   _id: string;
   name: string;
   email: string;
