@@ -13,15 +13,16 @@ interface Props {
 
 export const EventCard: React.FC<Props> = ({ event }) => {
   return (
-    <div className="w-64">
+    <div>
       <div className="aspect-ratio--16x9">
         <div className="aspect-ratio__inner-wrapper overflow-hidden border rounded-md cursor-pointer transition duration-500 ease-in-out transform hover:scale-105">
           <Image
             loader={imgLoader(s3FileUrl)}
             src={event.coverImage}
             alt="Picture of the author"
-            width="400px"
-            height="280px"
+            width="1600"
+            height="900"
+            layout="responsive"
           />
         </div>
       </div>
