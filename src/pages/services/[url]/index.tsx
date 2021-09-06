@@ -1,15 +1,7 @@
 import Axios from 'axios';
 import { GetStaticProps, NextPage } from 'next';
 import React, { useState } from 'react';
-import CloseIcon from '@material-ui/icons/Close';
-import { IconButton, Link } from '@material-ui/core';
-import moment from 'moment';
-
 import { APP_TITLE, s3FileUrl, server } from '@/config/index';
-import { IEvent, IEventTicket } from '@/types/event';
-import { time24To12, createMarkup } from '@/utils/index';
-import Map from '@/components/shared/Map';
-import AyoojonAccordion from '@/components/shared/Accordion';
 import { IService } from '@/types/service';
 import { Helmet } from 'react-helmet';
 import Icon from '@/components/shared/icons';
@@ -26,6 +18,8 @@ import BookingPackageBottomBar from '@/components/services/BookingPackageBottomB
 import BookingProductBottomBar from '@/components/services/BookingProductBottomBar';
 import { useRouter } from 'next/router';
 import SEO from '@/components/shared/SEO';
+import Image from 'next/image';
+import { imgLoader } from '@/utils/next';
 
 interface IData {
   service: IService;
@@ -60,11 +54,22 @@ const ServicePage: NextPage<IData> = ({ service }: IData) => {
                 <div className="overflow-hidden border rounded-md shadow-md">
                   <div
                     className="h-full w-full"
-                    style={{
-                      backgroundSize: 'cover',
-                      backgroundImage: `url(${s3FileUrl + service.coverImage})`,
-                    }}
-                  ></div>
+                    // style={{
+                    //   backgroundSize: 'cover',
+                    //   backgroundImage: `url(${s3FileUrl + service.coverImage})`,
+                    // }}
+                  >
+                    <Image
+                      loader={imgLoader(s3FileUrl)}
+                      src={`${service.coverImage}`}
+                      alt={`${service.name}`}
+                      layout="responsive"
+                      className="object-cover"
+                      width={900}
+                      height={400}
+                      priority
+                    />
+                  </div>
                 </div>
               </div>
               <div className="py-6 border-b border-gray-300 last:border-0">
