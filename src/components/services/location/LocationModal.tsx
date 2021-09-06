@@ -2,6 +2,8 @@ import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import { s3FileUrl } from '../../../config';
 import { time24To12 } from '../../../utils';
+import Image from 'next/image';
+import { imgLoader } from '@/utils/next';
 
 interface Props {
   isVisible: boolean;
@@ -37,10 +39,18 @@ export const LocationModal: React.FC<Props> = ({ isVisible, setVisible, data }) 
 
           <div className="flex flex-col px-6 py-4 bg-white rounded-bl-lg rounded-br-lg">
             <div className="h-64 overflow-hidden rounded-md">
-              <img
+              {/* <img
                 className="inline-block w-full h-full object-cover"
                 src={s3FileUrl + location.photos[0]}
                 alt="location"
+              /> */}
+              <Image
+                loader={imgLoader(s3FileUrl)}
+                className="inline-block w-full h-full object-cover"
+                src={location.photos[0]}
+                alt="location"
+                width="100%"
+                height="100%"
               />
             </div>
             <div className="py-2">

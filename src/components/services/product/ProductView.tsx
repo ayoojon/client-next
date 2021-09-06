@@ -4,6 +4,8 @@ import { s3FileUrl } from '../../../config';
 import { ProductModal } from './ProductModal';
 // import { SingleViewProduct } from './SingleViewProduct';
 import { TabPanel } from './TabPanel';
+import Image from 'next/image';
+import { imgLoader } from '@/utils/next';
 
 interface Props {
   data: any;
@@ -88,10 +90,18 @@ export const ProductView: React.FC<Props> = ({ data }) => {
                     }}
                   >
                     <div className="h-40 w-full overflow-hidden rounded-md">
-                      <img
+                      {/* <img
                         className="inline-block w-full h-full object-cover"
                         src={s3FileUrl + item.image}
                         alt="location"
+                      /> */}
+                      <Image
+                        loader={imgLoader(s3FileUrl)}
+                        className="inline-block w-full h-full object-cover"
+                        src={item.image}
+                        alt="product"
+                        width="100%"
+                        height="100%"
                       />
                     </div>
                     <div className="p-2">

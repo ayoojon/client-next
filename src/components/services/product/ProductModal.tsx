@@ -2,6 +2,8 @@ import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 // import { DialogActions, DialogTitle } from '@material-ui/core';
 import { s3FileUrl } from '../../../config';
+import Image from 'next/image';
+import { imgLoader } from '@/utils/next';
 
 interface Props {
   isVisible: boolean;
@@ -36,7 +38,15 @@ export const ProductModal: React.FC<Props> = ({ isVisible, setVisible, data }) =
           </div>
           <div className="flex flex-col px-6 py-4 bg-white rounded-bl-lg rounded-br-lg">
             <div className="h-64 overflow-hidden rounded-md">
-              <img className="inline-block w-full h-full object-cover" src={s3FileUrl + product.image} alt="product" />
+              {/* <img className="inline-block w-full h-full object-cover" src={s3FileUrl + product.image} alt="product" /> */}
+              <Image
+                loader={imgLoader(s3FileUrl)}
+                className="inline-block w-full h-full object-cover"
+                src={product.image}
+                alt="product"
+                width="100%"
+                height="100%"
+              />
             </div>
             <div className="py-2">
               {/* <h6 className="font-semibold text-2xl pb-2">title</h6> */}

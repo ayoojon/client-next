@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { s3FileUrl } from '../../../config';
 import { LocationModal } from './LocationModal';
 // import { SingleViewLocation } from './SingleViewLocation';
+import Image from 'next/image';
+import { imgLoader } from '@/utils/next';
 
 interface Props {
   data: any;
@@ -36,10 +38,18 @@ export const LocationView: React.FC<Props> = ({ data }) => {
           }}
         >
           <div className="h-40 w-full overflow-hidden rounded-md">
-            <img
+            {/* <img
               className="inline-block w-full h-full object-cover"
               src={s3FileUrl + location.photos[0]}
               alt="location"
+            /> */}
+            <Image
+              loader={imgLoader(s3FileUrl)}
+              className="inline-block w-full h-full object-cover"
+              src={location.photos[0]}
+              alt="location"
+              width="100%"
+              height="100%"
             />
           </div>
           <div className="p-2">

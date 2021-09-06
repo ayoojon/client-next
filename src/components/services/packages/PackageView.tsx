@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { s3FileUrl } from '../../../config';
 import { PackageModal } from './PackageModal';
 // import { SingleViewPakage } from './SingleViewPakage';
+import Image from 'next/image';
+import { imgLoader } from '@/utils/next';
 interface Props {
   data: any;
 }
@@ -55,7 +57,15 @@ export const PackageView: React.FC<Props> = ({ data }) => {
                 <p className="font-medium text-primary">{item.title}</p>
               </div>
               <div className="flex-shrink-0">
-                <img className="w-16 h-16 rounded-full mx-auto" src={s3FileUrl + item.image} alt="" />
+                {/* <img className="w-16 h-16 rounded-full mx-auto" src={s3FileUrl + item.image} alt="" /> */}
+                <Image
+                  loader={imgLoader(s3FileUrl)}
+                  className="w-16 h-16 rounded-full mx-auto"
+                  src={item.image}
+                  alt="package"
+                  width="100%"
+                  height="100%"
+                />
               </div>
             </div>
             {/* <p>{item.description}</p> */}
