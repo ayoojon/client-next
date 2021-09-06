@@ -32,7 +32,7 @@ export const LocationView: React.FC<Props> = ({ data }) => {
       {data.map((location: any, index: any) => (
         <div
           key={index}
-          className="w-56 cursor-pointer rounded-b-md mx-2 mb-4 transition duration-300 ease-in-out hover:shadow-xl"
+          className="w-56 cursor-pointer rounded-b-md border-2 rounded-lg mx-2 mb-4 transition duration-300 ease-in-out hover:shadow-xl"
           onClick={() => {
             dataHandeler(location);
           }}
@@ -48,8 +48,8 @@ export const LocationView: React.FC<Props> = ({ data }) => {
               className="inline-block w-full h-full object-cover"
               src={location.photos[0]}
               alt="location"
-              width="100%"
-              height="100%"
+              width="560"
+              height="400"
             />
           </div>
           <div className="p-2">

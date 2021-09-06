@@ -100,8 +100,8 @@ export const ProductView: React.FC<Props> = ({ data }) => {
                         className="inline-block w-full h-full object-cover"
                         src={item.image}
                         alt="product"
-                        width="100%"
-                        height="100%"
+                        width="560"
+                        height="400"
                       />
                     </div>
                     <div className="p-2">

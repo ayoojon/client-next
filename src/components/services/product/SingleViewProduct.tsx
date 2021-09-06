@@ -44,8 +44,8 @@ export const SingleViewProduct: React.FC<ModalProps> = ({ isOpen, onClose, data 
                     className="inline-block w-full h-full object-cover"
                     src={product.image}
                     alt="product"
-                    width="100%"
-                    height="100%"
+                    width="800"
+                    height="640"
                   />
                 </div>
                 <div className="py-2">

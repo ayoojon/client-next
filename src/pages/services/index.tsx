@@ -15,6 +15,7 @@ import { ServiceCard } from '@/components/Cards/ServiceCard';
 
 // TOTO: add types and filters
 const Services: NextPage = ({ services, pagination }: any) => {
+  console.log(pagination);
   return (
     <div className="my-12 px-6 md:px-10 lg:px-14">
       <h2 className="text-4xl font-bold mb-8">Nearby Service</h2>
@@ -44,7 +45,7 @@ export async function getStaticProps() {
       notFound: true,
     };
   }
-
+  console.log(data);
   return {
     props: { services: data.data, pagination: data.pagination }, // will be passed to the page component as props
   };

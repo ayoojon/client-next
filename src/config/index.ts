@@ -22,6 +22,6 @@ export const APP_DESCRIPTION = 'We organize everything.';
 export const APP_IMAGE_URL = '/resources/ayoojon_transparent.png';
 export const APP_FACEBOOK_URL = 'https://www.facebook.com/AyoojonKoro/';
 export const APP_LINKEDIN_URL = 'https://www.linkedin.com/company/ayoojon';
-export const MAP_KEY = process.env.REACT_APP_GOOGLE_KEY!;
-export const REACT_APP_GMAIL_CLIENT_ID = process.env.REACT_APP_GMAIL_CLIENT_ID!;
+// export const MAP_KEY = process.env.NEXT_PUBLIC_GOOGLE_KEY!;
+
 export const NEXT_PUBLIC_GMAIL_CLIENT_ID = process.env.NEXT_PUBLIC_GMAIL_CLIENT_ID!;
