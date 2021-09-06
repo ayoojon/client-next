@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { imgLoader } from '@/utils/next';
 import { IService } from '@/types/service';
 import Router, { useRouter } from 'next/router';
+import SEO from '@/components/shared/SEO';
 
 interface ParamTypes {
   url: string;
@@ -49,6 +50,7 @@ const AlbumPhotoList = () => {
 
   return (
     <div className="container mx-auto mt-12 px-6">
+      <SEO siteTitle={'Booking - ' + data.title} />
       {/* <button className="bg-primary p-1 text-white rounded" onClick={() => history.goBack()}>
         Go Back
       </button> */}

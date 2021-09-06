@@ -11,6 +11,7 @@ import { ServiceCard } from '@/components/Cards/ServiceCard';
 import { generateQueryString } from '@/utils/index';
 import { IService } from '@/types/service';
 import { FilterServices } from '@/components/services/FilterServices';
+import SEO from '@/components/shared/SEO';
 const useStyles = makeStyles(
   createStyles({
     filtersActiveLabel: {
@@ -86,6 +87,7 @@ const Services: NextPage<Props> = ({ initalServices, pagination }: Props) => {
   };
   return (
     <div className="my-12 px-6 md:px-10 lg:px-14">
+      <SEO siteTitle="All Services" />
       <div className="flex justify-between">
         <h2 className="text-4xl font-bold mb-8">Nearby Service</h2>
         <div>
