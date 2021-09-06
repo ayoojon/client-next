@@ -1,15 +1,19 @@
 import Axios from 'axios';
-import { NextPage } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import React, { useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import { IconButton, Link } from '@material-ui/core';
 import moment from 'moment';
+import Image from 'next/image';
 
 import { s3FileUrl, server } from '@/config/index';
 import { IEvent, IEventTicket } from '@/types/event';
 import { time24To12, createMarkup } from '@/utils/index';
 import Map from '@/components/shared/Map';
 import AyoojonAccordion from '@/components/shared/Accordion';
+import { useRouter } from 'next/router';
+import { imgLoader } from '@/utils/next';
+import SEO from '@/components/shared/SEO';
 
 interface IEventData extends IEvent {
   members: number;
@@ -22,25 +26,36 @@ interface IData {
 }
 
 const EventPage: NextPage<IData> = ({ event, tickets, isJoined }: IData) => {
+  const router = useRouter();
   const [showPrice, setShowPrice] = useState(false);
 
   const handleOnClickBuyTicket = async () => {
     setShowPrice(false);
   };
 
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="mb-2">
+      {/* TODO:  */}
+      <SEO
+        siteTitle={event.name}
+        image={`${s3FileUrl}${event.coverImage}`}
+      />
       <div className="max-w-6xl mx-auto px-6 my-8">
-        <div className="aspect-w-9 aspect-h-3">
-          <div className="overflow-hidden border rounded-md shadow-md">
-            <div
-              className="h-full w-full"
-              style={{
-                backgroundSize: 'cover',
-                backgroundImage: `url(${s3FileUrl+event.coverImage})`,
-              }}
-            ></div>
-          </div>
+        <div className="relative rounded-md shadow-md overflow-hidden border">
+          <Image
+            loader={imgLoader(s3FileUrl)}
+            src={`${event.coverImage}`}
+            alt={`${event.name}`}
+            layout="responsive"
+            className="object-cover"
+            width={900}
+            height={400}
+            priority
+          />
         </div>
         <div className="py-6 border-b border-gray-300 last:border-0 md:flex md:justify-between">
           <div className="">
@@ -158,9 +173,7 @@ const EventPage: NextPage<IData> = ({ event, tickets, isJoined }: IData) => {
                         </div>
                       ))}
                       <Link href="/user/tickets">
-                        <a>
-                          <button className="text-white font-normal bg-primary rounded-md px-2 py-1">See More</button>
-                        </a>
+                        <button className="text-white font-normal bg-primary rounded-md px-2 py-1">See More</button>
                       </Link>
                     </div>
                   )}
@@ -184,7 +197,7 @@ const EventPage: NextPage<IData> = ({ event, tickets, isJoined }: IData) => {
             {event.hostingType === 'venue' ? (
               <div className="py-6 border-b border-gray-300 last:border-0">
                 <h6 className="font-medium text-xl mb-3">Location on Google Map</h6>
-                <div className="h-xs border relative md:w-3/4">
+                <div className="h-[320px] border relative">
                   <Map
                     latitude={parseFloat(event?.venueLocation?.coordinates[1] as any)}
                     longitude={parseFloat(event?.venueLocation?.coordinates[0] as any)}
@@ -209,50 +222,64 @@ const EventPage: NextPage<IData> = ({ event, tickets, isJoined }: IData) => {
         <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
           <div className="flex">
             <p className="text-primary font-medium text-lg">
-              {event.ticketType === 'paid' ? event.price?.toFixed(2) : 'FREE'}
+              {event.ticketType === 'paid' ? `${event.price?.toFixed(2)} BDT` : 'FREE'}
             </p>
             <p className="text-gray-600 text-md ml-2">/ Ticket</p>
           </div>
           {event.quantity - event.members === 0 ? (
             <Link href={`/events/${event.url}/buy`}>
-              <a>
-                <button
-                  disabled
-                  className="cursor-not-allowed text-white font-medium bg-customGray-450 rounded-md py-4 px-16"
-                >
-                  Sold Out
-                </button>
-              </a>
+              <button
+                disabled
+                className="cursor-not-allowed text-white font-medium bg-customGray-450 rounded-md py-4 px-16"
+              >
+                Sold Out
+              </button>
             </Link>
           ) : (
-            <Link href={`/events/${event.url}/buy`}>
-              <a>
-                <button className="text-white font-medium bg-primary rounded-md py-4 px-16">Get Ticket</button>
-              </a>
+            <Link href={`/events/${event.url}/book`}>
+              <button className="text-white font-medium bg-primary rounded-md py-4 px-16">Get Ticket</button>
             </Link>
           )}
-          {/* <NavLink exact to={`/events/${data.event.url}/buy`}>
-        <button className="text-white font-medium bg-primary rounded-md py-4 px-16">Get Ticket</button>
-      </NavLink> */}
         </div>
       </div>
     </div>
   );
 };
 
-export async function getServerSideProps({ params }) {
-  const { data } = await Axios.get(`${server}events/url/${params.url}`);
+export async function getStaticPaths() {
+  try {
+    const { data } = await Axios.get(`${server}events`);
 
-  console.log(data);
-  if (!data) {
+    const events = data.data.map((event) => ({
+      params: { url: event.url },
+    }));
+
+    return { paths: events, fallback: true };
+  } catch (error) {
+    return { paths: [], fallback: true };
+  }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  try {
+    const { data } = await Axios.get(`${server}events/url/${params.url}`);
+
+    if (!data) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      props: { event: data.event, tickets: data.tickets, isJoined: data.isJoined },
+
+      revalidate: 60,
+    };
+  } catch (error) {
     return {
       notFound: true,
     };
   }
-
-  return {
-    props: { event: data.event, tickets: data.tickets, isJoined: data.isJoined },
-  };
-}
+};
 
 export default EventPage;

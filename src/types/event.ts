@@ -16,6 +16,13 @@ export type eventTypes =
 
 export type eventStatus = 'requested' | 'published' | 'completed' | 'cancelled';
 
+export interface IEventMembers {
+  _id: string;
+  name: string;
+  email: string;
+  contactNo: string;
+}
+
 export interface IEvent {
   _id: string;
   url: string;
@@ -46,8 +53,8 @@ export interface IEvent {
   ticketTermsConditions: string;
   faq: IFAQ[];
   status: eventStatus;
-  members: IEventMembers | Number;
-  requestedMembers: IEventMembers | Number;
+  members: number;
+  requestedMembers: number;
   account: string;
   isRemoved: boolean;
   createdAt: string;
