@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import { IconButton, Link } from '@material-ui/core';
 import moment from 'moment';
+import Image from 'next/image';
 
 import { s3FileUrl, server } from '@/config/index';
 import { IEvent, IEventTicket } from '@/types/event';
@@ -11,6 +12,8 @@ import { time24To12, createMarkup } from '@/utils/index';
 import Map from '@/components/shared/Map';
 import AyoojonAccordion from '@/components/shared/Accordion';
 import { useRouter } from 'next/router';
+import { imgLoader } from '@/utils/next';
+import SEO from '@/components/shared/SEO';
 
 interface IEventData extends IEvent {
   members: number;
@@ -36,17 +39,24 @@ const EventPage: NextPage<IData> = ({ event, tickets, isJoined }: IData) => {
 
   return (
     <div className="mb-2">
+      {/* TODO:  */}
+      <SEO
+        siteTitle={event.name}
+        // description={movie.description.length > 100 ? movie.description.substr(0, 100) : movie.description}
+        image={`${s3FileUrl}${event.coverImage}`}
+      />
       <div className="max-w-6xl mx-auto px-6 my-8">
-        <div className="aspect-w-9 aspect-h-3">
-          <div className="overflow-hidden border rounded-md shadow-md">
-            <div
-              className="h-full w-full"
-              style={{
-                backgroundSize: 'cover',
-                backgroundImage: `url(${s3FileUrl + event.coverImage})`,
-              }}
-            ></div>
-          </div>
+        <div className="relative rounded-md shadow-md overflow-hidden border">
+          <Image
+            loader={imgLoader(s3FileUrl)}
+            src={`${event.coverImage}`}
+            alt={`${event.name}`}
+            layout="responsive"
+            className="object-cover"
+            width={900}
+            height={400}
+            priority
+          />
         </div>
         <div className="py-6 border-b border-gray-300 last:border-0 md:flex md:justify-between">
           <div className="">
