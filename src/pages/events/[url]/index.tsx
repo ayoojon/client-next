@@ -42,7 +42,6 @@ const EventPage: NextPage<IData> = ({ event, tickets, isJoined }: IData) => {
       {/* TODO:  */}
       <SEO
         siteTitle={event.name}
-        // description={movie.description.length > 100 ? movie.description.substr(0, 100) : movie.description}
         image={`${s3FileUrl}${event.coverImage}`}
       />
       <div className="max-w-6xl mx-auto px-6 my-8">
@@ -237,7 +236,7 @@ const EventPage: NextPage<IData> = ({ event, tickets, isJoined }: IData) => {
               </button>
             </Link>
           ) : (
-            <Link href={`/events/book/${event.url}`}>
+            <Link href={`/events/${event.url}/book`}>
               <button className="text-white font-medium bg-primary rounded-md py-4 px-16">Get Ticket</button>
             </Link>
           )}
