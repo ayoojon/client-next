@@ -2,6 +2,8 @@ import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { s3FileUrl } from '../../../config';
 import Router, { useRouter } from 'next/router';
+import Image from 'next/image';
+import { imgLoader } from '@/utils/next';
 
 // import { SingleAlbumView } from './SingleAlbumView';
 interface Props {
@@ -52,7 +54,15 @@ export const AlbumView: React.FC<Props> = ({ data }) => {
           }}
         >
           <div className="h-40 w-full overflow-hidden rounded-md">
-            <img className="inline-block w-full h-full object-cover" src={s3FileUrl + photo.photos[0]} alt="location" />
+            {/* <img className="inline-block w-full h-full object-cover" src={s3FileUrl + photo.photos[0]} alt="location" /> */}
+            <Image
+              loader={imgLoader(s3FileUrl)}
+              className="absolute top-0 left-0 w-full h-full object-cover"
+              src={photo.photos[0]}
+              alt="location"
+              width="100%"
+              height="100%"
+            />
           </div>
           <div className="p-2">
             <h6 className="font-semibold text-xl pb-2">{photo.title}</h6>
