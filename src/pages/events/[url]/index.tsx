@@ -42,7 +42,6 @@ const EventPage: NextPage<IData> = ({ event, tickets, isJoined }: IData) => {
       {/* TODO:  */}
       <SEO
         siteTitle={event.name}
-        // description={movie.description.length > 100 ? movie.description.substr(0, 100) : movie.description}
         image={`${s3FileUrl}${event.coverImage}`}
       />
       <div className="max-w-6xl mx-auto px-6 my-8">
@@ -198,7 +197,7 @@ const EventPage: NextPage<IData> = ({ event, tickets, isJoined }: IData) => {
             {event.hostingType === 'venue' ? (
               <div className="py-6 border-b border-gray-300 last:border-0">
                 <h6 className="font-medium text-xl mb-3">Location on Google Map</h6>
-                <div className="h-xs border relative md:w-3/4">
+                <div className="h-[320px] border relative">
                   <Map
                     latitude={parseFloat(event?.venueLocation?.coordinates[1] as any)}
                     longitude={parseFloat(event?.venueLocation?.coordinates[0] as any)}
@@ -223,7 +222,7 @@ const EventPage: NextPage<IData> = ({ event, tickets, isJoined }: IData) => {
         <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
           <div className="flex">
             <p className="text-primary font-medium text-lg">
-              {event.ticketType === 'paid' ? event.price?.toFixed(2) : 'FREE'}
+              {event.ticketType === 'paid' ? `${event.price?.toFixed(2)} BDT` : 'FREE'}
             </p>
             <p className="text-gray-600 text-md ml-2">/ Ticket</p>
           </div>
@@ -237,7 +236,7 @@ const EventPage: NextPage<IData> = ({ event, tickets, isJoined }: IData) => {
               </button>
             </Link>
           ) : (
-            <Link href={`/events/book/${event.url}`}>
+            <Link href={`/events/${event.url}/book`}>
               <button className="text-white font-medium bg-primary rounded-md py-4 px-16">Get Ticket</button>
             </Link>
           )}

@@ -35,6 +35,8 @@ export interface IUser {
   avatar?: string;
   address?: string;
   location?: string;
+  accessToken?: string;
+  refreashToken?: string;
 }
 
 export interface ICurrentPosition {

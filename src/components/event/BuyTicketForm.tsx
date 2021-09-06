@@ -5,10 +5,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { contactNoRegex, emailRegex, tokenConfig } from '../../utils';
 import { ayoojonApi } from '@/config/index';
 import { customToast } from '@/components/shared/Toaster';
-import { useHistory } from 'react-router';
-import { useParams } from 'react-router-dom';
 import { InputHeader } from '@/components/shared/InputHeader';
 import { OutlinedInput } from '@material-ui/core';
+import useHeader from '../shared/hooks/useHeader';
+import { useRouter } from 'next/router';
 
 const validationSchema = yup.object().shape({
   customers: yup
@@ -40,7 +40,8 @@ interface Props {
 }
 
 const BuyTicketForm = ({ _id }: Props) => {
-  const history = useHistory();
+  const headers = useHeader();
+  const router = useRouter();
   const [error, setError] = useState<string>();
 
   const {
@@ -69,12 +70,10 @@ const BuyTicketForm = ({ _id }: Props) => {
 
   const onSubmit = handleSubmit(async (data) => {
     setError(undefined);
-    console.log(data);
     try {
-      const headers = await tokenConfig('WITH-AUTH');
       await ayoojonApi.post(`/tickets/events/${_id}/buy`, { customers: watchFieldArray }, headers);
       customToast('Successfully ticket booked!', 'success');
-      // history.push(`/events/${params.eventUrl}`);
+      router.push(`/events/${router.query.url}`);
     } catch (error) {
       if (error?.response?.status === 406) {
         setError('Not enough ticket available!');
@@ -135,7 +134,7 @@ const BuyTicketForm = ({ _id }: Props) => {
               />
               {errors?.['customers']?.[index]?.['contactNo'] && (
                 <p className="text-red-500 text-xs italic font-medium mt-1">
-                  {errors?.['customers']?.[index]?.['name']?.['message']}
+                  {errors?.['customers']?.[index]?.['contactNo']?.['message']}
                 </p>
               )}
             </div>

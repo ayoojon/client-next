@@ -22,7 +22,6 @@ const fetchAlbum = async (serviceURL: string, albumId: string) => {
 const AlbumPhotoList = () => {
   const router = useRouter();
   const { url, id } = router.query;
-  console.log(router.query);
   // const params = useParams<ParamTypes>();
 
   const [isOpen, setIsOpen] = useState(false);

@@ -12,10 +12,10 @@ import {
   tokenConfig,
   setAccessToken,
   setRefreshToken,
-} from '../utils';
+} from '@/utils/index';
 import { useRouter } from 'next/router';
 import { IUserSignIn } from '@/types/user';
-import { ayoojonApi } from '../config';
+import { ayoojonApi } from '@/config/index';
 import { useAppDispatch } from '@/components/shared/hooks/redux';
 import { loginUser } from 'src/stores/UserReducer';
 import { InputHeader } from '@/components/shared/InputHeader';
@@ -68,6 +68,7 @@ const Signin = () => {
       dispatch(loginUser(res.data));
       setAccessToken(res.data.accessToken);
       setRefreshToken(res.data.refreshToken);
+      router.push("/")
     } catch (error) {
       if (
         error?.response?.status === 401 &&
