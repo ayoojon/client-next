@@ -49,70 +49,56 @@ const AlbumPhotoList = () => {
   };
 
   return (
-    <div className="container mx-auto mt-12 px-6">
-      <SEO siteTitle={'Booking - ' + data.title} />
-      {/* <button className="bg-primary p-1 text-white rounded" onClick={() => history.goBack()}>
-        Go Back
-      </button> */}
-      <button className="bg-primary p-1 text-white rounded">Go Back</button>
+    <>
+      {data && (
+        <div className="container mx-auto mt-12 px-6">
+          <SEO siteTitle={'Booking - ' + data.title} />
 
-      <div className="py-6 border-b border-gray-300 last:border-0">
-        <div className=" mb-2">
-          <h6 className="font-medium text-xl mb-2">title</h6>
-          <p>{data?.title}</p>
-        </div>
-        <div className="">
-          <h6 className="font-medium text-xl mb-2">Description</h6>
-          <div dangerouslySetInnerHTML={createMarkup(data?.description)} />
-        </div>
-      </div>
-      <div className="flex flex-wrap -m-3 mt-2">
-        {data?.photos.map((photo, index) => (
-          <div key={index} className="h-64 w-full sm:w-80 m-3 rounded-2xl border overflow-hidden">
-            {/* <img
-              src={s3FileUrl + photo}
-              alt=""
-              className="h-full w-full object-cover"
-              onClick={() => handleClickImage(photo, index)}
-            /> */}
-            <Image
-              loader={imgLoader(s3FileUrl)}
-              className="inline-block w-full h-full object-cover"
-              onClick={() => handleClickImage(photo, index)}
-              src={photo}
-              alt="album"
-              width="800"
-              height="640"
-            />
-          </div>
-        ))}
-      </div>
-      {/* <div className="flex flex-wrap -mx-4  ">
-        {data.photos.map((photo: any, index: number) => {
-          return (
-            <div className="md:w-1/2 p-2 mb-8 md:mb-0 " key={index}>
-              <img
-                className="rounded h-64 m-2 border-2 border-gray-400 cursor-pointer"
-                src={s3FileUrl + photo}
-                alt="profile"
-                onClick={() => handleClickImage(photo, index)}
-              />
+          <button className="bg-primary p-1 text-white rounded">Go Back</button>
+          <div className="py-6 border-b border-gray-300 last:border-0">
+            <div className=" mb-2">
+              <h6 className="font-medium text-xl mb-2">title</h6>
+              <p>{data?.title}</p>
             </div>
-          );
-        })}
-      </div> */}
-
-      {isOpen && data && data.photos.length > 0 && (
-        <Lightbox
-          mainSrc={s3FileUrl + data.photos[photoIndex]}
-          nextSrc={data.photos[(photoIndex + 1) % data.photos.length]}
-          prevSrc={data.photos[(photoIndex + data.photos.length - 1) % data.photos.length]}
-          onCloseRequest={() => setIsOpen(false)}
-          onMovePrevRequest={() => setPhotoIndex((photoIndex + data.photos.length - 1) % data.photos.length)}
-          onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % data.photos.length)}
-        />
+            <div className="">
+              <h6 className="font-medium text-xl mb-2">Description</h6>
+              <div dangerouslySetInnerHTML={createMarkup(data?.description)} />
+            </div>
+          </div>
+          <div className="flex flex-wrap -m-3 mt-2">
+            {data?.photos.map((photo, index) => (
+              <div key={index} className="h-64 w-full sm:w-80 m-3 rounded-2xl border overflow-hidden">
+                {/* <img
+                src={s3FileUrl + photo}
+                alt=""
+                className="h-full w-full object-cover"
+                onClick={() => handleClickImage(photo, index)}
+              /> */}
+                <Image
+                  loader={imgLoader(s3FileUrl)}
+                  className="inline-block w-full h-full object-cover"
+                  onClick={() => handleClickImage(photo, index)}
+                  src={photo}
+                  alt="album"
+                  width="800"
+                  height="640"
+                />
+              </div>
+            ))}
+          </div>
+          {isOpen && data.photos.length > 0 && (
+            <Lightbox
+              mainSrc={s3FileUrl + data.photos[photoIndex]}
+              nextSrc={data.photos[(photoIndex + 1) % data.photos.length]}
+              prevSrc={data.photos[(photoIndex + data.photos.length - 1) % data.photos.length]}
+              onCloseRequest={() => setIsOpen(false)}
+              onMovePrevRequest={() => setPhotoIndex((photoIndex + data.photos.length - 1) % data.photos.length)}
+              onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % data.photos.length)}
+            />
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 };
 export default AlbumPhotoList;
