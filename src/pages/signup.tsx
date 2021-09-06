@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { APP_TITLE } from '../../config';
+import { APP_TITLE } from '@/config/index';
 import bgImgFull from './../../resources/backgrounds/bg-signin-signup-full.png';
 // import { SignupForm } from './SignupForm';
 

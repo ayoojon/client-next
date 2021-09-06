@@ -45,7 +45,7 @@ const BookEventPage: NextPage<IData> = ({ event }: IData) => {
 
   return (
     <div className="container mx-auto my-12 px-2">
-      <SEO siteTitle={event.name} image={`${s3FileUrl}${event.coverImage}`} />
+      <SEO siteTitle={"Booking - "+event.name} image={`${s3FileUrl}${event.coverImage}`} />
       <div className="grid grid-cols-5 gap-20">
         <div className="col-span-5 md:col-span-3">
           <div className="relative rounded-md shadow-md overflow-hidden border">
@@ -139,6 +139,7 @@ export async function getStaticPaths() {
   return { paths: events, fallback: true };
 }
 
+// TODO -> convert to client side rendering
 export async function getStaticProps({ params }) {
   const { data } = await Axios.get(`${server}events/url/${params.url}`);
 
@@ -150,7 +151,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: { event: data.event },
-    revalidate: 10,
+    revalidate: 60,
   };
 }
 

@@ -23,6 +23,7 @@ import Link from 'next/link';
 import MainLayout from 'src/layouts/main';
 import Backdrop from '@/components/shared/Backdrop';
 import FilterEvents from '@/components/event/FilterEvents';
+import SEO from '@/components/shared/SEO';
 
 interface IData {
   events: IEvent[];
@@ -104,10 +105,9 @@ const Events: NextPage<Props> = ({ initialEvents, pagination }: Props) => {
       };
     });
   };
-
-  console.log(events, 'new events')
   return (
     <div className="my-12 px-6 md:px-10 lg:px-14">
+      <SEO siteTitle="All Events" />
       <Backdrop open={isLoading} />
       <div className="flex justify-between">
         <h2 className="text-4xl font-bold mb-8 mt-6">Nearby Events</h2>
@@ -200,7 +200,7 @@ export const getStaticProps: GetStaticProps<Props, undefined> = async (ctx) => {
         notFound: true,
       };
     }
-  
+
     return {
       props: { initialEvents: data.data, pagination: data.pagination },
       revalidate: 60, // increment in every 1 min.
@@ -210,6 +210,6 @@ export const getStaticProps: GetStaticProps<Props, undefined> = async (ctx) => {
       notFound: true,
     };
   }
-}
+};
 
 export default Events;

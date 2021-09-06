@@ -1,6 +1,6 @@
 import React from 'react';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
-import { MAP_KEY } from '@/config/index';
+import { config } from '@/config/index';
 
 interface MapProps {
   latitude: number;
@@ -14,8 +14,10 @@ const Map: React.FC<MapProps> = ({ latitude, longitude }) => {
   };
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: MAP_KEY,
+    googleMapsApiKey: config.MAP_KEY,
   });
+
+  console.log(config, 'from map')
 
   return (
     <>

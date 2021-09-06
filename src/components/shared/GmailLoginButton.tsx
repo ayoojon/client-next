@@ -1,5 +1,5 @@
 import { GoogleLoginResponse, GoogleLoginResponseOffline, useGoogleLogin } from 'react-google-login';
-import { ayoojonApi, NEXT_PUBLIC_GMAIL_CLIENT_ID } from '@/config/index';
+import { ayoojonApi, config } from '@/config/index';
 import Icon from './icons';
 import { useRouter } from 'next/router';
 import { setAccessToken, setRefreshToken, tokenConfig } from '@/utils/index';
@@ -40,7 +40,7 @@ const GmailLoginButton = () => {
   const { signIn } = useGoogleLogin({
     onSuccess,
     onFailure,
-    clientId: NEXT_PUBLIC_GMAIL_CLIENT_ID,
+    clientId: config.GMAIL_CLIENT_ID,
     isSignedIn: false,
     cookiePolicy: 'single_host_origin',
   });
