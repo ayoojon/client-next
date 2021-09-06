@@ -1,6 +1,7 @@
 import decode from 'jwt-decode';
 import {eventTypes} from "@/types/event"
 import { ayoojonApi } from '../config';
+import { serviceTypes } from '@/types/service';
 
 interface IPayload {
   _id: string;
@@ -212,4 +213,19 @@ export const createMarkup = (data: string) => {
   return {
     __html: data,
   };
+};
+
+export const serviceNames: {
+  [key in serviceTypes]: string;
+} = {
+  venue: 'Convention Hall',
+  'event-management': 'Event Management',
+  photographer: 'Photographer',
+  caterings: 'Caterings',
+  flowers: 'Flowers',
+  music: 'Music',
+  'invitation-card': 'Invitation Card',
+  lightening: 'Lightening',
+  videographer: 'Videographer',
+  honeymoon: 'Honeymoon',
 };
