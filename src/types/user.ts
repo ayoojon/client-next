@@ -25,8 +25,8 @@ export interface IUser {
   isVerified: boolean;
   createdAt: Date;
   updatedAt: Date;
-  services: IUserServicesList[];
-  events: IUserEventsList[];
+  services?: IUserServicesList[];
+  events?: IUserEventsList[];
   methods: string[];
   google?: {
     id?: string;
@@ -35,4 +35,20 @@ export interface IUser {
   avatar?: string;
   address?: string;
   location?: string;
+}
+
+export interface ICurrentPosition {
+  latitude: number;
+  longitude: number;
+}
+
+export interface IUserSignIn {
+  email: IUser['email'];
+  password: string;
+}
+
+export interface IUpdateUser {
+  name: IUser['name'];
+  address: IUser['address'];
+  contactNo: IUser['contactNo'];
 }

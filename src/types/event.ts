@@ -53,8 +53,8 @@ export interface IEvent {
   ticketTermsConditions: string;
   faq: IFAQ[];
   status: eventStatus;
-  members: IEventMembers | Number;
-  requestedMembers: IEventMembers | Number;
+  members: number;
+  requestedMembers: number;
   account: string;
   isRemoved: boolean;
   createdAt: string;
