@@ -49,8 +49,8 @@ export const LocationModal: React.FC<Props> = ({ isVisible, setVisible, data }) 
                 className="inline-block w-full h-full object-cover"
                 src={location.photos[0]}
                 alt="location"
-                width="100%"
-                height="100%"
+                width="800"
+                height="640"
               />
             </div>
             <div className="py-2">

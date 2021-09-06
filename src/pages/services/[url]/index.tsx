@@ -1,15 +1,7 @@
 import Axios from 'axios';
-import { NextPage } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import React, { useState } from 'react';
-import CloseIcon from '@material-ui/icons/Close';
-import { IconButton, Link } from '@material-ui/core';
-import moment from 'moment';
-
 import { APP_TITLE, s3FileUrl, server } from '@/config/index';
-import { IEvent, IEventTicket } from '@/types/event';
-import { time24To12, createMarkup } from '@/utils/index';
-import Map from '@/components/shared/Map';
-import AyoojonAccordion from '@/components/shared/Accordion';
 import { IService } from '@/types/service';
 import { Helmet } from 'react-helmet';
 import Icon from '@/components/shared/icons';
@@ -19,20 +11,38 @@ import { ServiceReview } from '@/components/services/review/ServiceReview';
 import { LocationView } from '@/components/services/location/LocationView';
 import { ProductView } from '@/components/services/product/ProductView';
 import { PackageView } from '@/components/services/packages/PackageView';
+import { BreakpointProvider } from '@/components/shared/BreakpointHook/Context';
+import { breakpointsQueries } from '@/components/shared/ReactDates';
+import BookingLocationBottomBar from '@/components/services/BookingLocationBottomBar';
+import BookingPackageBottomBar from '@/components/services/BookingPackageBottomBar';
+import BookingProductBottomBar from '@/components/services/BookingProductBottomBar';
+import { useRouter } from 'next/router';
+import SEO from '@/components/shared/SEO';
+import Image from 'next/image';
+import { imgLoader } from '@/utils/next';
 
 interface IData {
   service: IService;
 }
 
 const ServicePage: NextPage<IData> = ({ service }: IData) => {
+  const router = useRouter();
+
   const createMarkup = (data: any) => {
     return {
       __html: data,
     };
   };
-
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
+      <SEO
+        siteTitle={service.name}
+        // description={movie.description.length > 100 ? movie.description.substr(0, 100) : movie.description}
+        image={`${s3FileUrl}${service.coverImage}`}
+      />
       {service ? (
         <>
           <Helmet>
@@ -44,11 +54,22 @@ const ServicePage: NextPage<IData> = ({ service }: IData) => {
                 <div className="overflow-hidden border rounded-md shadow-md">
                   <div
                     className="h-full w-full"
-                    style={{
-                      backgroundSize: 'cover',
-                      backgroundImage: `url(${s3FileUrl + service.coverImage})`,
-                    }}
-                  ></div>
+                    // style={{
+                    //   backgroundSize: 'cover',
+                    //   backgroundImage: `url(${s3FileUrl + service.coverImage})`,
+                    // }}
+                  >
+                    <Image
+                      loader={imgLoader(s3FileUrl)}
+                      src={`${service.coverImage}`}
+                      alt={`${service.name}`}
+                      layout="responsive"
+                      className="object-cover"
+                      width={900}
+                      height={400}
+                      priority
+                    />
+                  </div>
                 </div>
               </div>
               <div className="py-6 border-b border-gray-300 last:border-0">
@@ -118,6 +139,20 @@ const ServicePage: NextPage<IData> = ({ service }: IData) => {
               </div>
             </div>
           </div>
+
+          <BreakpointProvider queries={breakpointsQueries}>
+            {service.type === 'venue' && <BookingLocationBottomBar service={service} />}
+            {[
+              'event-management',
+              'photographer',
+              'music',
+              'lightening',
+              'invitation-card',
+              'videographer',
+              'honeymoon',
+            ].includes(service.type) && <BookingPackageBottomBar service={service} />}
+            {['flowers', 'caterings'].includes(service.type) && <BookingProductBottomBar service={service} />}
+          </BreakpointProvider>
         </>
       ) : (
         <div>No service found</div>
@@ -126,17 +161,38 @@ const ServicePage: NextPage<IData> = ({ service }: IData) => {
   );
 };
 
-export async function getServerSideProps({ params }) {
-  const { data } = await Axios.get(`${server}services/url/${params.url}`);
-  if (!data) {
+export async function getStaticPaths() {
+  try {
+    const { data } = await Axios.get(`${server}services`);
+
+    const services = data.data.map((service) => ({
+      params: { url: service.url },
+    }));
+
+    return { paths: services, fallback: true };
+  } catch (error) {
+    return { paths: [], fallback: true };
+  }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  try {
+    const { data } = await Axios.get(`${server}services/url/${params.url}`);
+    if (!data) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      props: { service: data.service },
+      revalidate: 60,
+    };
+  } catch (error) {
     return {
       notFound: true,
     };
   }
-
-  return {
-    props: { service: data.service },
-  };
-}
+};
 
 export default ServicePage;

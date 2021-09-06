@@ -63,8 +63,8 @@ export const PackageView: React.FC<Props> = ({ data }) => {
                   className="w-16 h-16 rounded-full mx-auto"
                   src={item.image}
                   alt="package"
-                  width="100%"
-                  height="100%"
+                  width="160"
+                  height="160"
                 />
               </div>
             </div>

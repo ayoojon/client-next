@@ -1,5 +1,5 @@
 import decode from 'jwt-decode';
-import {eventTypes} from "@/types/event"
+import { eventTypes } from '@/types/event';
 import { ayoojonApi } from '../config';
 import { serviceTypes } from '@/types/service';
 
@@ -135,7 +135,6 @@ export const tokenConfig = async (authType: 'WITH-AUTH' | 'WITHOUT-AUTH') => {
 //   }
 // };
 
-
 export const isAuthenticate = (): boolean => {
   const accessToken = getAccessToken();
   const refreshToken = getRefreshToken();
@@ -215,6 +214,26 @@ export const createMarkup = (data: string) => {
   };
 };
 
+export const currencyFormat = (c: number, toFixed: number = 0) =>
+  c.toFixed(toFixed).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+
+export const customDelay = (t: number) => {
+  return new Promise<void>(function (resolve) {
+    setTimeout(function () {
+      resolve();
+    }, t);
+  });
+};
+
+export const weekCapitalize = (data: any) => {
+  const obj = Object.keys(data).filter((k) => data[k] === true);
+  const newobj = obj.map((a) => {
+    const data = a.charAt(0).toUpperCase() + a.substr(1);
+    const newValue = data.slice(0, 3);
+    return newValue;
+  });
+  return newobj;
+};
 export const serviceNames: {
   [key in serviceTypes]: string;
 } = {

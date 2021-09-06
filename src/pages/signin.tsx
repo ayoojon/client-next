@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import SEO from '@/components/shared/SEO';
 import { Button, makeStyles, OutlinedInput } from '@material-ui/core';
 import {
   emailRegex,
@@ -68,7 +69,7 @@ const Signin = () => {
       dispatch(loginUser(res.data));
       setAccessToken(res.data.accessToken);
       setRefreshToken(res.data.refreshToken);
-      router.push("/")
+      router.push('/');
     } catch (error) {
       if (
         error?.response?.status === 401 &&
@@ -93,6 +94,7 @@ const Signin = () => {
         backgroundRepeat: 'no-repeat',
       }}
     >
+      <SEO siteTitle="Signin" />
       <div className="w-full flex flex-1 items-center justify-center lg:w-1/2 mt-14 p-6">
         <div className="w-full max-w-lg">
           <form onSubmit={handleSubmit(onSubmit)}>

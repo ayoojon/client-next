@@ -48,8 +48,8 @@ export const PackageModal: React.FC<Props> = ({ isVisible, setVisible, data }) =
                 className="inline-block w-full h-full object-cover"
                 src={item.image}
                 alt="package"
-                width="100%"
-                height="100%"
+                width="800"
+                height="640"
               />{' '}
             </div>
             <div className="py-2">

@@ -17,8 +17,6 @@ const Map: React.FC<MapProps> = ({ latitude, longitude }) => {
     googleMapsApiKey: config.MAP_KEY,
   });
 
-  console.log(config, 'from map')
-
   return (
     <>
       {loadError && <p>{loadError}</p>}
