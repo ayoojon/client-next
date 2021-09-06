@@ -12,12 +12,14 @@ import Axios from 'axios';
 import Link from 'next/link';
 import MainLayout from 'src/layouts/main';
 import { ServiceCard } from '@/components/Cards/ServiceCard';
+import SEO from '@/components/shared/SEO';
 
 // TOTO: add types and filters
 const Services: NextPage = ({ services, pagination }: any) => {
   console.log(pagination);
   return (
     <div className="my-12 px-6 md:px-10 lg:px-14">
+      <SEO siteTitle={'All Services'} />
       <h2 className="text-4xl font-bold mb-8">Nearby Service</h2>
       {services && services?.length > 0 ? (
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
