@@ -12,6 +12,7 @@ import Map from '@/components/shared/Map';
 import AyoojonAccordion from '@/components/shared/Accordion';
 import BuyTicketForm from '@/components/event/BuyTicketForm';
 import { useRouter } from 'next/router';
+import ProtectedRoute from 'src/HOC/protected';
 
 interface IEventData extends IEvent {
   members: number;
@@ -143,4 +144,4 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default BookEventPage;
+export default ProtectedRoute(BookEventPage);
