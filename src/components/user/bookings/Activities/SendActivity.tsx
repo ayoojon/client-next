@@ -79,7 +79,7 @@ const SendActivity = () => {
         fullWidth={true}
         multiline={true}
         rows={2}
-        rowsMax={6}
+        maxRows={6}
         endAdornment={
           <InputAdornment position="end">
             <IconButton

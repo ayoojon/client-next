@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { imgLoader } from '@/utils/next';
 import { s3FileUrl } from '@/config/index';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '../shared/hooks/redux';
@@ -34,11 +35,13 @@ export const AccountDropdown: React.FC<props> = ({ className, setIsNavbarOpen })
           onClick={() => setIsOpen(!isOpen)}
         >
           <Image
+            loader={imgLoader(s3FileUrl)}
             className="h-full w-full object-cover"
-            src={'/resources/user-avatar.jpg'}
+            // src={'/resources/user-avatar.jpg'}
+            src={user && user.avatar ? user?.avatar : '/resources/user-avatar.jpg'}
             alt="user-img"
-            width="100%"
-            height="100%"
+            width="100"
+            height="100"
           />
         </button>
         {isOpen && (
@@ -62,7 +65,7 @@ export const AccountDropdown: React.FC<props> = ({ className, setIsNavbarOpen })
                 }}
               >
                 <div className="flex flex-col">
-                  <span className="font-semibold">John Doe</span>
+                  <span className="font-semibold">{user?.name}</span>
                   <span className="text-gray-600">See your profile</span>
                 </div>
               </a>

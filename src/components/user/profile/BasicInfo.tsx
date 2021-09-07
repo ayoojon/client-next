@@ -8,6 +8,8 @@ import { ayoojonApi } from '../../../config';
 import { tokenConfig } from '../../../utils';
 import { InputHeader } from '@/components/shared/InputHeader';
 import { Button, OutlinedInput } from '@material-ui/core';
+import { useAppDispatch } from '@/components/shared/hooks/redux';
+import { updateUser } from 'src/stores/UserReducer';
 
 interface Props {
   user: IUserReducer['user'];
@@ -27,6 +29,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const BasicInfo: React.FC<Props> = ({ user }) => {
+  const dispatch = useAppDispatch();
   interface IInitialValues extends IUserBasicInfoUpdate {
     email: IUser['email'];
   }
@@ -50,7 +53,8 @@ const BasicInfo: React.FC<Props> = ({ user }) => {
     setError(undefined);
     try {
       const headers = await tokenConfig('WITH-AUTH');
-      await ayoojonApi.put('accounts/basic-info', data, headers);
+      const response = await ayoojonApi.put('accounts/basic-info', data, headers);
+      dispatch(updateUser(data));
     } catch (error) {
       setError('Somthing went worng');
     }

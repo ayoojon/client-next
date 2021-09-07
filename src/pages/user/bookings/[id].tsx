@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { useQuery } from 'react-query';
 import moment from 'moment';
-import Icon from '@/components/shared/icons';
+import Icon from '../../../components/shared/icons';
 import Image from 'next/image';
 import { imgLoader } from '@/utils/next';
 import { BookingActivities } from '@/components/user/bookings/Activities';
@@ -32,7 +32,7 @@ const BookingInfo = () => {
   );
   return (
     <div className="container mx-auto">
-      <SEO siteTitle={'Booking - ' + data.service} />
+      <SEO siteTitle={'Booking - '} />
       <h6 className="font-bold text-xl mt-3">Booking Details</h6>
 
       {data && (

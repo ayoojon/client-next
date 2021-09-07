@@ -74,3 +74,7 @@ export interface IUserReducer {
   error: string | object | null;
   loading: boolean;
 }
+
+export interface IUpdateUserAvatar {
+  avatar: IUser['avatar'];
+}

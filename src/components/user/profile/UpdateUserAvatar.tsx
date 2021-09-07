@@ -1,4 +1,4 @@
-import { useAppSelector } from '@/components/shared/hooks/redux';
+import { useAppDispatch, useAppSelector } from '@/components/shared/hooks/redux';
 import { Button, CircularProgress } from '@material-ui/core';
 import Axios from 'axios';
 import React, { useState } from 'react';
@@ -7,6 +7,7 @@ import { tokenConfig } from '../../../utils';
 import { imgLoader } from '@/utils/next';
 import Image from 'next/image';
 import userImg from '@/components/shared/resources/user-avatar.jpg';
+import { updateAvatar } from 'src/stores/UserReducer';
 
 const UserAvatarUpload = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -15,6 +16,8 @@ const UserAvatarUpload = () => {
   const [completed, setCompleted] = useState(0);
   const [error, setError] = useState<string>();
   const sizeLimit = 1;
+
+  const dispatch = useAppDispatch();
 
   let { user } = useAppSelector((state) => {
     return { user: state.userReducer.user };
@@ -68,6 +71,7 @@ const UserAvatarUpload = () => {
         await ayoojonApi.put('accounts/avatar', data, {
           ...headers,
         });
+        dispatch(updateAvatar(data));
       } else {
         setError('Please, select a image.');
       }

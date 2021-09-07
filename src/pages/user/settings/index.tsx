@@ -1,8 +1,20 @@
 import SEO from '@/components/shared/SEO';
 import { ChangePasswordComponent } from '@/components/user/settings/ChangePassword';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 const UserSettingsPage = () => {
+  const router = useRouter();
+  const { isLogin } = useAppSelector((state) => {
+    return { isLogin: !!state.userReducer.user };
+  });
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+  if (!isLogin && typeof window !== 'undefined') {
+    router.replace('/signin');
+  }
+
   return (
     <div className="container mx-auto my-12 px-6">
       <SEO siteTitle="User Settings" />
@@ -15,3 +27,6 @@ const UserSettingsPage = () => {
 };
 
 export default UserSettingsPage;
+function useAppSelector(arg0: (state: any) => { isLogin: boolean }): { isLogin: any } {
+  throw new Error('Function not implemented.');
+}

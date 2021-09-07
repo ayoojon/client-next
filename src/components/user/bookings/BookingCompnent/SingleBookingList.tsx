@@ -124,7 +124,7 @@ export const SingleBookingList: React.FC<Props> = ({ booking }) => {
                 <span className="font-sans font-semibold">Review</span>
               </NavLink> */}
               <Link href={`/user/bookings/${booking._id}`}>
-                <span className="font-sans font-semibold">Review</span>
+                <a className="font-sans font-semibold">Review</a>
               </Link>
             </button>
           )}
@@ -135,7 +135,7 @@ export const SingleBookingList: React.FC<Props> = ({ booking }) => {
                 <span className="font-sans font-semibold">Pay</span>
               </NavLink> */}
               <Link href={`/user/bookings/${booking._id}`}>
-                <span className="font-sans font-semibold">Pay</span>
+                <a className="font-sans font-semibold">Pay</a>
               </Link>
             </button>
           )}
@@ -145,7 +145,7 @@ export const SingleBookingList: React.FC<Props> = ({ booking }) => {
               <span className="text-primary text-base font-medium">Show More Detail </span>
             </NavLink> */}
             <Link href={`/user/bookings/${booking._id}`}>
-              <span className="text-primary text-base font-medium">Show More Detail </span>
+              <a className="text-primary text-base font-medium">Show More Detail </a>
             </Link>
           </div>
         </div>
