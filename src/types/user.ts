@@ -54,3 +54,23 @@ export interface IUpdateUser {
   address: IUser['address'];
   contactNo: IUser['contactNo'];
 }
+
+export interface IUserChangePassword {
+  oldPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+
+export interface IUserBasicInfoUpdate {
+  name: IUser['name'];
+  address: IUser['address'];
+  contactNo: IUser['contactNo'];
+}
+
+export interface IUserReducer {
+  user: IUser | null;
+  isLogin: boolean;
+  position?: ICurrentPosition;
+  error: string | object | null;
+  loading: boolean;
+}
