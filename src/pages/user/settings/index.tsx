@@ -1,6 +1,7 @@
 import SEO from '@/components/shared/SEO';
 import { ChangePasswordComponent } from '@/components/user/settings/ChangePassword';
 import { useRouter } from 'next/router';
+import { useAppSelector } from '../../../components/shared/hooks/redux';
 import React from 'react';
 
 const UserSettingsPage = () => {
@@ -27,6 +28,3 @@ const UserSettingsPage = () => {
 };
 
 export default UserSettingsPage;
-function useAppSelector(arg0: (state: any) => { isLogin: boolean }): { isLogin: any } {
-  throw new Error('Function not implemented.');
-}
