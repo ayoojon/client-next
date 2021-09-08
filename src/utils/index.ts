@@ -2,6 +2,7 @@ import decode from 'jwt-decode';
 import { eventTypes } from '@/types/event';
 import { ayoojonApi } from '../config';
 import { serviceTypes } from '@/types/service';
+import { businessTypeOfEventsTypes, personalTypeOfEventsTypes } from '@/types/booking';
 
 interface IPayload {
   _id: string;
@@ -95,46 +96,6 @@ export const tokenConfig = async (authType: 'WITH-AUTH' | 'WITHOUT-AUTH') => {
   }
 };
 
-// export const getNewAccessTokenWithRefreshToken = async () => {
-//   try {
-//     let refreshToken = getRefreshToken();
-//     if (refreshToken !== null) {
-//       const headers = await tokenConfig('WITHOUT-AUTH');
-//       const response = await ayoojonApi.post('accounts/refresh-token', { refreshToken }, headers);
-
-//       setAccessToken(response.data.accessToken);
-//       setRefreshToken(response.data.refreshToken);
-
-//       store.dispatch({
-//         type: USER_LOGGED_IN,
-//       });
-
-//       return response;
-//     } else {
-//       removeAccessToken();
-//       removeRefreshToken();
-//       await store.dispatch({ type: USER_LOGOUT });
-//       await persistor.purge();
-
-//       History.push('/signin?msg=session-expired');
-//       window.location.reload();
-//     }
-//   } catch (error) {
-//     // toast(ToastMsg, { className: 'bg-teal-900 m-0', bodyClassName: 'm-0' });
-//     removeAccessToken();
-//     removeRefreshToken();
-
-//     await store.dispatch({ type: USER_LOGOUT });
-//     await persistor.purge();
-
-//     // TODO show session expired message on signin page
-//     History.push('/signin?msg=session-expired');
-//     window.location.reload();
-
-//     return error.response;
-//   }
-// };
-
 export const isAuthenticate = (): boolean => {
   const accessToken = getAccessToken();
   const refreshToken = getRefreshToken();
@@ -189,6 +150,43 @@ export const eventTypesName: {
   seminarOrTail: 'Seminar / Talk',
   rally: 'Rally',
   gameOrCompetition: 'Game / Competition',
+};
+
+export const typeOfEvent: {
+  personal: {
+    value: personalTypeOfEventsTypes;
+    name: string;
+  }[];
+  business: {
+    value: businessTypeOfEventsTypes;
+    name: string;
+  }[];
+} = {
+  personal: [
+    { value: 'weddingAndEngagement', name: 'Wedding And Engagement' },
+    { value: 'travelShoot', name: 'Travel Shoot' },
+    { value: 'kidsParty', name: 'Kids Party' },
+    { value: 'partyGathering', name: 'Party Gathering' },
+    { value: 'pet', name: 'Pet' },
+    { value: 'graduation', name: 'Graduation' },
+    { value: 'couplePhotoshoot', name: 'Couple Photoshoot' },
+    { value: 'otherLifeEvent', name: 'Other Life Event' },
+    { value: 'portraits', name: 'Portraits' },
+    { value: 'babyPhotoshoot', name: 'Baby Photoshoot' },
+    { value: 'others', name: 'Others' },
+  ],
+  business: [
+    { value: 'workshop', name: 'Workshop' },
+    { value: 'seminar', name: 'Seminar' },
+    { value: 'concert', name: 'Concert' },
+    { value: 'reunion', name: 'Reunion' },
+    { value: 'party', name: 'Party' },
+    { value: 'conferences', name: 'Conferences' },
+    { value: 'awardsAndCompetitions', name: 'Awards and competitions' },
+    { value: 'festivals', name: 'Festivals' },
+    { value: 'tradeShowsAndExpos', name: 'Trade shows and expos' },
+    { value: 'others', name: 'Others' },
+  ],
 };
 
 export const generateQueryString = <T>(data: T) => {
