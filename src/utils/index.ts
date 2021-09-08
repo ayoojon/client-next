@@ -2,7 +2,7 @@ import decode from 'jwt-decode';
 import { eventTypes } from '@/types/event';
 import { ayoojonApi } from '../config';
 import { serviceTypes } from '@/types/service';
-import { businessTypeOfEventsTypes, personalTypeOfEventsTypes } from '@/types/booking';
+import { businessTypeOfEventsTypes, personalTypeOfEventsTypes, bookingStatus } from '@/types/booking';
 
 interface IPayload {
   _id: string;
@@ -221,6 +221,16 @@ export const customDelay = (t: number) => {
       resolve();
     }, t);
   });
+};
+
+export const isCompleted = (status: bookingStatus, checkedFor: 'pending' | 'reserved' | 'paid' | 'completed') => {
+  const statusList = ['pending', 'reserved', 'paid', 'completed'];
+
+  if (statusList.indexOf(status) !== -1 && statusList.indexOf(checkedFor) <= statusList.indexOf(status)) {
+    return true;
+  }
+
+  return false;
 };
 
 export const weekCapitalize = (data: any) => {

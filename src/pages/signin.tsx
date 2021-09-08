@@ -66,7 +66,7 @@ const Signin = () => {
     try {
       const headers = await tokenConfig('WITHOUT-AUTH');
       const res = await ayoojonApi.post('accounts/signin', data, headers);
-      dispatch(loginUser(res.data));
+      dispatch(loginUser(res.data.account));
       setAccessToken(res.data.accessToken);
       setRefreshToken(res.data.refreshToken);
       router.push('/');
