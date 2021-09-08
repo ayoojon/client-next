@@ -40,7 +40,7 @@ const BookEventPage: NextPage<IData> = ({ event }: IData) => {
   }
 
   if(!isLogin && typeof window !== 'undefined') {
-    router.replace("/auth/signin")
+    router.replace("/signin")
   }
 
   return (

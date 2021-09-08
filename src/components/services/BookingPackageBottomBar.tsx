@@ -87,14 +87,10 @@ const BookingPackageBottomBar = ({ service }: { service: IService }) => {
       };
       if (!isLogin) {
         customToast('Please login first', 'danger');
-        // history.push(
-        //   `/signin?redirectUrl=/services/${service.url}/booking?date=${values.date}&packageId=${values.packageId}`,
-        // );
         Router.push(
           `/signin?redirectUrl=/services/${service.url}/booking?date=${values.date}&packageId=${values.packageId}`,
         );
       } else {
-        // history.push(`/services/${service.url}/booking?date=${values.date}&packageId=${values.packageId}`);
         Router.push(`/services/${service.url}/booking?date=${values.date}&packageId=${values.packageId}`);
       }
     }
