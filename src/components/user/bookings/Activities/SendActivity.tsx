@@ -78,7 +78,7 @@ const SendActivity = () => {
         labelWidth={0}
         fullWidth={true}
         multiline={true}
-        rows={2}
+        minRows={2}
         maxRows={6}
         endAdornment={
           <InputAdornment position="end">

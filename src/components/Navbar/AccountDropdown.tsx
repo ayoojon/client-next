@@ -143,16 +143,25 @@ export const AccountDropdown: React.FC<props> = ({ className, setIsNavbarOpen })
           <a onClick={() => setIsNavbarOpen(false)}>
             <div className="transition duration-300 ease-in-out flex items-center px-2 py-1 rounded hover:bg-gray-300">
               <div className="h-10 w-10 rounded-full overflow-hidden object-cover">
-                <Image
+                {/* <Image
                   className="h-full w-full object-cover"
                   src={'/resources/user-avatar.jpg'}
                   alt="user-img"
                   width="100%"
                   height="100%"
+                /> */}
+                <Image
+                  loader={imgLoader(s3FileUrl)}
+                  className="h-full w-full object-cover"
+                  // src={'/resources/user-avatar.jpg'}
+                  src={user && user.avatar ? user?.avatar : '/resources/user-avatar.jpg'}
+                  alt="user-img"
+                  width="100"
+                  height="100"
                 />
               </div>
               <div className="ml-5 flex flex-col">
-                <span className="font-semibold">John Doe</span>
+                <span className="font-semibold">{user?.name}</span>
                 <span className="text-gray-600">See your profile</span>
               </div>
             </div>
