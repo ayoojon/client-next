@@ -11,6 +11,7 @@ import { IBooking, ICreatePackageBooking } from '@/types/booking';
 import { IService } from '@/types/service';
 import { imgLoader } from '@/utils/next';
 import useHeader from '@/components/shared/hooks/useHeader';
+import { useRouter } from 'next/router';
 
 interface Props {
   serviceInfo: Pick<IService, '_id' | 'name' | 'address' | 'type'>;
@@ -40,13 +41,13 @@ export const PackageBookingDetailsPage: React.FC<Props> = ({
   setShowDetails,
   //   createBooking,
 }) => {
-  const history = useHistory();
+  const router = useRouter();
   const headers = useHeader();
 
   const mutation = useMutation((data: ICreatePackageBooking) => createBookings(data, headers), {
     onSuccess: () => {
       customToast('Booking created', 'success');
-      history.push('/user/bookings');
+      router.push('/user/bookings');
     },
     onError: () => {
       customToast('Booking conflict occur', 'danger');
@@ -128,6 +129,9 @@ export const PackageBookingDetailsPage: React.FC<Props> = ({
                     loader={imgLoader(s3FileUrl)}
                     className="inline-block w-full h-full object-cover"
                     src={packageInfo.image}
+                    height={1900}
+                    width={600}
+                    layout="responsive"
                     alt="s3FileUrl views"
                   />
                 </div>

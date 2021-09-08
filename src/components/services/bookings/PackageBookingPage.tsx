@@ -12,11 +12,12 @@ import { bookingForTypes, personalTypeOfEventsTypes, businessTypeOfEventsTypes }
 import { IService } from '@/types/service';
 import { imgLoader } from '@/utils/next';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 export default function PackageBookingPage({ service }: { service: IService }) {
   const matchPoints = useBreakpointFromContext();
-  const location = useLocation();
-  const history = useHistory();
+  const router = useRouter();
+  const { date, packageId, url } = router.query;
 
   const [showDetails, setShowDetails] = useState(false);
   const [selectedBookingFor, setSelectedBookingFor] = useState<bookingForTypes>();
@@ -31,16 +32,14 @@ export default function PackageBookingPage({ service }: { service: IService }) {
   const [isDateError] = useState<boolean>(false);
 
   useEffect(() => {
-    const query = new URLSearchParams(location.search);
-    const date = query.get('date');
-    setSelectedDate(date && date.match(dateFormatRegex) ? moment(date, 'DD-MM-YYYY') : null);
+    setSelectedDate(date && date.toString().match(dateFormatRegex) ? moment(date, 'DD-MM-YYYY') : null);
     // space
-    const spaceArray = service.pricing.package.filter((place) => place._id === query.get('spaceId'));
+    const spaceArray = service.pricing.package.filter((place) => place._id === packageId);
     if (spaceArray.length === 1) {
       setSelectedPackage(spaceArray[0]);
       setSelectedPricing(spaceArray[0]);
     }
-  }, [location.search, service]);
+  }, [date, packageId, service]);
 
   const onDateChange = (date: moment.Moment | null) => {
     setSelectedDate(date);
@@ -51,7 +50,7 @@ export default function PackageBookingPage({ service }: { service: IService }) {
   const handleSubmit = () => {
     if (!isDateError && selectedDate && selectedBookingFor && selectedTypeOfEvent && selectedPackage && selectedTime) {
       setShowDetails(true);
-      history.push(
+      router.push(
         `/services/${service.url}/booking?date=${moment(selectedDate).format('DD-MM-yyyy')}&packageId=${
           selectedPackage._id
         }`,
@@ -164,9 +163,12 @@ export default function PackageBookingPage({ service }: { service: IService }) {
                   <div className="h-56 w-full overflow-hidden rounded-md mb-6">
                     <Image
                       loader={imgLoader(s3FileUrl)}
-                      className="inline-block w-full h-full object-cover"
+                      className="inline-block object-cover"
                       src={selectedPackage.image}
                       alt="space cover"
+                      height="100px"
+                      width="100px"
+                      layout="responsive"
                     />
                   </div>
                   <div className="">

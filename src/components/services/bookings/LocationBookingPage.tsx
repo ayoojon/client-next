@@ -22,7 +22,6 @@ export const LocationBookingPage: React.FC<Props> = ({ service }) => {
   const matchPoints = useBreakpointFromContext();
   const router = useRouter();
   const { date, locationId, pricingId, url } = router.query;
-  console.log(router.query)
   const [showDetails, setShowDetails] = useState(false);
   const [selectedBookingFor, setSelectedBookingFor] = useState<bookingForTypes>();
   const [selectedTypeOfEvent, setSelectedTypeOfEvent] = useState<

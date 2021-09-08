@@ -10,6 +10,7 @@ import { tokenConfig } from '@/utils/index';
 import { IService } from '@/types/service';
 import { imgLoader } from '@/utils/next';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 interface IData {
   serviceInfo: Pick<IService, '_id' | 'name' | 'address' | 'type'>;
@@ -48,12 +49,12 @@ export default function ProductBookingDetailsPage({
   productInfo,
 }: //   createBooking,
 IData) {
-  const history = useHistory();
+  const router = useRouter();
 
   const mutation = useMutation(createBookings, {
     onSuccess: () => {
       customToast('Booking created', 'success');
-      history.push('/user/bookings');
+      router.push('/user/bookings');
     },
     onError: () => {
       customToast('Booking conflict occur', 'danger');
@@ -127,6 +128,9 @@ IData) {
                       loader={imgLoader(s3FileUrl)}
                       src={item.image}
                       alt="product"
+                      height="100%"
+                      width="100%"
+                      layout="responsive"
                       className="h-20 w-20 object-cover border"
                     />
                     <div>

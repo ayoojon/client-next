@@ -22,6 +22,7 @@ import { customToast } from '@/components/shared/Toaster';
 import { IService } from '@/types/service';
 import { TabPanel } from '../product/TabPanel';
 import { imgLoader } from '@/utils/next';
+import { useRouter } from 'next/router';
 
 interface Props {
   service: IService;
@@ -29,7 +30,7 @@ interface Props {
 
 const ProductBookingPage: React.FC<Props> = ({ service }) => {
   const matchPoints = useBreakpointFromContext();
-  const location = useLocation();
+  const router = useRouter();
   const [blockedDates] = useState([moment()]);
   const [isFocused, setFocused] = useState<boolean | null>(false);
   const [showDetails, setShowDetails] = useState(false);
@@ -206,6 +207,9 @@ const ProductBookingPage: React.FC<Props> = ({ service }) => {
                           loader={imgLoader(s3FileUrl)}
                           className="inline-block w-full h-full object-cover"
                           src={item.image}
+                          height="100%"
+                          width="100%"
+                          layout="responsive"
                           alt="location"
                         />
                       </div>

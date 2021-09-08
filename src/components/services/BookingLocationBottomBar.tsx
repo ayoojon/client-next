@@ -90,16 +90,10 @@ const BookingLocationBottomBar = ({ service }: { service: IService }) => {
       };
       if (!isLogin) {
         customToast('Please login first', 'danger');
-        // history.push(
-        //   `/signin?redirectUrl=/services/${service.url}/booking?date=${values.date}&spaceId=${values.spaceId}&pricingId=${values.pricingId}`,
-        // );
         Router.push(
           `/signin?redirectUrl=/services/${service.url}/booking?date=${values.date}&spaceId=${values.spaceId}&pricingId=${values.pricingId}`,
         );
       } else {
-        // history.push(
-        //   `/services/${service.url}/booking?date=${values.date}&locationId=${values.spaceId}&pricingId=${values.pricingId}`,
-        // );
         Router.push(
           `/services/${service.url}/booking?date=${values.date}&locationId=${values.spaceId}&pricingId=${values.pricingId}`,
         );

@@ -12,9 +12,10 @@ import { customToast } from '@/components/shared/Toaster';
 import { IService } from '@/types/service';
 import { weekCapitalize } from '../../utils';
 import { useAppSelector } from '../shared/hooks/redux';
+import { useRouter } from 'next/router';
 
 const BookingProductBottomBar = ({ service }: { service: IService }) => {
-  const history = useHistory();
+  const router = useRouter();
   const { isLogin } = useAppSelector((state) => {
     return { isLogin: !!state.userReducer.user };
   });
@@ -32,11 +33,11 @@ const BookingProductBottomBar = ({ service }: { service: IService }) => {
       };
       if (!isLogin) {
         customToast('Please login first', 'danger');
-        history.push(
+        router.push(
           `/signin?redirectUrl=/services/${service.url}/booking?date=${values.date}&categoryId=${values.spaceId}&itemId=${values.pricingId}`,
         );
       } else {
-        history.push(`/services/${service.url}/booking?date=${values.date}`);
+        router.push(`/services/${service.url}/booking?date=${values.date}`);
       }
     }
   };

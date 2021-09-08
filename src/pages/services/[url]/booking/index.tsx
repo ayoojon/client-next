@@ -10,6 +10,7 @@ import { IService } from '@/types/service';
 import Backdrop from '@/components/shared/Backdrop';
 import { BreakpointProvider } from '@/components/shared/BreakpointHook/Context';
 import { useRouter } from 'next/router';
+import { useAppSelector } from '@/components/shared/hooks/redux';
 
 interface ParamTypes {
   serviceURL: string;
@@ -27,6 +28,9 @@ const fetchService = async (url: string) => {
 const BookingPage: React.FC<Props> = () => {
   const router = useRouter();
   const { url } = router.query;
+  const { isLogin } = useAppSelector((state) => {
+    return { isLogin: !!state.userReducer.user };
+  });
 
   const { data, status, isLoading } = useQuery<IService>(['service', `${url}`], () => fetchService(url as string), {
     refetchOnWindowFocus: false,
@@ -35,6 +39,10 @@ const BookingPage: React.FC<Props> = () => {
 
   if (status === 'error') {
     return <div>Something went wrong!</div>;
+  }
+
+  if (!isLogin && typeof window !== 'undefined') {
+    router.replace('/signin');
   }
 
   return (
@@ -46,8 +54,8 @@ const BookingPage: React.FC<Props> = () => {
           {data && ['eventManagement', 'photographer', 'music', 'lighting', 'honeymoon'].includes(data.type) && (
             <PackageBookingPage service={data} />
           )}
+          {data && ['flowers', 'caterings'].includes(data.type) && <ProductBookingPage service={data} />}
         </div>
-        {/* {data && ['flowers', 'caterings'].includes(data.type) && <ProductBookingPage service={data} />} */}
       </BreakpointProvider>
     </>
   );
