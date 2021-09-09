@@ -262,11 +262,11 @@ const BookingInfo = () => {
 
                               <Image
                                 loader={imgLoader(s3FileUrl)}
-                                className="inline-block w-full h-full object-cover"
+                                className="rounded-full mx-auto"
                                 src={data.pricing.package?.image}
                                 alt="location"
-                                width="160"
-                                height="160"
+                                width="70"
+                                height="70"
                               />
                             </div>
                           </div>

@@ -1,3 +1,4 @@
+import { IReview } from './review';
 import { IService, serviceTypes } from './service';
 import { IUser } from './user';
 
@@ -191,15 +192,6 @@ export interface IProductBookingForm {
   deliveryAddress: string;
   additionalRequirements: string;
   price: number;
-}
-export interface IReview {
-  _id: string;
-  service: string;
-  booking: string;
-  rating: Number;
-  text?: string;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface ICreateBookingRating {

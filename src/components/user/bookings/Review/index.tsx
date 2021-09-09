@@ -41,8 +41,9 @@ const Review: React.FC<Props> = ({ data }) => {
       }
 
       try {
+        console.log(newData, 'from review');
         const headers = await tokenConfig('WITH-AUTH');
-        await ayoojonApi.post(`reviews`, data, headers);
+        await ayoojonApi.post(`reviews`, newData, headers);
         queryClient.invalidateQueries(['client-single-bookings-search', `${id}`]);
       } catch (error) {}
     }
@@ -104,8 +105,8 @@ const Review: React.FC<Props> = ({ data }) => {
           labelWidth={0}
           fullWidth={true}
           multiline={true}
-          rows={4}
-          rowsMax={6}
+          minRows={4}
+          maxRows={6}
           value={text}
           onChange={handleChange}
           onBlur={handleValidation}

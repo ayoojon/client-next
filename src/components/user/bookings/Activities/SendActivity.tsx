@@ -49,13 +49,11 @@ const SendActivity = () => {
       let data: any = {
         booking: id,
         text: trimmedText,
-        type: id ? 'service' : 'client',
+        // type: id ? 'service' : 'client',
+        type: 'client',
       };
 
-      if (id) {
-        data.service = id;
-      }
-
+      console.log(data, 'from send Activity');
       try {
         const headers = await tokenConfig('WITH-AUTH');
         await ayoojonApi.post(`activities`, data, headers);
