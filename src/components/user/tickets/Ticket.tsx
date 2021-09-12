@@ -25,8 +25,8 @@ export const Ticket: React.FC<props> = ({ ticket }) => {
         {/* TODO: Design a print layout for Event's ticket */}
 
         <div ref={componentRef} className="flex flex-col justify-evenly items-center">
-          {/* <img src={logo} alt="ayoojon-logo" className="h-12 mb-20 mt-6" /> */}
-          <Image className="h-12 mb-20 mt-6" src="/resources/logo.png" alt="ayoojon-logo" width="120" height="400" />
+          {/* <img src="/resources/logo.png" alt="ayoojon-logo" className="h-12 mb-20 mt-6" /> */}
+          <Image className="mb-20 mt-6" src="/resources/logo.png" alt="ayoojon-logo" width="70" height="120" />
           <div className="m-2 flex inline-block align-baseline border transition duration-500 ease-in-out rounded-lg my-6 relative">
             <div className="absolute right-0 mr-6 sm:mr-10 p-2 bg-primary text-white text-center">
               <p className="font-medium">{slug}</p>
