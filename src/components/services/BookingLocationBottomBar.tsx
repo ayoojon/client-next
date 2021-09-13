@@ -19,10 +19,10 @@ const calculateServicePrice = (service: IService) => {
     if (service.type === 'venue') {
       if (service.pricing.location.length === 0) {
         return (
-          <>
+          <div className="flex items-center">
             <Icon name="star" className="h-3 fill-current text-primary" />
-            <small className="font-semibold text-customGray-550">{service.avgRating.toFixed(1)}</small>;
-          </>
+            <small className="ml-1 font-semibold text-customGray-550">{service.avgRating.toFixed(1)}</small>
+          </div>
         );
       } else if (service.pricing.location.length === 1) {
         return (
@@ -115,7 +115,7 @@ const BookingLocationBottomBar = ({ service }: { service: IService }) => {
 
   return (
     <div className="sticky bottom-0 w-full bg-white border-t">
-      <div className="container mx-auto flex justify-between items-center px-3 sm:px-6 py-4 relative">
+      <div className="max-w-6xl mx-auto px-6 flex justify-between items-center px-3 sm:px-6 py-4 relative">
         {isBookingModalOpen && (
           <>
             <button

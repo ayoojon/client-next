@@ -2,7 +2,7 @@ import Icon from '@/components/shared/icons';
 import { IActivity } from '@/types/booking';
 import moment from 'moment';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useQuery } from 'react-query';
 import Image from 'next/image';
 import { imgLoader } from '@/utils/next';
@@ -51,6 +51,7 @@ const fetchActivity = async (bookingId: any) => {
 export const ActivityList = () => {
   const router = useRouter();
   const { id } = router.query;
+  const messagesEndRef = useRef(null);
 
   const { data: activities, isLoading } = useQuery<IActivity[], Error>(
     ['user-booking-activityList', `${id}`],
@@ -61,9 +62,14 @@ export const ActivityList = () => {
       retry: 1,
     },
   );
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollTo(0, messagesEndRef.current.scrollHeight, 'auto');
+  };
+
+  useEffect(scrollToBottom, [activities]);
 
   return (
-    <div className="pr-2 overflow-auto" style={{ maxHeight: '60vh' }}>
+    <div className="pr-2 overflow-auto" style={{ maxHeight: '60vh' }} ref={messagesEndRef}>
       <AyoojonBackdrop open={isLoading} />
       {activities ? (
         activities.length > 0 ? (

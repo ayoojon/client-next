@@ -53,7 +53,7 @@ const BookingProductBottomBar = ({ service }: { service: IService }) => {
 
   return (
     <div className="sticky bottom-0 w-full bg-white border-t">
-      <div className="container mx-auto flex justify-end items-center px-3 sm:px-6 py-4 relative">
+      <div className="max-w-6xl mx-auto px-6 flex justify-end items-center px-3 sm:px-6 py-4 relative">
         {isBookingModalOpen && (
           <>
             <button

@@ -49,7 +49,7 @@ const ServicePage: NextPage<IData> = ({ service }: IData) => {
             <title>{`${service.name} | ${APP_TITLE}`}</title>
           </Helmet>
           <div className="my-4">
-            <div className="container mx-auto px-6 mb-24">
+            <div className="max-w-6xl mx-auto px-6 my-8">
               <div className="aspect-w-9 aspect-h-3">
                 <div className="overflow-hidden border rounded-md shadow-md">
                   <div
