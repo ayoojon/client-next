@@ -53,15 +53,16 @@ const SendActivity = () => {
         type: 'client',
       };
 
-      console.log(data, 'from send Activity');
       try {
         const headers = await tokenConfig('WITH-AUTH');
         await ayoojonApi.post(`activities`, data, headers);
         queryClient.invalidateQueries(['user-booking-activityList', `${id}`]);
         setText('');
-      } catch (error) {}
-      setErrorText('Should be less then 500 character');
+      } catch (error) {
+        setErrorText('Something went wrong! try again later.');
+      }
     } else {
+      setErrorText('Should be less then 500 character');
     }
   };
 
