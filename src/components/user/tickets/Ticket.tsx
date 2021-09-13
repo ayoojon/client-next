@@ -8,10 +8,10 @@ import Image from 'next/image';
 import { imgLoader } from '@/utils/next';
 import { s3FileUrl } from '../../../config';
 import { useRouter } from 'next/router';
+import { IEventTicket } from '@/types/event';
 
 interface props {
-  // TODO: Add ticket types
-  ticket: any;
+  ticket: IEventTicket;
 }
 
 export const Ticket: React.FC<props> = ({ ticket }) => {
@@ -25,9 +25,10 @@ export const Ticket: React.FC<props> = ({ ticket }) => {
         {/* TODO: Design a print layout for Event's ticket */}
 
         <div ref={componentRef} className="flex flex-col justify-evenly items-center">
-          {/* <img src="/resources/logo.png" alt="ayoojon-logo" className="h-12 mb-20 mt-6" /> */}
-          <Image className="mb-20 mt-6" src="/resources/logo.png" alt="ayoojon-logo" width="70" height="120" />
-          <div className="m-2 flex inline-block align-baseline border transition duration-500 ease-in-out rounded-lg my-6 relative">
+          <div className="mt-6 mb-20">
+            <Image src="/resources/logo.png" alt="ayoojon-logo" width="140" height="40" />
+          </div>
+          <div className="m-2 flex align-baseline border transition duration-500 ease-in-out rounded-lg my-6 relative">
             <div className="absolute right-0 mr-6 sm:mr-10 p-2 bg-primary text-white text-center">
               <p className="font-medium">{slug}</p>
             </div>
@@ -87,23 +88,19 @@ export const Ticket: React.FC<props> = ({ ticket }) => {
         </div>
       </div>
       <div className="sm:flex border shadow-md hover:shadow-lg transition duration-500 ease-in-out rounded-lg my-6 relative">
-        <div className="absolute right-0 mr-6 sm:mr-10 p-6 bg-primary text-white text-center">
+        <div className="md:absolute right-0 md:mr-6 p-2 md:p-6 bg-primary text-white text-center">
           <p className="font-light">Ticket No.</p>
           <p className="font-medium text-xl">{slug}</p>
         </div>
-        <div className="h-64 sm:h-xs sm:w-64 py-6 mx-6">
-          {/* <img
-            src={event.coverImage}
-            alt={event.name}
-            className="inline-block rounded-md border shadow-sm h-full w-full object-cover"
-          /> */}
+        <div className="m-4 md:m-6">
           <Image
             loader={imgLoader(s3FileUrl)}
-            className="inline-block rounded-md border shadow-sm h-full w-full object-cover"
+            className="rounded-md h-32 md:h-64 w-80 md:w-64"
             src={event.coverImage}
             alt="location"
-            width="560"
-            height="640"
+            layout="responsive"
+            height="100%"
+            width="100%"
           />
         </div>
         <div className="sm:flex-1 sm:flex sm:flex-col pb-6 sm:pt-6 mx-6">

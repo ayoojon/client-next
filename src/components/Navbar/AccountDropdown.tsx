@@ -28,20 +28,18 @@ export const AccountDropdown: React.FC<props> = ({ className, setIsNavbarOpen })
 
   return (
     <>
-      <div className={`relative hidden sm:block sm:ml-3" ${className || ''}`}>
+     <div className={`relative hidden sm:block sm:ml-3" ${className || ''}`}>
         <button
-          // relative z-10
           className="relative block h-10 w-10 rounded-full overflow-hidden focus:outline-none "
           onClick={() => setIsOpen(!isOpen)}
         >
           <Image
             loader={imgLoader(s3FileUrl)}
             className="h-full w-full object-cover"
-            // src={'/resources/user-avatar.jpg'}
             src={user && user.avatar ? user?.avatar : '/resources/user-avatar.jpg'}
             alt="user-img"
-            width="100"
-            height="100"
+            width="100%"
+            height="100%"
           />
         </button>
         {isOpen && (
@@ -59,12 +57,11 @@ export const AccountDropdown: React.FC<props> = ({ className, setIsNavbarOpen })
             <Link href="/user">
               <a
                 className="transition duration-300 ease-in-out block px-4 py-2 text-gray-800 hover:bg-gray-300"
-                onClick={() => {
+              >
+                <div className="flex flex-col" onClick={() => {
                   setIsOpen(false);
                   setIsNavbarOpen(false);
-                }}
-              >
-                <div className="flex flex-col">
+                }}>
                   <span className="font-semibold">{user?.name}</span>
                   <span className="text-gray-600">See your profile</span>
                 </div>
@@ -78,7 +75,6 @@ export const AccountDropdown: React.FC<props> = ({ className, setIsNavbarOpen })
                   setIsNavbarOpen(false);
                 }}
               >
-                {' '}
                 My bookings
               </a>
             </Link>
@@ -93,28 +89,6 @@ export const AccountDropdown: React.FC<props> = ({ className, setIsNavbarOpen })
                 My tickets
               </a>
             </Link>
-            {/* <Link
-              exact
-              to={`/user/messages`}
-              className="transition duration-300 ease-in-out block px-4 py-2 text-gray-800 hover:bg-gray-300"
-              onClick={() => {
-                setIsOpen(false);
-                setIsNavbarOpen(false);
-              }}
-            >
-              Messages
-            </Link>
-            <Link
-              exact
-              to={`/user/saved`}
-              className="transition duration-300 ease-in-out block px-4 py-2 text-gray-800 hover:bg-gray-300"
-              onClick={() => {
-                setIsOpen(false);
-                setIsNavbarOpen(false);
-              }}
-            >
-              Saved
-            </Link> */}
             <Link href="/user/settings">
               <a
                 className="transition duration-300 ease-in-out block px-4 py-2 text-gray-800 hover:bg-gray-300"
@@ -138,30 +112,21 @@ export const AccountDropdown: React.FC<props> = ({ className, setIsNavbarOpen })
         )}
       </div>
       {/* mobile view */}
-      <div className="pt-2 pb-1 border-t sm:hidden">
+       <div className="pt-2 pb-1 border-t sm:hidden">
         <Link href="/user">
           <a onClick={() => setIsNavbarOpen(false)}>
             <div className="transition duration-300 ease-in-out flex items-center px-2 py-1 rounded hover:bg-gray-300">
               <div className="h-10 w-10 rounded-full overflow-hidden object-cover">
-                {/* <Image
+                <Image
                   className="h-full w-full object-cover"
                   src={'/resources/user-avatar.jpg'}
                   alt="user-img"
                   width="100%"
                   height="100%"
-                /> */}
-                <Image
-                  loader={imgLoader(s3FileUrl)}
-                  className="h-full w-full object-cover"
-                  // src={'/resources/user-avatar.jpg'}
-                  src={user && user.avatar ? user?.avatar : '/resources/user-avatar.jpg'}
-                  alt="user-img"
-                  width="100"
-                  height="100"
                 />
               </div>
               <div className="ml-5 flex flex-col">
-                <span className="font-semibold">{user?.name}</span>
+                <span className="font-semibold">John Doe</span>
                 <span className="text-gray-600">See your profile</span>
               </div>
             </div>
@@ -200,22 +165,6 @@ export const AccountDropdown: React.FC<props> = ({ className, setIsNavbarOpen })
               My bookings
             </a>
           </Link>
-          {/* <Link
-            exact
-            to={`/user/messages`}
-            className="transition duration-300 ease-in-out block px-2 py-1 rounded hover:bg-gray-300"
-            onClick={() => setIsNavbarOpen(false)}
-          >
-            Messages
-          </Link>
-          <Link
-            exact
-            to={`/user/saved`}
-            className="transition duration-300 ease-in-out block px-2 py-1 rounded hover:bg-gray-300"
-            onClick={() => setIsNavbarOpen(false)}
-          >
-            Saved
-          </Link> */}
           <button
             onClick={handleLogout}
             className="transition duration-300 ease-in-out block px-2 py-1 rounded hover:bg-gray-300"
