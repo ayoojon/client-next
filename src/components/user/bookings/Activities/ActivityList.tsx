@@ -88,7 +88,7 @@ export const ActivityList = () => {
                   /> */}
                   <Image
                     loader={imgLoader(s3FileUrl)}
-                    className="inline-block w-full h-full object-cover"
+                    className="h-full w-full object-cover"
                     src={`${
                       activity.type === 'client'
                         ? activity.booking.account.avatar
@@ -97,8 +97,8 @@ export const ActivityList = () => {
                         : activity.booking.service.logo
                     }`}
                     alt="location"
-                    width="560"
-                    height="400"
+                    width="120"
+                    height="120"
                   />
                 </div>
               )}

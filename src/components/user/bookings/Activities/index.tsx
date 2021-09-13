@@ -1,5 +1,6 @@
 import Icon from '@/components/shared/icons';
-import { IReview } from '@/types/booking';
+import { IReview } from '@/types/review';
+
 import React from 'react';
 import Review from '../Review';
 

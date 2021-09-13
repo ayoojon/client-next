@@ -2,12 +2,12 @@ import React, { useRef } from 'react';
 import ReactToPrint from 'react-to-print';
 import { time24To12 } from '../../../utils';
 import moment from 'moment';
-import { useHistory } from 'react-router-dom';
 // import logo from '../../../resources/logo.png';
 // import logo from './resources/logo.png';
 import Image from 'next/image';
 import { imgLoader } from '@/utils/next';
 import { s3FileUrl } from '../../../config';
+import { useRouter } from 'next/router';
 
 interface props {
   // TODO: Add ticket types
@@ -15,8 +15,7 @@ interface props {
 }
 
 export const Ticket: React.FC<props> = ({ ticket }) => {
-  const history = useHistory();
-
+  const router = useRouter();
   const componentRef = useRef<HTMLDivElement>(null);
   const { customerDetail, slug, event } = ticket;
 
@@ -160,7 +159,7 @@ export const Ticket: React.FC<props> = ({ ticket }) => {
           </div>
           <div className="flex flex-wrap justify-between sm:justify-end">
             <button
-              onClick={() => history.push(`/events/${event.url}`)}
+              onClick={() => router.push(`/events/${event.url}`)}
               className="text-primary font-semibold sm:px-5 py-2 rounded-md mr-3"
             >
               View Details

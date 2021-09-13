@@ -2,7 +2,7 @@ import { IBookingNewDetails } from '@/types/booking';
 import { ayoojonApi, s3FileUrl } from '../../../config';
 import { tokenConfig, time24To12, isCompleted } from '../../../utils';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import moment from 'moment';
 import Icon from '../../../components/shared/icons';
@@ -10,6 +10,8 @@ import Image from 'next/image';
 import { imgLoader } from '@/utils/next';
 import { BookingActivities } from '@/components/user/bookings/Activities';
 import SEO from '@/components/shared/SEO';
+import PaymentModal from '@/components/user/bookings/PaymentModal';
+import { useAppSelector } from '@/components/shared/hooks/redux';
 
 const fetchSingleBookings = async (bookingId: any) => {
   const headers = await tokenConfig('WITH-AUTH');
@@ -20,6 +22,13 @@ const fetchSingleBookings = async (bookingId: any) => {
 const BookingInfo = () => {
   const router = useRouter();
   const { id } = router.query;
+  const { isLogin } = useAppSelector((state) => {
+    return { isLogin: !!state.userReducer.user };
+  });
+
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const { data, isLoading } = useQuery<IBookingNewDetails, Error>(
     ['client-single-bookings-search', `${id}`],
@@ -30,6 +39,13 @@ const BookingInfo = () => {
       retry: 1,
     },
   );
+
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+  if (!isLogin && typeof window !== 'undefined') {
+    router.replace('/signin');
+  }
   return (
     <div className="container mx-auto">
       <SEO siteTitle={'Booking - '} />
@@ -118,10 +134,11 @@ const BookingInfo = () => {
                   <button
                     className=" mt-2 font-medium capitalize text-white bg-primary rounded-md py-2 px-5"
                     // onClick={handleOpen}
+                    onClick={handleClickOpen}
                   >
                     Pay
                   </button>
-                  {/* <PaymentModal isVisible={isVisible} setVisible={handleClose} data={data.service.paymentMethod} /> */}
+                  <PaymentModal open={open} setOpen={handleClose} data={data.service.paymentMethod} />
                 </div>
               )}
             </div>
@@ -245,11 +262,11 @@ const BookingInfo = () => {
 
                               <Image
                                 loader={imgLoader(s3FileUrl)}
-                                className="inline-block w-full h-full object-cover"
+                                className="rounded-full mx-auto"
                                 src={data.pricing.package?.image}
                                 alt="location"
-                                width="160"
-                                height="160"
+                                width="70"
+                                height="70"
                               />
                             </div>
                           </div>

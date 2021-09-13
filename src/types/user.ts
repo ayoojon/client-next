@@ -78,3 +78,7 @@ export interface IUserReducer {
 export interface IUpdateUserAvatar {
   avatar: IUser['avatar'];
 }
+
+export interface IUserForgotPassword {
+  email: IUser['email'];
+}

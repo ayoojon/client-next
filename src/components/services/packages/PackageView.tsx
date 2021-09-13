@@ -60,11 +60,11 @@ export const PackageView: React.FC<Props> = ({ data }) => {
                 {/* <img className="w-16 h-16 rounded-full mx-auto" src={s3FileUrl + item.image} alt="" /> */}
                 <Image
                   loader={imgLoader(s3FileUrl)}
-                  className="w-16 h-16 rounded-full mx-auto"
+                  className="rounded-full mx-auto"
                   src={item.image}
                   alt="package"
-                  width="160"
-                  height="160"
+                  width="70"
+                  height="70"
                 />
               </div>
             </div>
