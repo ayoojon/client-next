@@ -1,16 +1,16 @@
 import { Ticket } from '@/components/user/tickets/Ticket';
 import { eventStatus, IEventTicket } from '@/types/event';
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet';
 import { useQuery } from 'react-query';
 import AyoojonBackdrop from '@/components/shared/Backdrop';
 import Pagination, { IPagination } from '../../../components/Pagination';
-import { APP_TITLE, ayoojonApi } from '../../../config';
+import { ayoojonApi } from '../../../config';
 
 import { tokenConfig } from '../../../utils';
 import { useAppSelector } from '@/components/shared/hooks/redux';
 import { useRouter } from 'next/router';
 import SEO from '@/components/shared/SEO';
+import { SkeletonTicketsPage } from '@/components/shared/skeletons/MyTickets';
 
 interface IData {
   tickets: IEventTicket[];
@@ -49,7 +49,7 @@ const UserTicketsPage = () => {
   return (
     <>
       <SEO siteTitle="My Tickets" />
-      <AyoojonBackdrop open={isLoading} />
+      {/* <AyoojonBackdrop open={isLoading} /> */}
       <div className="container mx-auto my-12 px-6">
         <h1 className="font-bold text-4xl mb-5">My Tickets</h1>
         <div className="flex flex-wrap -mx-2">
@@ -82,6 +82,11 @@ const UserTicketsPage = () => {
           {data?.tickets && data.tickets.length > 0 ? (
             // TODO - Add tickets types
             data.tickets.map((ticket: IEventTicket) => ticket?.event && <Ticket ticket={ticket} key={ticket.slug} />)
+          ) : isLoading ? (
+            <div>
+              <SkeletonTicketsPage className="animate-pulse" />
+              <SkeletonTicketsPage className="animate-pulse" />
+            </div>
           ) : (
             <h2 className="my-6">You don&apos;t have any tickets.</h2>
           )}

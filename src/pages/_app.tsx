@@ -11,10 +11,16 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'react-dates/lib/css/_datepicker.css';
 import './../styles/globals.css';
 import './../styles/tailwind.css';
+import 'nprogress/nprogress.css';
+import NProgress from 'nprogress';
+import { Router } from 'next/router';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient();
 
+  Router.events.on('routeChangeStart', () => NProgress.start());
+  Router.events.on('routeChangeComplete', () => NProgress.done());
+  Router.events.on('routeChangeError', () => NProgress.done());
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>

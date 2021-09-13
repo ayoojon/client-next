@@ -8,6 +8,7 @@ import Pagination, { IPagination } from '@/components/Pagination';
 import userImg from '@/components/shared/resources/user-avatar.jpg';
 import Image from 'next/image';
 import { imgLoader } from '@/utils/next';
+import moment from 'moment';
 
 interface Props {
   serviceId: string;
@@ -43,7 +44,7 @@ export const ServiceReview: React.FC<Props> = ({ serviceId }) => {
     <div className="">
       {data && data.reviews.length > 0 ? (
         data.reviews.map((review, index) => (
-          <div className="flex items-start mb-2" key={index}>
+          <div className="flex items-start mb-4" key={index}>
             <div className="flex-shrink-0">
               <div className="inline-block relative">
                 <div className="relative w-16 h-16 rounded-full overflow-hidden">
@@ -66,6 +67,15 @@ export const ServiceReview: React.FC<Props> = ({ serviceId }) => {
                   <span className="text-gray-600 font-bold">{review.booking.account.name}</span>
                 ) : (
                   <span className="text-gray-600 font-bold">name</span>
+                )}
+              </div>
+              <div className="flex items-baseline">
+                {review.booking ? (
+                  <small className="text-sm font-medium">
+                    {moment(new Date(review.createdAt)).format('DD-MM-YYYY')}
+                  </small>
+                ) : (
+                  <span className="text-gray-600 font-bold">no date</span>
                 )}
               </div>
               <div className="flex items-center mt-1">
@@ -100,7 +110,7 @@ export const ServiceReview: React.FC<Props> = ({ serviceId }) => {
                   />
                 </div>
               </div>
-              <div className="mt-3">
+              <div className="mt-2">
                 <p className="mt-1">{review.text}</p>
               </div>
             </div>
