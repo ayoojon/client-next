@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/link-passhref */
 import React, { useState } from 'react';
 import * as Yup from 'yup';
-import { Button, makeStyles, OutlinedInput } from '@mui/material';
+import { Button, OutlinedInput } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IUserForgotPassword } from '@/types/user';
@@ -104,7 +105,6 @@ const ForgotPasswordForm = () => {
                   render={({ field }) => (
                     <OutlinedInput
                       error={!!errors['email']}
-                      labelWidth={0}
                       fullWidth
                       type="email"
                       placeholder="Enter your email"
