@@ -54,7 +54,10 @@ const AlbumPhotoList = () => {
         <div className="container mx-auto mt-12 px-6">
           <SEO siteTitle={'Booking - ' + data.title} />
 
-          <button className="bg-primary p-1 text-white rounded">Go Back</button>
+          {/* <button className="bg-primary p-1 text-white rounded">Go Back</button> */}
+          <button className="bg-primary p-1 text-white rounded" onClick={() => router.back()}>
+            Go Back
+          </button>
           <div className="py-6 border-b border-gray-300 last:border-0">
             <div className=" mb-2">
               <h6 className="font-medium text-xl mb-2">title</h6>

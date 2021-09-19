@@ -5,10 +5,10 @@ import { useParams } from 'react-router-dom';
 import { ayoojonApi, s3FileUrl } from '../../../config';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
-import { useHistory } from 'react-router-dom';
 import { IService } from '@/types/service';
 import Image from 'next/image';
 import { imgLoader } from '@/utils/next';
+import { useRouter } from 'next/router';
 
 interface ParamTypes {
   serviceURL: string;
@@ -24,7 +24,7 @@ const AlbumPhotoList = () => {
   const params = useParams<ParamTypes>();
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
-  const history = useHistory();
+  const router = useRouter();
 
   const handleClickImage = (image: any, index: any) => {
     setIsOpen(true);
@@ -50,7 +50,7 @@ const AlbumPhotoList = () => {
     <div className="container mx-auto mt-12 px-6">
       {/* <AyoojonBackdrop open={isLoading} /> */}
 
-      <button className="bg-primary p-1 text-white rounded" onClick={() => history.goBack()}>
+      <button className="bg-primary p-1 text-white rounded" onClick={() => router.back()}>
         Go Back
       </button>
       {/* <div className="border-b my-8 p-2">

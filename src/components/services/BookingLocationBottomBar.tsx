@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Button, RadioGroup, FormControlLabel, Radio } from '@material-ui/core';
 import moment from 'moment';
-import { SingleDatePicker } from 'react-dates';
+import { SingleDatePicker, isSameDay } from 'react-dates';
 import 'react-dates/initialize';
 import { CalenderInfoPanel, NavPrevIcon, NavNextIcon, getDaySize } from '@/components/shared/ReactDates';
-import { currencyFormat, truncateString, time24To12, weekCapitalize } from '../../utils';
+import { currencyFormat, truncateString, time24To12, weekCapitalize, tokenConfig } from '../../utils';
 import { useBreakpointFromContext } from '@/components/shared/BreakpointHook/Context';
 import { IOnProgressBooking } from '../../types/booking';
 import { customToast } from '@/components/shared/Toaster';
@@ -13,6 +13,9 @@ import Router from 'next/router';
 import { IService } from '@/types/service';
 import Icon from '../shared/icons';
 import { useAppSelector } from '../shared/hooks/redux';
+import { useQuery } from 'react-query';
+import { ayoojonApi } from '../../config';
+import { IBlockDays } from '@/types/blockdays';
 
 const calculateServicePrice = (service: IService) => {
   if (service) {
@@ -68,6 +71,13 @@ const calculateServicePrice = (service: IService) => {
   }
 };
 
+const fetchBlockDays = async (serviceId: string) => {
+  const headers = await tokenConfig('WITH-AUTH');
+  const response = await ayoojonApi.get(`services/${serviceId}/blockdays`, headers);
+
+  return response.data.data;
+};
+
 const BookingLocationBottomBar = ({ service }: { service: IService }) => {
   const { isLogin } = useAppSelector((state) => {
     return { isLogin: !!state.userReducer.user };
@@ -81,6 +91,37 @@ const BookingLocationBottomBar = ({ service }: { service: IService }) => {
   const [selectedSpace, setSelectedSpace] = useState<IService['pricing']['location'][0]>();
   const [selectedPricing, setSelectedPricing] = useState<IService['pricing']['location'][0]['sessions'][0]>();
 
+  const [blockDate, setBlockDate] = useState<moment.Moment[]>([]);
+  const [plainDate, setPlainDate] = useState<string[]>([]);
+
+  const { data } = useQuery<IBlockDays[], Error>(
+    ['service-block-days', service._id],
+    () => fetchBlockDays(service._id),
+    {
+      refetchOnWindowFocus: false,
+      enabled: !!service._id,
+    },
+  );
+
+  useEffect(() => {
+    if (data) {
+      let momentDate: Array<moment.Moment> = [];
+      let newDate: any = [];
+
+      data.map((item) => {
+        const d = moment(item.date);
+        const p = moment(item.date).format('DD-MM-YYYY');
+        momentDate.push(d);
+        newDate.push(p);
+        return d;
+      });
+
+      setBlockDate([...momentDate]);
+      setPlainDate([...newDate]);
+    }
+  }, [data]);
+
+  const HIGHLIGHTED_DATES = [moment().add(4, 'days'), moment().add(7, 'days')];
   const handleProceedToBooking = () => {
     if (selectedDate && selectedSpace && selectedPricing) {
       const values: IOnProgressBooking = {
@@ -155,10 +196,20 @@ const BookingLocationBottomBar = ({ service }: { service: IService }) => {
                       hideKeyboardShortcutsPanel={false}
                       daySize={getDaySize(matchPoints)}
                       numberOfMonths={1}
+                      // isDayBlocked={(day) =>
+                      //   weekCapitalize(service.weekDays).includes(day.format('ddd')) ? true : false
+                      // }
                       isDayBlocked={(day) =>
-                        weekCapitalize(service.weekDays).includes(day.format('ddd')) ? true : false
+                        plainDate.includes(day.format('DD-MM-YYYY'))
+                          ? true
+                          : weekCapitalize(service.weekDays).includes(day.format('ddd'))
                       }
-                      // isDayHighlighted={(day) => blockedDates.some((highlightedDay) => isSameDay(day, highlightedDay))}
+                      // isDayBlocked={(day) => blockDate.some((blockDate) => isSameDay(day, blockDate))}
+
+                      // isDayHighlighted={(day) =>
+                      //   HIGHLIGHTED_DATES.some((highlightedDay) => isSameDay(day, highlightedDay))
+                      // }
+                      // isDayHighlighted={(day) => highlightDate.some((highlightedDay) => isSameDay(day, highlightedDay))}
                       navPrev={<NavPrevIcon />}
                       navNext={<NavNextIcon />}
                       renderCalendarInfo={() => <CalenderInfoPanel />}

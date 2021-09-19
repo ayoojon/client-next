@@ -1,4 +1,4 @@
-import { ICurrentPosition, IUpdateUser, IUpdateUserAvatar, IUser } from '@/types/user';
+import { ICurrentPosition, IUpdateUser, IUpdateUserAvatar, IUser, IUserSignup } from '@/types/user';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // Define a type for the slice state
@@ -23,6 +23,10 @@ export const userReducer = createSlice({
       window.localStorage.setItem('ayoojon-user', JSON.stringify(action.payload));
       state.user = action.payload;
     },
+    signupUser: (state, action: PayloadAction<IUser>) => {
+      window.localStorage.setItem('ayoojon-user', JSON.stringify(action.payload));
+      state.user = action.payload;
+    },
     logoutUser: (state) => {
       window.localStorage.removeItem('ayoojon-user');
       state.user = undefined;
@@ -41,6 +45,6 @@ export const userReducer = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { loginUser, logoutUser, updateUser, updateAvatar } = userReducer.actions;
+export const { loginUser, signupUser, logoutUser, updateUser, updateAvatar } = userReducer.actions;
 
 export default userReducer.reducer;

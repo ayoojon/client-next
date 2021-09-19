@@ -49,6 +49,13 @@ export interface IUserSignIn {
   password: string;
 }
 
+export interface IUserSignup {
+  name: IUser['name'];
+  email: IUser['email'];
+  password: string;
+  confirmPassword: string;
+}
+
 export interface IUpdateUser {
   name: IUser['name'];
   address: IUser['address'];
