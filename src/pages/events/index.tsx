@@ -1,26 +1,18 @@
 import {
-  Chip,
-  createStyles,
-  FormControl,
-  InputLabel,
-  makeStyles,
-  MenuItem,
-  OutlinedInput,
-  Select,
+  Chip
 } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { EventCard } from '@/components/Cards/EventCard';
 import useDebounce from '@/components/shared/hooks/useDebounce';
 import Pagination, { IPagination } from '@/components/Pagination';
-import { SkeletonSearchEvent } from '@/components/shared/skeletons/SearchEvent';
 import { ayoojonApi, server } from '@/config/index';
 import { IEvent } from '@/types/event';
-import { eventTypesName, generateQueryString } from '@/utils/index';
+import { generateQueryString } from '@/utils/index';
 import { GetStaticProps, NextPage } from 'next';
 import Axios from 'axios';
 import Link from 'next/link';
-import MainLayout from 'src/layouts/main';
 import Backdrop from '@/components/shared/Backdrop';
 import FilterEvents from '@/components/event/FilterEvents';
 import SEO from '@/components/shared/SEO';
@@ -73,7 +65,7 @@ const fetchAllEvents = async (searchQuery: ISearch) => {
 };
 
 const Events: NextPage<Props> = ({ initialEvents, pagination }: Props) => {
-  const classes = useStyles({});
+  const classes = useStyles();
   const [isVisible, setVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState<ISearch>({
     pageNumber: 1,

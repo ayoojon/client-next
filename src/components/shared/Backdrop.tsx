@@ -1,12 +1,11 @@
-import createStyles from '@mui/material/styles/createStyles';
-import makeStyles from '@mui/material/styles/makeStyles';
-import BD from '@mui/material/Backdrop/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress/CircularProgress';
+import { createStyles, makeStyles } from '@mui/styles';
+import BD from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     backdrop: {
-      zIndex: theme.zIndex.drawer + 1,
+      zIndex: 99,
       color: '#fff',
     },
   }),
