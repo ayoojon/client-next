@@ -28,19 +28,29 @@ export const AccountDropdown: React.FC<props> = ({ className, setIsNavbarOpen })
 
   return (
     <>
-     <div className={`relative hidden sm:block sm:ml-3" ${className || ''}`}>
+      <div className={`relative hidden sm:block sm:ml-3" ${className || ''}`}>
         <button
           className="relative block h-10 w-10 rounded-full overflow-hidden focus:outline-none "
           onClick={() => setIsOpen(!isOpen)}
         >
-          <Image
-            loader={imgLoader(s3FileUrl)}
-            className="h-full w-full object-cover"
-            src={user && user.avatar ? user?.avatar : '/resources/user-avatar.jpg'}
-            alt="user-img"
-            width="100%"
-            height="100%"
-          />
+          {user?.avatar ? (
+            <Image
+              loader={imgLoader(s3FileUrl)}
+              className="h-full w-full object-cover"
+              src={user.avatar}
+              alt="user-img"
+              width="100%"
+              height="100%"
+            />
+          ) : (
+            <Image
+              className="h-full w-full object-cover"
+              src={'/resources/user-avatar.jpg'}
+              alt="user-img"
+              width="100%"
+              height="100%"
+            />
+          )}
         </button>
         {isOpen && (
           <button
@@ -55,13 +65,14 @@ export const AccountDropdown: React.FC<props> = ({ className, setIsNavbarOpen })
             className="absolute right-0 mt-3 py-2 w-48 border bg-white rounded-lg shadow-lg"
           >
             <Link href="/user">
-              <a
-                className="transition duration-300 ease-in-out block px-4 py-2 text-gray-800 hover:bg-gray-300"
-              >
-                <div className="flex flex-col" onClick={() => {
-                  setIsOpen(false);
-                  setIsNavbarOpen(false);
-                }}>
+              <a className="transition duration-300 ease-in-out block px-4 py-2 text-gray-800 hover:bg-gray-300">
+                <div
+                  className="flex flex-col"
+                  onClick={() => {
+                    setIsOpen(false);
+                    setIsNavbarOpen(false);
+                  }}
+                >
                   <span className="font-semibold">{user?.name}</span>
                   <span className="text-gray-600">See your profile</span>
                 </div>
@@ -112,18 +123,29 @@ export const AccountDropdown: React.FC<props> = ({ className, setIsNavbarOpen })
         )}
       </div>
       {/* mobile view */}
-       <div className="pt-2 pb-1 border-t sm:hidden">
+      <div className="pt-2 pb-1 border-t sm:hidden">
         <Link href="/user">
           <a onClick={() => setIsNavbarOpen(false)}>
             <div className="transition duration-300 ease-in-out flex items-center px-2 py-1 rounded hover:bg-gray-300">
               <div className="h-10 w-10 rounded-full overflow-hidden object-cover">
-                <Image
-                  className="h-full w-full object-cover"
-                  src={'/resources/user-avatar.jpg'}
-                  alt="user-img"
-                  width="100%"
-                  height="100%"
-                />
+                {user?.avatar ? (
+                  <Image
+                    loader={imgLoader(s3FileUrl)}
+                    className="h-full w-full object-cover"
+                    src={user.avatar}
+                    alt="user-img"
+                    width="100%"
+                    height="100%"
+                  />
+                ) : (
+                  <Image
+                    className="h-full w-full object-cover"
+                    src={'/resources/user-avatar.jpg'}
+                    alt="user-img"
+                    width="100%"
+                    height="100%"
+                  />
+                )}
               </div>
               <div className="ml-5 flex flex-col">
                 <span className="font-semibold">John Doe</span>
