@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { GetStaticProps, NextPage } from 'next';
 import React, { useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
-import { IconButton, Link } from '@material-ui/core';
+import { IconButton, Link } from '@mui/material';
 import moment from 'moment';
 import Image from 'next/image';
 

@@ -1,4 +1,4 @@
-import { Chip, createStyles, makeStyles } from '@material-ui/core';
+import { Chip, createStyles, makeStyles } from '@mui/material';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import useDebounce from '@/components/shared/hooks/useDebounce';

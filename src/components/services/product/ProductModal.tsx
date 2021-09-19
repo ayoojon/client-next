@@ -1,6 +1,6 @@
 import React from 'react';
-import Dialog from '@material-ui/core/Dialog';
-// import { DialogActions, DialogTitle } from '@material-ui/core';
+import Dialog from '@mui/material/Dialog';
+// import { DialogActions, DialogTitle } from '@mui/material';
 import { s3FileUrl } from '../../../config';
 import Image from 'next/image';
 import { imgLoader } from '@/utils/next';

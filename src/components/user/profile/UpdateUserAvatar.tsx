@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '@/components/shared/hooks/redux';
-import { Button, CircularProgress } from '@material-ui/core';
+import { Button, CircularProgress } from '@mui/material';
 import Axios from 'axios';
 import React, { useState } from 'react';
 import { ayoojonApi, lambdaAPI, s3FileUrl } from '../../../config';

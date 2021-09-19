@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Tab, Tabs } from '@material-ui/core';
+import { Tab, Tabs } from '@mui/material';
 import { TabPanel } from '@/components/user/bookings/TabPanel';
 import { AllBooking } from '@/components/user/bookings/AllBooking';
 import { PendingRequest } from '@/components/user/bookings/PendingRequest';

@@ -1,4 +1,4 @@
-import { OutlinedInput, Button } from '@material-ui/core';
+import { OutlinedInput, Button } from '@mui/material';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { SingleDatePicker } from 'react-dates';

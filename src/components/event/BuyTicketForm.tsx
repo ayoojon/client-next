@@ -6,7 +6,7 @@ import { contactNoRegex, emailRegex, tokenConfig } from '../../utils';
 import { ayoojonApi } from '@/config/index';
 import { customToast } from '@/components/shared/Toaster';
 import { InputHeader } from '@/components/shared/InputHeader';
-import { OutlinedInput } from '@material-ui/core';
+import { OutlinedInput } from '@mui/material';
 import useHeader from '../shared/hooks/useHeader';
 import { useRouter } from 'next/router';
 

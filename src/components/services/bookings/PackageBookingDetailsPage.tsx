@@ -1,6 +1,6 @@
 import React from 'react';
 import { tokenConfig } from '@/utils/index';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 import moment from 'moment';
 import Image from 'next/image';
 import { ayoojonApi, s3FileUrl } from '@/config/index';

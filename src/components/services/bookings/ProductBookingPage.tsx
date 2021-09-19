@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { typeOfEvent } from '@/utils/index';
-import { Tab, Tabs } from '@material-ui/core';
+import { Tab, Tabs } from '@mui/material';
 import 'react-dates/initialize';
 import moment from 'moment';
 import { SingleDatePicker, isSameDay } from 'react-dates';
-import { OutlinedInput, Button } from '@material-ui/core';
+import { OutlinedInput, Button } from '@mui/material';
 import { s3FileUrl } from '@/config/index';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';

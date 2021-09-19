@@ -1,6 +1,6 @@
 import React from 'react';
 import { time24To12, tokenConfig } from '@/utils/index';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 import moment from 'moment';
 import { customToast } from '@/components/shared/Toaster';
 import { useHistory } from 'react-router-dom';

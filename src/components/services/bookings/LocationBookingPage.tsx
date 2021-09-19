@@ -6,7 +6,7 @@ import moment from 'moment';
 import Image from 'next/image';
 import { getDaySize, NavPrevIcon, NavNextIcon, CalenderInfoPanel } from '@/components/shared/ReactDates';
 import { useBreakpointFromContext } from '@/components/shared/BreakpointHook/Context';
-import { OutlinedInput, FormHelperText, Button } from '@material-ui/core';
+import { OutlinedInput, FormHelperText, Button } from '@mui/material';
 import { LocationBookingDetailsPage } from './LocationBookingDetailsPage';
 import { IService } from '@/types/service';
 import { bookingForTypes, businessTypeOfEventsTypes, personalTypeOfEventsTypes } from '@/types/booking';

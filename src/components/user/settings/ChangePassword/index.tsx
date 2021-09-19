@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, DialogContent, DialogProps, IconButton } from '@material-ui/core';
+import { Dialog, DialogContent, DialogProps, IconButton } from '@mui/material';
 import ChangePasswordForm from './ChangePasswordForm';
 import ClearIcon from '@material-ui/icons/Clear';
 

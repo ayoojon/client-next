@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/link-passhref */
 import React, { useState } from 'react';
 import * as Yup from 'yup';
-import { Button, makeStyles, OutlinedInput } from '@material-ui/core';
+import { Button, makeStyles, OutlinedInput } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IUserForgotPassword } from '@/types/user';
