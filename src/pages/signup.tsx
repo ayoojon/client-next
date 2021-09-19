@@ -14,7 +14,8 @@ import {
   setAccessToken,
   setRefreshToken,
 } from '../utils';
-import { Button, makeStyles, OutlinedInput } from '@material-ui/core';
+import { Button, OutlinedInput } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { useRouter } from 'next/router';
 import { Controller, useForm } from 'react-hook-form';
 import { IUserSignup } from '@/types/user';
