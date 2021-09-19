@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, OutlinedInput } from '@material-ui/core';
+import { Button, OutlinedInput } from '@mui/material';
 import * as Yup from 'yup';
 import { lowercaseRegex, uppercaseRegex, numericRegex, specialCharRegex } from '../../../../utils';
 import { Controller, useForm } from 'react-hook-form';

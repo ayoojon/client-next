@@ -7,7 +7,7 @@ import {
   MenuItem,
   OutlinedInput,
   Select,
-} from '@material-ui/core';
+} from '@mui/material';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { EventCard } from '@/components/Cards/EventCard';

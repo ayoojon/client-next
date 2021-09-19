@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Icon from '@/components/shared/icons/index';
 import { AccountDropdown } from './AccountDropdown';
-import { IconButton } from '@material-ui/core';
+import { IconButton } from '@mui/material';
 import { useAppSelector } from '../shared/hooks/redux';
 // import { useSelector } from 'react-redux';
 // import { IReducer } from '../../stores/IndexReducer';

@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import MainLayout from 'src/layouts/main';
 import { Provider } from 'react-redux';
 import { store } from 'src/stores';
-import { ThemeProvider } from '@material-ui/core';
+import { ThemeProvider } from '@mui/material';
 import { theme } from '@/config/mui';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-dates/lib/css/_datepicker.css';

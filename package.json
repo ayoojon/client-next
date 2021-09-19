@@ -18,6 +18,7 @@
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@mui/icons-material": "^5.0.0",
     "@mui/material": "^5.0.0",
+    "@mui/styles": "^5.0.0",
     "@react-google-maps/api": "^1.13.0",
     "@reduxjs/toolkit": "^1.6.1",
     "@tailwindcss/aspect-ratio": "^0.2.1",

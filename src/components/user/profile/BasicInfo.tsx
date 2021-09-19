@@ -7,7 +7,7 @@ import { IUser, IUserBasicInfoUpdate, IUserReducer } from '@/types/user';
 import { ayoojonApi } from '../../../config';
 import { tokenConfig } from '../../../utils';
 import { InputHeader } from '@/components/shared/InputHeader';
-import { Button, OutlinedInput } from '@material-ui/core';
+import { Button, OutlinedInput } from '@mui/material';
 import { useAppDispatch } from '@/components/shared/hooks/redux';
 import { updateUser } from 'src/stores/UserReducer';
 

@@ -2,7 +2,7 @@ import Icon from '@/components/shared/icons';
 import { ICreateBookingRating } from '@/types/booking';
 import { ayoojonApi } from '../../../../config';
 import { tokenConfig } from '../../../../utils';
-import { Button, FormHelperText, OutlinedInput } from '@material-ui/core';
+import { Button, FormHelperText, OutlinedInput } from '@mui/material';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useQueryClient } from 'react-query';

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { IconButton } from '@material-ui/core';
+import { IconButton } from '@mui/material';
 import Icon from '../icons';
 
 export const NavPrevIcon = () => (

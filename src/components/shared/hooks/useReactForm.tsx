@@ -1,6 +1,6 @@
 import React from 'react';
 import { Control, Controller } from 'react-hook-form';
-import { createStyles, FormControl, makeStyles, RadioGroup, Select } from '@material-ui/core';
+import { createStyles, FormControl, makeStyles, RadioGroup, Select } from '@mui/material';
 const useStyles = makeStyles((theme) =>
   createStyles({
     formControl: {

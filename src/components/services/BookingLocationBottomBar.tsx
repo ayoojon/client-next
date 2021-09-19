@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Button, RadioGroup, FormControlLabel, Radio } from '@material-ui/core';
+import { Button, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/initialize';

@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogActions, DialogContent, IconButton } from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, IconButton } from '@mui/material';
 import React from 'react';
 import ClearIcon from '@material-ui/icons/Clear';
 interface Props {

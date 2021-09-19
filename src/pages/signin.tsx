@@ -3,7 +3,8 @@ import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import SEO from '@/components/shared/SEO';
-import { Button, makeStyles, OutlinedInput } from '@material-ui/core';
+import { Button, OutlinedInput } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import {
   emailRegex,
   lowercaseRegex,
@@ -100,7 +101,7 @@ const Signin = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <h2 className="text-2xl sm:text-4xl font-bold">Sign In</h2>
             <div className="mt-6 sm:mt-10">
-              <div>
+              <div className="space-y-4">
                 <div>
                   <InputHeader label="Email Address" />
                   <Controller
@@ -110,7 +111,7 @@ const Signin = () => {
                     render={({ field }) => (
                       <OutlinedInput
                         error={!!errors['email']}
-                        labelWidth={0}
+                        // labelWidth={0}
                         fullWidth
                         type="email"
                         placeholder="Enter your email"
@@ -131,7 +132,7 @@ const Signin = () => {
                     render={({ field }) => (
                       <OutlinedInput
                         error={!!errors['password']}
-                        labelWidth={0}
+                        // labelWidth={0}
                         fullWidth
                         type="password"
                         placeholder="Enter your password"
@@ -154,7 +155,7 @@ const Signin = () => {
                     </a>
                   </Link>
                 </div>
-                <Button className={classes.button} variant="contained" color="primary" type="submit">
+                <Button variant="contained" color="primary" type="submit">
                   <Icon name="arrow-right" className="h-8" fill="#fff" />
                 </Button>
               </div>

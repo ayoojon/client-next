@@ -1,7 +1,7 @@
-import createStyles from '@material-ui/core/styles/createStyles';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import BD from '@material-ui/core/Backdrop/Backdrop';
-import CircularProgress from '@material-ui/core/CircularProgress/CircularProgress';
+import createStyles from '@mui/material/styles/createStyles';
+import makeStyles from '@mui/material/styles/makeStyles';
+import BD from '@mui/material/Backdrop/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress/CircularProgress';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
