@@ -102,7 +102,7 @@ const Review: React.FC<Props> = ({ data }) => {
           placeholder="Give your review"
           color="primary"
           style={{ backgroundColor: '#F2F2F2' }}
-          labelWidth={0}
+          // labelWidth={0}
           fullWidth={true}
           multiline={true}
           minRows={4}

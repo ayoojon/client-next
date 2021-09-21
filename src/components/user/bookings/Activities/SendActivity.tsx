@@ -74,7 +74,7 @@ const SendActivity = () => {
         placeholder="Write your text here .."
         color="primary"
         style={{ backgroundColor: '#F2F2F2' }}
-        labelWidth={0}
+        // labelWidth={0}
         fullWidth={true}
         multiline={true}
         minRows={2}

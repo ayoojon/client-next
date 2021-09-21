@@ -103,7 +103,7 @@ const BuyTicketForm = ({ _id }: Props) => {
                 render={({ field }) => (
                   <OutlinedInput
                     error={!!errors['customers']?.[0]?.name}
-                    labelWidth={0}
+                    // labelWidth={0}
                     fullWidth
                     placeholder="Enter your email"
                     {...field}
@@ -125,7 +125,7 @@ const BuyTicketForm = ({ _id }: Props) => {
                 render={({ field }) => (
                   <OutlinedInput
                     error={!!errors['customers']?.[0]?.contactNo}
-                    labelWidth={0}
+                    // labelWidth={0}
                     fullWidth
                     placeholder="Enter your email"
                     {...field}
@@ -147,7 +147,7 @@ const BuyTicketForm = ({ _id }: Props) => {
                 render={({ field }) => (
                   <OutlinedInput
                     error={!!errors['customers']?.[0]?.email}
-                    labelWidth={0}
+                    // labelWidth={0}
                     fullWidth
                     type="email"
                     placeholder="Enter your email"

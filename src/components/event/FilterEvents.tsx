@@ -55,7 +55,7 @@ const FilterEvents: React.FC<Props> = ({ isVisible, setVisible, searchQuery, set
                 type="text"
                 name="name"
                 placeholder="Enter Name"
-                labelWidth={0}
+                // labelWidth={0}
                 className="w-full my-2 sm:my-0"
                 onChange={(event) => setSearchQuery({ ...searchQuery, name: event.target.value as ISearch['name'] })}
               />

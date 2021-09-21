@@ -57,7 +57,7 @@ const ChangePasswordForm: React.FC<Props> = ({ setOpen }) => {
           render={({ field }) => (
             <OutlinedInput
               error={!!errors['oldPassword']}
-              labelWidth={0}
+              // labelWidth={0}
               fullWidth
               type="password"
               placeholder="Enter your password"
@@ -77,7 +77,7 @@ const ChangePasswordForm: React.FC<Props> = ({ setOpen }) => {
           render={({ field }) => (
             <OutlinedInput
               error={!!errors['newPassword']}
-              labelWidth={0}
+              // labelWidth={0}
               fullWidth
               type="password"
               placeholder="Enter your password"
@@ -97,7 +97,7 @@ const ChangePasswordForm: React.FC<Props> = ({ setOpen }) => {
           render={({ field }) => (
             <OutlinedInput
               error={!!errors['confirmPassword']}
-              labelWidth={0}
+              // labelWidth={0}
               fullWidth
               type="password"
               placeholder="Enter your password"

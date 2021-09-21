@@ -105,18 +105,12 @@ const BookingLocationBottomBar = ({ service }: { service: IService }) => {
 
   useEffect(() => {
     if (data) {
-      let momentDate: Array<moment.Moment> = [];
       let newDate: any = [];
-
       data.map((item) => {
-        const d = moment(item.date);
         const p = moment(item.date).format('DD-MM-YYYY');
-        momentDate.push(d);
         newDate.push(p);
-        return d;
+        return p;
       });
-
-      setBlockDate([...momentDate]);
       setPlainDate([...newDate]);
     }
   }, [data]);

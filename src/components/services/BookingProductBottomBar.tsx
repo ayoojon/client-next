@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button } from '@mui/material';
 import moment from 'moment';
@@ -8,11 +8,20 @@ import { CalenderInfoPanel, NavPrevIcon, NavNextIcon, getDaySize } from '@/compo
 import { useBreakpointFromContext } from '@/components/shared/BreakpointHook/Context';
 import { IOnProgressBooking } from '../../types/booking';
 import { customToast } from '@/components/shared/Toaster';
-
+import { ayoojonApi } from '../../config';
 import { IService } from '@/types/service';
-import { weekCapitalize } from '../../utils';
+import { tokenConfig, weekCapitalize } from '../../utils';
 import { useAppSelector } from '../shared/hooks/redux';
 import { useRouter } from 'next/router';
+import { IBlockDays } from '@/types/blockdays';
+import { useQuery } from 'react-query';
+
+const fetchBlockDays = async (serviceId: string) => {
+  const headers = await tokenConfig('WITH-AUTH');
+  const response = await ayoojonApi.get(`services/${serviceId}/blockdays`, headers);
+
+  return response.data.data;
+};
 
 const BookingProductBottomBar = ({ service }: { service: IService }) => {
   const router = useRouter();
@@ -25,6 +34,29 @@ const BookingProductBottomBar = ({ service }: { service: IService }) => {
   const [selectedDate, setSelectedDate] = useState<moment.Moment | null>(null);
   const [isFocused, setFocused] = useState<boolean | null>(false);
   // const [blockedDates] = useState([moment()]);
+
+  const [plainDate, setPlainDate] = useState<string[]>([]);
+
+  const { data } = useQuery<IBlockDays[], Error>(
+    ['service-block-days', service._id],
+    () => fetchBlockDays(service._id),
+    {
+      refetchOnWindowFocus: false,
+      enabled: !!service._id,
+    },
+  );
+
+  useEffect(() => {
+    if (data) {
+      let newDate: any = [];
+      data.map((item) => {
+        const p = moment(item.date).format('DD-MM-YYYY');
+        newDate.push(p);
+        return p;
+      });
+      setPlainDate([...newDate]);
+    }
+  }, [data]);
 
   const handleProceedToBooking = () => {
     if (selectedDate) {
@@ -95,7 +127,9 @@ const BookingProductBottomBar = ({ service }: { service: IService }) => {
                       numberOfMonths={1}
                       // isDayBlocked={(day) => blockedDates.some((blockedDay) => isSameDay(day, blockedDay))}
                       isDayBlocked={(day) =>
-                        weekCapitalize(service.weekDays).includes(day.format('ddd')) ? true : false
+                        plainDate.includes(day.format('DD-MM-YYYY'))
+                          ? true
+                          : weekCapitalize(service.weekDays).includes(day.format('ddd'))
                       }
                       navPrev={<NavPrevIcon />}
                       navNext={<NavNextIcon />}

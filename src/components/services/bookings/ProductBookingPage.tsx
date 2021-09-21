@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
-import { typeOfEvent } from '@/utils/index';
+import { tokenConfig, typeOfEvent, weekCapitalize } from '@/utils/index';
 import { Tab, Tabs } from '@mui/material';
 import 'react-dates/initialize';
 import moment from 'moment';
 import { SingleDatePicker, isSameDay } from 'react-dates';
 import { OutlinedInput, Button } from '@mui/material';
-import { s3FileUrl } from '@/config/index';
+import { ayoojonApi, s3FileUrl } from '@/config/index';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import ProductBookingDetailsPage from './ProductBookingDetailsPage';
-import { bookingForTypes, businessTypeOfEventsTypes, ICreateProductBooking, IProductBookingForm, personalTypeOfEventsTypes } from '@/types/booking';
+import {
+  bookingForTypes,
+  businessTypeOfEventsTypes,
+  ICreateProductBooking,
+  IProductBookingForm,
+  personalTypeOfEventsTypes,
+} from '@/types/booking';
 import { useEffect } from 'react';
-import Image from 'next/image'
+import Image from 'next/image';
 import Icon from '@/components/shared/icons';
 import { useLocation } from 'react-router-dom';
 import { useBreakpointFromContext } from '@/components/shared/BreakpointHook/Context';
@@ -23,10 +29,19 @@ import { IService } from '@/types/service';
 import { TabPanel } from '../product/TabPanel';
 import { imgLoader } from '@/utils/next';
 import { useRouter } from 'next/router';
+import { useQuery } from 'react-query';
+import { IBlockDays } from '@/types/blockdays';
 
 interface Props {
   service: IService;
 }
+
+const fetchBlockDays = async (serviceId: string) => {
+  const headers = await tokenConfig('WITH-AUTH');
+  const response = await ayoojonApi.get(`services/${serviceId}/blockdays`, headers);
+
+  return response.data.data;
+};
 
 const ProductBookingPage: React.FC<Props> = ({ service }) => {
   const matchPoints = useBreakpointFromContext();
@@ -44,6 +59,17 @@ const ProductBookingPage: React.FC<Props> = ({ service }) => {
   >([]);
   const query = new URLSearchParams(location.search);
   const date = query.get('date');
+
+  const [plainDate, setPlainDate] = useState<string[]>([]);
+
+  const { data } = useQuery<IBlockDays[], Error>(
+    ['service-block-days', service._id],
+    () => fetchBlockDays(service._id),
+    {
+      refetchOnWindowFocus: false,
+      enabled: !!service._id,
+    },
+  );
 
   const validationSchema = Yup.object().shape({
     guestNo: Yup.number()
@@ -77,7 +103,16 @@ const ProductBookingPage: React.FC<Props> = ({ service }) => {
     if (date) {
       setValue('date', date);
     }
-  }, [date, setValue]);
+    if (data) {
+      let newDate: any = [];
+      data.map((item) => {
+        const p = moment(item.date).format('DD-MM-YYYY');
+        newDate.push(p);
+        return p;
+      });
+      setPlainDate([...newDate]);
+    }
+  }, [date, setValue, data]);
 
   const guestNo = watch('guestNo');
 
@@ -303,7 +338,7 @@ const ProductBookingPage: React.FC<Props> = ({ service }) => {
                           render={({ field }) => (
                             <OutlinedInput
                               type="number"
-                              labelWidth={0}
+                              // labelWidth={0}
                               className="w-full"
                               placeholder="50"
                               {...field}
@@ -352,7 +387,12 @@ const ProductBookingPage: React.FC<Props> = ({ service }) => {
                           hideKeyboardShortcutsPanel={false}
                           daySize={getDaySize(matchPoints)}
                           numberOfMonths={1}
-                          isDayBlocked={(day) => blockedDates.some((blockedDay) => isSameDay(day, blockedDay))}
+                          // isDayBlocked={(day) => blockedDates.some((blockedDay) => isSameDay(day, blockedDay))}
+                          isDayBlocked={(day) =>
+                            plainDate.includes(day.format('DD-MM-YYYY'))
+                              ? true
+                              : weekCapitalize(service.weekDays).includes(day.format('ddd'))
+                          }
                           navPrev={<NavPrevIcon />}
                           navNext={<NavNextIcon />}
                           renderCalendarInfo={() => <CalenderInfoPanel />}
@@ -394,7 +434,7 @@ const ProductBookingPage: React.FC<Props> = ({ service }) => {
                       render={({ field }) => (
                         <OutlinedInput
                           error={!!errors['deliveryAddress']}
-                          labelWidth={0}
+                          // labelWidth={0}
                           fullWidth
                           type="text"
                           {...field}

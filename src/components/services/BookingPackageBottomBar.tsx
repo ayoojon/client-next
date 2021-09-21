@@ -3,7 +3,7 @@ import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/initialize';
 import { CalenderInfoPanel, NavPrevIcon, NavNextIcon, getDaySize } from '@/components/shared/ReactDates';
-import { currencyFormat, truncateString, time24To12, weekCapitalize } from '../../utils';
+import { currencyFormat, truncateString, time24To12, weekCapitalize, tokenConfig } from '../../utils';
 import { useBreakpointFromContext } from '@/components/shared/BreakpointHook/Context';
 import { IOnProgressBooking } from '../../types/booking';
 import { customToast } from '@/components/shared/Toaster';
@@ -11,7 +11,10 @@ import Router from 'next/router';
 import { IService } from '@/types/service';
 import Icon from '../shared/icons';
 import { useAppSelector } from '../shared/hooks/redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { ayoojonApi } from '../../config';
+import { IBlockDays } from '@/types/blockdays';
+import { useQuery } from 'react-query';
 
 const calculateServicePrice = (service: IService) => {
   if (service) {
@@ -77,6 +80,13 @@ const calculateServicePrice = (service: IService) => {
   }
 };
 
+const fetchBlockDays = async (serviceId: string) => {
+  const headers = await tokenConfig('WITH-AUTH');
+  const response = await ayoojonApi.get(`services/${serviceId}/blockdays`, headers);
+
+  return response.data.data;
+};
+
 const BookingPackageBottomBar = ({ service }: { service: IService }) => {
   const { isLogin } = useAppSelector((state) => {
     return { isLogin: !!state.userReducer.user };
@@ -88,6 +98,29 @@ const BookingPackageBottomBar = ({ service }: { service: IService }) => {
   const [isFocused, setFocused] = useState<boolean | null>(false);
   // const [blockedDates] = useState([moment()]);
   const [selectedPackage, setSelectedPackage] = useState<IService['pricing']['package'][0]>();
+
+  const [plainDate, setPlainDate] = useState<string[]>([]);
+
+  const { data } = useQuery<IBlockDays[], Error>(
+    ['service-block-days', service._id],
+    () => fetchBlockDays(service._id),
+    {
+      refetchOnWindowFocus: false,
+      enabled: !!service._id,
+    },
+  );
+
+  useEffect(() => {
+    if (data) {
+      let newDate: any = [];
+      data.map((item) => {
+        const p = moment(item.date).format('DD-MM-YYYY');
+        newDate.push(p);
+        return p;
+      });
+      setPlainDate([...newDate]);
+    }
+  }, [data]);
 
   const handleProceedToBooking = () => {
     if (selectedDate && selectedPackage) {
@@ -161,7 +194,9 @@ const BookingPackageBottomBar = ({ service }: { service: IService }) => {
                       numberOfMonths={1}
                       // isDayBlocked={(day) => blockedDates.some((blockedDay) => isSameDay(day, blockedDay))}
                       isDayBlocked={(day) =>
-                        weekCapitalize(service.weekDays).includes(day.format('ddd')) ? true : false
+                        plainDate.includes(day.format('DD-MM-YYYY'))
+                          ? true
+                          : weekCapitalize(service.weekDays).includes(day.format('ddd'))
                       }
                       navPrev={<NavPrevIcon />}
                       navNext={<NavNextIcon />}

@@ -242,6 +242,7 @@ export const weekCapitalize = (data: any) => {
   });
   return newobj;
 };
+
 export const serviceNames: {
   [key in serviceTypes]: string;
 } = {

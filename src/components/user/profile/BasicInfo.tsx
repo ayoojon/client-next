@@ -71,7 +71,7 @@ const BasicInfo: React.FC<Props> = ({ user }) => {
             render={({ field }) => (
               <OutlinedInput
                 error={!!errors['email']}
-                labelWidth={0}
+                // labelWidth={0}
                 fullWidth
                 type="email"
                 placeholder="Enter your email"
@@ -93,7 +93,7 @@ const BasicInfo: React.FC<Props> = ({ user }) => {
             render={({ field }) => (
               <OutlinedInput
                 error={!!errors['name']}
-                labelWidth={0}
+                // labelWidth={0}
                 fullWidth
                 type="text"
                 placeholder="Enter your name"
@@ -114,7 +114,7 @@ const BasicInfo: React.FC<Props> = ({ user }) => {
             render={({ field }) => (
               <OutlinedInput
                 error={!!errors['address']}
-                labelWidth={0}
+                // labelWidth={0}
                 fullWidth
                 type="text"
                 placeholder="Enter your address"
@@ -134,7 +134,7 @@ const BasicInfo: React.FC<Props> = ({ user }) => {
             render={({ field }) => (
               <OutlinedInput
                 error={!!errors['contactNo']}
-                labelWidth={0}
+                // labelWidth={0}
                 fullWidth
                 type="text"
                 placeholder="Enter your contact number"

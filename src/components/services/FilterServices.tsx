@@ -53,7 +53,7 @@ export const FilterServices: React.FC<Props> = ({ isVisible, setVisible, searchQ
               name="name"
               defaultValue=""
               placeholder="Enter Name"
-              labelWidth={0}
+              // labelWidth={0}
               className="w-full my-2 sm:my-0"
               onChange={(event) => setSearchQuery({ ...searchQuery, name: event.target.value as ISearch['name'] })}
             />

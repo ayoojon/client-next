@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { typeOfEvent, time24To12, dateFormatRegex } from '@/utils/index';
+import { typeOfEvent, time24To12, dateFormatRegex, tokenConfig, weekCapitalize } from '@/utils/index';
 import { SingleDatePicker, isSameDay } from 'react-dates';
 import 'react-dates/initialize';
 import moment from 'moment';
@@ -10,13 +10,22 @@ import { OutlinedInput, FormHelperText, Button } from '@mui/material';
 import { LocationBookingDetailsPage } from './LocationBookingDetailsPage';
 import { IService } from '@/types/service';
 import { bookingForTypes, businessTypeOfEventsTypes, personalTypeOfEventsTypes } from '@/types/booking';
-import { s3FileUrl } from '@/config/index';
+import { ayoojonApi, s3FileUrl } from '@/config/index';
 import { imgLoader } from '@/utils/next';
 import { useRouter } from 'next/router';
+import { useQuery } from 'react-query';
+import { IBlockDays } from '@/types/blockdays';
 
 interface Props {
   service: IService;
 }
+
+const fetchBlockDays = async (serviceId: string) => {
+  const headers = await tokenConfig('WITH-AUTH');
+  const response = await ayoojonApi.get(`services/${serviceId}/blockdays`, headers);
+
+  return response.data.data;
+};
 
 export const LocationBookingPage: React.FC<Props> = ({ service }) => {
   const matchPoints = useBreakpointFromContext();
@@ -32,14 +41,21 @@ export const LocationBookingPage: React.FC<Props> = ({ service }) => {
   const [selectedPricing, setSelectedPricing] = useState<IService['pricing']['location'][0]['sessions'][0]>();
   const [selectedDate, setSelectedDate] = useState<moment.Moment | null>(null);
   const [focused, setFocused] = useState<boolean | null>(false);
-  const [
-    isDateError,
-  ] = useState<boolean>(false);
-  const [
-    blockedDates,
-  ] = useState([moment()]);
+  const [isDateError] = useState<boolean>(false);
+  const [blockedDates] = useState([moment()]);
   const [isAdditionalRequirementsError, setAdditionalRequirementsError] = useState<string>('');
   const [additionalRequirements, setAdditionalRequirements] = useState<string>('');
+
+  const [plainDate, setPlainDate] = useState<string[]>([]);
+
+  const { data } = useQuery<IBlockDays[], Error>(
+    ['service-block-days', service._id],
+    () => fetchBlockDays(service._id),
+    {
+      refetchOnWindowFocus: false,
+      enabled: !!service._id,
+    },
+  );
 
   useEffect(() => {
     setSelectedDate(date && date.toString().match(dateFormatRegex) ? moment(date, 'DD-MM-YYYY') : null);
@@ -51,7 +67,16 @@ export const LocationBookingPage: React.FC<Props> = ({ service }) => {
         setSelectedPricing(pricingArray[0]);
       }
     }
-  }, [date, locationId, pricingId, service.pricing.location]);
+    if (data) {
+      let newDate: any = [];
+      data.map((item) => {
+        const p = moment(item.date).format('DD-MM-YYYY');
+        newDate.push(p);
+        return p;
+      });
+      setPlainDate([...newDate]);
+    }
+  }, [date, locationId, pricingId, service.pricing.location, data]);
 
   const onDateChange = (date: moment.Moment | null) => {
     setSelectedDate(date);
@@ -239,7 +264,13 @@ export const LocationBookingPage: React.FC<Props> = ({ service }) => {
                     daySize={getDaySize(matchPoints)}
                     numberOfMonths={1}
                     // TODO: Enable this with API data
-                    isDayBlocked={(day) => blockedDates.some((blockedDay) => isSameDay(day, blockedDay))}
+
+                    // isDayBlocked={(day) => blockedDates.some((blockedDay) => isSameDay(day, blockedDay))}
+                    isDayBlocked={(day) =>
+                      plainDate.includes(day.format('DD-MM-YYYY'))
+                        ? true
+                        : weekCapitalize(service.weekDays).includes(day.format('ddd'))
+                    }
                     // isDayHighlighted={(day) =>
                     //   HIGHLIGHTED_DATES.some((highlightedDay) => isSameDay(day, highlightedDay))
                     // }
@@ -307,13 +338,13 @@ export const LocationBookingPage: React.FC<Props> = ({ service }) => {
                   }}
                   fullWidth={true}
                   multiline={true}
-                  rowsMax={6}
+                  maxRows={6}
                   rows={6}
                   color="primary"
                   type="text"
                   error={!!isAdditionalRequirementsError}
                   placeholder="Requirements ..."
-                  labelWidth={0}
+                  // labelWidth={0}
                 />
                 {!!isAdditionalRequirementsError ? (
                   <FormHelperText filled={true} error={true}>
