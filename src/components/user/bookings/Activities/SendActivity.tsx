@@ -1,6 +1,6 @@
 import { ICreateBookingActivity } from '@/types/booking';
 import { FormHelperText, IconButton, InputAdornment, OutlinedInput } from '@mui/material';
-import SendIcon from '@material-ui/icons/Send';
+import SendIcon from '@mui/icons-material/Send';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useQueryClient } from 'react-query';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dialog, DialogContent, DialogProps, IconButton } from '@mui/material';
 import ChangePasswordForm from './ChangePasswordForm';
-import ClearIcon from '@material-ui/icons/Clear';
+import ClearIcon from '@mui/icons-material/Clear';
 
 export const ChangePasswordComponent = () => {
   const [open, setOpen] = React.useState(false);

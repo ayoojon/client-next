@@ -1,6 +1,6 @@
 import { Button, Dialog, DialogActions, DialogContent, IconButton } from '@mui/material';
 import React from 'react';
-import ClearIcon from '@material-ui/icons/Clear';
+import ClearIcon from '@mui/icons-material/Clear';
 interface Props {
   open: boolean;
   setOpen: any;
