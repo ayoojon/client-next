@@ -1,4 +1,6 @@
 AYOOJON_CLIENT_PROD:
   component: '@sls-next/serverless-component@3.3.0'
   inputs:
+    cloudfront:
+      distributionId: ET13AZT2YT3Q1
     domain: 'ayoojon.com'
