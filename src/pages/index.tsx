@@ -8,9 +8,9 @@ const Home: NextPage = () => {
     <div className="container mx-auto px-6">
       <div className="py-14 min-h-screen sm:grid sm:items-center">
         <div>
-          <h1 className="text-4xl md:text-5xl text-center font-medium mb-14 mt-20 sm:mt-0 md:font-normal md:mb-16">
+          <h2 className="text-4xl md:text-5xl text-center font-medium mb-14 mt-20 sm:mt-0 md:font-normal md:mb-16">
             I am looking for
-          </h1>
+          </h2>
           <div className="max-w-2xl mx-auto flex justify-evenly flex-wrap">
             <div className="flex flex-col space-y-4 w-60">
               <Image height="200px" width="200px" src="/resources/landing/event.jpg" alt="Event thumbnail" priority />
