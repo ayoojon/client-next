@@ -1,0 +1,17 @@
+{
+  "name": "w0xf02b-skyi2j",
+  "hash": "t2fJa1GAbkHBrpokT2sLasUv6yQ+sGeclw1Z6PtyL6Y=",
+  "description": "Image Lambda@Edge for Next CloudFront distribution",
+  "memory": 512,
+  "timeout": 10,
+  "code": "D:\\Arif\\Works\\Office\\Ayojon\\project\\ayoojon-client-next\\.serverless_nextjs\\image-lambda",
+  "shims": [],
+  "handler": "index.handler",
+  "runtime": "nodejs14.x",
+  "env": {},
+  "role": {
+    "arn": "arn:aws:iam::188759261881:role/w0xf02b-1es7zzb"
+  },
+  "arn": "arn:aws:lambda:us-east-1:188759261881:function:w0xf02b-skyi2j",
+  "region": "us-east-1"
+}
