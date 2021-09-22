@@ -2,8 +2,8 @@
   "name": "w0xf02b-5sbsq8i",
   "arn": "arn:aws:iam::188759261881:role/w0xf02b-5sbsq8i",
   "service": [
-    "lambda.amazonaws.com",
-    "edgelambda.amazonaws.com"
+    "edgelambda.amazonaws.com",
+    "lambda.amazonaws.com"
   ],
   "policy": {
     "Version": "2012-10-17",

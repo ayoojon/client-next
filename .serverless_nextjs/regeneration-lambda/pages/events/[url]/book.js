@@ -27,15 +27,14 @@ const s3FileUrl = 'https://ayoojon-files.s3.ap-south-1.amazonaws.com/';
 const lambdaAPI = 'https://wpfl5av581.execute-api.ap-south-1.amazonaws.com/dev/';
 const localServer = 'http://localhost:4040/api/v1/';
 const prodServer = 'https://api.ayoojon.com/api/v1/';
-const server = prodServer; // export const server = process.env.NODE_ENV === 'development' ? localServer : prodServer;
-
+const server =  false ? 0 : prodServer;
 const ayoojonApi = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
   baseURL: server // withCredentials: true,
 
 });
 const APP_TITLE = 'Ayoojon';
 const APP_DESCRIPTION = 'We organize everything.';
-const APP_IMAGE_URL = '/resources/ayoojon_transparent.png';
+const APP_IMAGE_URL = 'https://ayoojon.com/resources/ayoojon_transparent.png';
 const APP_FACEBOOK_URL = 'https://www.facebook.com/AyoojonKoro/';
 const APP_LINKEDIN_URL = 'https://www.linkedin.com/company/ayoojon';
 
@@ -825,7 +824,7 @@ async function getStaticProps({
 
 /***/ }),
 
-/***/ 15505:
+/***/ 38041:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -919,11 +918,11 @@ __webpack_require__.r(__webpack_exports__);
         rewrites: combinedRewrites,
         i18n: undefined,
         page: "/events/[url]/book",
-        buildId: "uu1VwpNjKuCVuimf5PoXD",
-        escapedBuildId: "uu1VwpNjKuCVuimf5PoXD",
+        buildId: "Clby2ETdoX7PvQ0JeJjdk",
+        escapedBuildId: "Clby2ETdoX7PvQ0JeJjdk",
         basePath: "",
         pageIsDynamic: true,
-        encodedPreviewProps: {previewModeId:"e1ec7d898bde857360b72faa8d150a89",previewModeSigningKey:"aaf1858b9c3d2313cf0f4ff405ac53ec2d204cfb90f408e475116ec2a01014b7",previewModeEncryptionKey:"33adfc742ae689f9f9053f4e58e0ebd2fbbb577c6fe4dabbfb110ca4d2a3d4bf"}
+        encodedPreviewProps: {previewModeId:"aac8a7f19af1b40bbeaf6a6e6bf49512",previewModeSigningKey:"5884837ed18832a1cbde761774fa1fbce0c87a953c5c8cd2b299dda49d1fcc9f",previewModeEncryptionKey:"1ac5728abdffca5b48447b4235d423df162e0e4fdecd34c3038185bd415711ca"}
       })
       
     
@@ -1098,7 +1097,7 @@ module.exports = require("zlib");
 /******/ 	__webpack_require__.x = () => {
 /******/ 		// Load entry module and return exports
 /******/ 		// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 		var __webpack_exports__ = __webpack_require__.O(undefined, [5177,7532,4491,9008,381,482,5850,863,4416,6994,8628,8974,4576], () => (__webpack_require__(15505)))
+/******/ 		var __webpack_exports__ = __webpack_require__.O(undefined, [6486,9008,4491,2540,381,482,7474,863,4416,6994,8628,8974,4576], () => (__webpack_require__(38041)))
 /******/ 		__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 		return __webpack_exports__;
 /******/ 	};
@@ -1221,9 +1220,7 @@ module.exports = require("zlib");
 /******/ 		// object to store loaded chunks
 /******/ 		// "1" means "loaded", otherwise not loaded yet
 /******/ 		var installedChunks = {
-/******/ 			3776: 1,
-/******/ 			6873: 1,
-/******/ 			5669: 1
+/******/ 			3776: 1
 /******/ 		};
 /******/ 		
 /******/ 		__webpack_require__.O.require = (chunkId) => (installedChunks[chunkId]);
@@ -1262,13 +1259,13 @@ module.exports = require("zlib");
 /******/ 	(() => {
 /******/ 		var next = __webpack_require__.x;
 /******/ 		__webpack_require__.x = () => {
-/******/ 			__webpack_require__.e(5177);
-/******/ 			__webpack_require__.e(7532);
-/******/ 			__webpack_require__.e(4491);
+/******/ 			__webpack_require__.e(6486);
 /******/ 			__webpack_require__.e(9008);
+/******/ 			__webpack_require__.e(4491);
+/******/ 			__webpack_require__.e(2540);
 /******/ 			__webpack_require__.e(381);
 /******/ 			__webpack_require__.e(482);
-/******/ 			__webpack_require__.e(5850);
+/******/ 			__webpack_require__.e(7474);
 /******/ 			__webpack_require__.e(863);
 /******/ 			__webpack_require__.e(4416);
 /******/ 			__webpack_require__.e(6994);

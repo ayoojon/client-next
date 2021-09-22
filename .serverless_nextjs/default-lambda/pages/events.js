@@ -773,7 +773,7 @@ const getStaticProps = async ctx => {
 
 /***/ }),
 
-/***/ 57347:
+/***/ 76972:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -867,11 +867,11 @@ __webpack_require__.r(__webpack_exports__);
         rewrites: combinedRewrites,
         i18n: undefined,
         page: "/events",
-        buildId: "uu1VwpNjKuCVuimf5PoXD",
-        escapedBuildId: "uu1VwpNjKuCVuimf5PoXD",
+        buildId: "Clby2ETdoX7PvQ0JeJjdk",
+        escapedBuildId: "Clby2ETdoX7PvQ0JeJjdk",
         basePath: "",
         pageIsDynamic: false,
-        encodedPreviewProps: {previewModeId:"e1ec7d898bde857360b72faa8d150a89",previewModeSigningKey:"aaf1858b9c3d2313cf0f4ff405ac53ec2d204cfb90f408e475116ec2a01014b7",previewModeEncryptionKey:"33adfc742ae689f9f9053f4e58e0ebd2fbbb577c6fe4dabbfb110ca4d2a3d4bf"}
+        encodedPreviewProps: {previewModeId:"aac8a7f19af1b40bbeaf6a6e6bf49512",previewModeSigningKey:"5884837ed18832a1cbde761774fa1fbce0c87a953c5c8cd2b299dda49d1fcc9f",previewModeEncryptionKey:"1ac5728abdffca5b48447b4235d423df162e0e4fdecd34c3038185bd415711ca"}
       })
       
     
@@ -1046,7 +1046,7 @@ module.exports = require("zlib");
 /******/ 	__webpack_require__.x = () => {
 /******/ 		// Load entry module and return exports
 /******/ 		// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 		var __webpack_exports__ = __webpack_require__.O(undefined, [5177,7532,4491,9008,381,4753,7659,4411,6994,8628,8974,4576,1843,9402], () => (__webpack_require__(57347)))
+/******/ 		var __webpack_exports__ = __webpack_require__.O(undefined, [6486,9008,4491,381,4753,7659,4651,7234,6994,8628,8974,4576,1843,9402], () => (__webpack_require__(76972)))
 /******/ 		__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 		return __webpack_exports__;
 /******/ 	};
@@ -1208,14 +1208,14 @@ module.exports = require("zlib");
 /******/ 	(() => {
 /******/ 		var next = __webpack_require__.x;
 /******/ 		__webpack_require__.x = () => {
-/******/ 			__webpack_require__.e(5177);
-/******/ 			__webpack_require__.e(7532);
-/******/ 			__webpack_require__.e(4491);
+/******/ 			__webpack_require__.e(6486);
 /******/ 			__webpack_require__.e(9008);
+/******/ 			__webpack_require__.e(4491);
 /******/ 			__webpack_require__.e(381);
 /******/ 			__webpack_require__.e(4753);
 /******/ 			__webpack_require__.e(7659);
-/******/ 			__webpack_require__.e(4411);
+/******/ 			__webpack_require__.e(4651);
+/******/ 			__webpack_require__.e(7234);
 /******/ 			__webpack_require__.e(6994);
 /******/ 			__webpack_require__.e(8628);
 /******/ 			__webpack_require__.e(8974);

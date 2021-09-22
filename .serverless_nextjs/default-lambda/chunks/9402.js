@@ -1,6 +1,6 @@
 "use strict";
 exports.id = 9402;
-exports.ids = [9402,6873,5669];
+exports.ids = [9402];
 exports.modules = {
 
 /***/ 46489:
@@ -85,15 +85,14 @@ const s3FileUrl = 'https://ayoojon-files.s3.ap-south-1.amazonaws.com/';
 const lambdaAPI = 'https://wpfl5av581.execute-api.ap-south-1.amazonaws.com/dev/';
 const localServer = 'http://localhost:4040/api/v1/';
 const prodServer = 'https://api.ayoojon.com/api/v1/';
-const server = prodServer; // export const server = process.env.NODE_ENV === 'development' ? localServer : prodServer;
-
+const server =  false ? 0 : prodServer;
 const ayoojonApi = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
   baseURL: server // withCredentials: true,
 
 });
 const APP_TITLE = 'Ayoojon';
 const APP_DESCRIPTION = 'We organize everything.';
-const APP_IMAGE_URL = '/resources/ayoojon_transparent.png';
+const APP_IMAGE_URL = 'https://ayoojon.com/resources/ayoojon_transparent.png';
 const APP_FACEBOOK_URL = 'https://www.facebook.com/AyoojonKoro/';
 const APP_LINKEDIN_URL = 'https://www.linkedin.com/company/ayoojon';
 
