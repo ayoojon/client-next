@@ -2,10 +2,12 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Icon from '../components/shared/icons';
+import SEO from '@/components/shared/SEO';
 
 const Home: NextPage = () => {
   return (
     <div className="container mx-auto px-6">
+      <SEO />
       <div className="py-14 min-h-screen sm:grid sm:items-center">
         <div>
           <h2 className="text-4xl md:text-5xl text-center font-medium mb-14 mt-20 sm:mt-0 md:font-normal md:mb-16">
