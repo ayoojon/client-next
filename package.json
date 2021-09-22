@@ -48,7 +48,6 @@
     "react-google-login": "^5.2.1",
     "react-helmet": "^6.1.0",
     "react-hook-form": "^7.9.0",
-    "react-icons": "^4.2.0",
     "react-image-lightbox": "^5.1.4",
     "react-query": "^3.17.2",
     "react-redux": "^7.2.5",

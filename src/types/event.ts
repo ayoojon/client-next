@@ -61,6 +61,12 @@ export interface IEvent {
   updatedAt: string;
   // tags: ITAG[];
   tags: string[];
+  seo: {
+    description: string;
+    keyword: {
+      title: string;
+    }[];
+  };
 }
 
 export interface IEventTicket {

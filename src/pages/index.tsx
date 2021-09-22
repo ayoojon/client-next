@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FiArrowRight } from 'react-icons/fi';
+import Icon from '../components/shared/icons';
 
 const Home: NextPage = () => {
   return (
@@ -19,7 +19,7 @@ const Home: NextPage = () => {
               <Link href="/events">
                 <a className="bg-primary text-white flex justify-between items-center py-2 px-8 rounded-md">
                   <span className="font-semibold">Explore</span>
-                  <FiArrowRight />
+                  <Icon name="arrow-right" className="h-8" fill="#fff" />
                 </a>
               </Link>
             </div>
@@ -30,7 +30,7 @@ const Home: NextPage = () => {
               <Link href="/services">
                 <a className="bg-primary text-white flex justify-between items-center py-2 px-8 rounded-md">
                   <span className="font-semibold">Search</span>
-                  <FiArrowRight />
+                  <Icon name="arrow-right" className="h-8" fill="#fff" />
                 </a>
               </Link>
             </div>

@@ -40,7 +40,13 @@ const ServicePage: NextPage<IData> = ({ service }: IData) => {
     <>
       <SEO
         siteTitle={service.name}
-        // description={movie.description.length > 100 ? movie.description.substr(0, 100) : movie.description}
+        description={
+          service.seo?.description
+            ? service.seo.description.length > 100
+              ? service.seo.description.substr(0, 100)
+              : service.seo.description
+            : 'Ayoojon Service'
+        }
         image={`${s3FileUrl}${service.coverImage}`}
       />
       {service ? (

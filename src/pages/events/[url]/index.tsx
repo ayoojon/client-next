@@ -42,6 +42,13 @@ const EventPage: NextPage<IData> = ({ event, tickets, isJoined }: IData) => {
       {/* TODO:  */}
       <SEO
         siteTitle={event.name}
+        description={
+          event.seo?.description
+            ? event.seo.description.length > 100
+              ? event.seo.description.substr(0, 100)
+              : event.seo.description
+            : 'Ayoojon Event'
+        }
         image={`${s3FileUrl}${event.coverImage}`}
       />
       <div className="max-w-6xl mx-auto px-6 my-8">

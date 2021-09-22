@@ -114,6 +114,12 @@ export interface IService {
       }[];
     };
   };
+  seo: {
+    description: string;
+    keyword: {
+      title: string;
+    }[];
+  };
   isEmailVerified: boolean;
   createdAt: string;
   updatedAt: string;
