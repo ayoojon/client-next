@@ -1,5 +1,12 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Production Information:
+
+AYOOJON_CLIENT_PROD:<br/>
+appUrl: https://ayoojon.com<br/>
+bucketName: w0xf02b-5tqxnyj<br/>
+distributionId: ET13AZT2YT3Q1<br/>
+
 ## Prettier
 
 In the project directory, you can run:
