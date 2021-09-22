@@ -13,7 +13,7 @@ const Home: NextPage = () => {
           </h1>
           <div className="max-w-2xl mx-auto flex justify-evenly flex-wrap">
             <div className="flex flex-col space-y-4 w-60">
-              <Image height="200px" width="200px" src="/resources/landing/event.jpg" alt="Event thumbnail" />
+              <Image height="200px" width="200px" src="/resources/landing/event.jpg" alt="Event thumbnail" priority />
               <h2 className="text-xl font-bold">Nearby Events</h2>
               <p>Spend a unforgettable holiday in the enchanting surroundings of the town of Cistercians reachable.</p>
               <Link href="/events">
@@ -24,7 +24,13 @@ const Home: NextPage = () => {
               </Link>
             </div>
             <div className="flex flex-col space-y-4 w-60">
-              <Image height="200px" width="200px" src="/resources/landing/service.jpg" alt="Service thumbnail" />
+              <Image
+                height="200px"
+                width="200px"
+                src="/resources/landing/service.jpg"
+                alt="Service thumbnail"
+                priority
+              />
               <h2 className="text-xl font-bold">Book A Service</h2>
               <p>Spend a unforgettable holiday in the enchanting surroundings of the town of Cistercians reachable.</p>
               <Link href="/services">

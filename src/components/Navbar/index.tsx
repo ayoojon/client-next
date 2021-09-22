@@ -33,7 +33,7 @@ export const Navbar = () => {
           <div>
             <Link href={`/`}>
               <a className="block">
-                <Image src="/resources/logo.png" alt="ayoojon-logo" width={118} height={32} />
+                <Image src="/resources/logo.png" alt="ayoojon-logo" width={118} height={32} priority />
               </a>
             </Link>
           </div>
