@@ -47,9 +47,9 @@ const Home: NextPage = () => {
       </div>
       <div className="py-14 min-h-screen flex flex-col-reverse md:flex-row md:items-center md:justify-between md:space-x-8">
         <div className="md:w-1/2">
-          <h1 className="max-w-xs text-3xl font-medium mb-4 md:mb-10 mt-20 md:mt-0 sm:text-4xl md:font-normal md:text-5xl">
+          <h2 className="max-w-xs text-3xl font-medium mb-4 md:mb-10 mt-20 md:mt-0 sm:text-4xl md:font-normal md:text-5xl">
             So much stuff, So little time
-          </h1>
+          </h2>
           <p className="max-w-lg text-xl">
             Spend a unforgettable holiday in the enchanting surroundings of the town of Cistercians (reachable from the
             near airports of Bari and Brindisi). Trulls Edeka offers a heaven of peace and tranquillity, set in an
@@ -59,9 +59,9 @@ const Home: NextPage = () => {
         <Image height="500px" width="600px" src="/resources/landing/so-much.png" alt="SoMuch thumbnail" />
       </div>
       <div className="py-14 min-h-screen flex flex-col justify-center">
-        <h1 className="max-w-xs md:max-w-md text-3xl font-medium mb-4 md:mb-10 mt-20 md:mt-0 sm:text-4xl md:font-normal md:text-5xl">
+        <h2 className="max-w-xs md:max-w-md text-3xl font-medium mb-4 md:mb-10 mt-20 md:mt-0 sm:text-4xl md:font-normal md:text-5xl">
           Create your service and open up your opportunity
-        </h1>
+        </h2>
         <div className="lg:grid lg:grid-cols-3 lg:gap-8">
           <div className="lg:col-span-2">
             <Image height="500px" width="800px" src="/resources/landing/services.jpg" alt="SoMuch thumbnail" />
@@ -84,9 +84,9 @@ const Home: NextPage = () => {
         </div>
       </div>
       <div className="py-14 min-h-screen flex flex-col justify-center">
-        <h1 className="max-w-xs md:max-w-md text-3xl sm:text-4xl md:text-5xl font-medium md:font-normal mb-10 mt-20 md:mt-0">
+        <h2 className="max-w-xs md:max-w-md text-3xl sm:text-4xl md:text-5xl font-medium md:font-normal mb-10 mt-20 md:mt-0">
           Everything you need to organize a better event
-        </h1>
+        </h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <div className="bg-yellow-400 px-8 lg:px-10 py-10 md:py-12 lg:col-span-1">
             <h2 className="max-w-32 text-3xl mb-4">Overview</h2>
@@ -124,9 +124,9 @@ const Home: NextPage = () => {
         </div>
       </div>
       <div className="py-14 min-h-screen flex flex-col justify-center">
-        <h1 className="max-w-sm text-3xl font-medium mb-4 md:mb-10 mt-20 md:mt-0 sm:text-4xl md:font-normal md:text-5xl">
+        <h2 className="max-w-sm text-3xl font-medium mb-4 md:mb-10 mt-20 md:mt-0 sm:text-4xl md:font-normal md:text-5xl">
           We care for your business like the way you do
-        </h1>
+        </h2>
         <div className="lg:grid lg:grid-cols-2 lg:gap-8">
           <p className="text-xl my-20">
             Spend a unforgettable holiday in the enchanting surroundings of the town of Cistercians (reachable from the
@@ -143,9 +143,9 @@ const Home: NextPage = () => {
         </div>
       </div>
       <div className="py-14 min-h-screen flex flex-col justify-center">
-        <h1 className="max-w-xs md:max-w-md text-3xl sm:text-4xl md:text-5xl font-medium md:font-normal mb-10 mt-20 md:mt-0">
+        <h2 className="max-w-xs md:max-w-md text-3xl sm:text-4xl md:text-5xl font-medium md:font-normal mb-10 mt-20 md:mt-0">
           But wait there is more
-        </h1>
+        </h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <div className="bg-yellow-400 px-8 lg:px-10 py-10 md:py-12 lg:col-span-1">
             <h2 className="max-w-64 text-3xl mb-4">Invoice</h2>
@@ -184,9 +184,9 @@ const Home: NextPage = () => {
       </div>
       <div className="py-14 min-h-screen flex flex-col-reverse md:flex-row md:items-center md:justify-between md:space-x-8">
         <div className="md:w-1/2">
-          <h1 className="text-3xl font-medium mb-4 md:mb-10 mt-20 md:mt-0 sm:text-4xl md:font-normal md:text-5xl">
+          <h2 className="text-3xl font-medium mb-4 md:mb-10 mt-20 md:mt-0 sm:text-4xl md:font-normal md:text-5xl">
             Enterprise grad security and privacy
-          </h1>
+          </h2>
           <p className="max-w-lg text-xl">
             Spend a unforgettable holiday in the enchanting surroundings of the town of Cistercians (reachable from the
             near airports of Bari and Brindisi). Trulls Edeka offers a heaven of peace and tranquillity, set in an
