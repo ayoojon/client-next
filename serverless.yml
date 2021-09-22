@@ -4,3 +4,4 @@ AYOOJON_CLIENT_PROD:
     cloudfront:
       distributionId: ET13AZT2YT3Q1
     domain: 'ayoojon.com'
+    bucketName: ayoojon-production
