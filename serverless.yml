@@ -6,6 +6,8 @@ AYOOJON_CLIENT_PROD:
     cloudfront:
       distributionId: ET13AZT2YT3Q1
       comment: 'CLIENT' # optional, describes your distribution
+      # aliases: ["foo.example.com", "bar.example.com"]
+      # paths: ["/*"] # which paths should be invalidated on deploy, default matches everything, empty array skips invalidation completely
       certificate:
         cloudFrontDefaultCertificate: false # specify false and one of IAM/ACM certificates, or specify true and omit IAM/ACM inputs for default certificate
         acmCertificateArn: 'arn:aws:acm:us-east-1:188759261881:certificate/94d497e4-bcbe-4c29-a9b1-2a6456601f5a'
