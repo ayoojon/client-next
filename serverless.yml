@@ -4,7 +4,7 @@ AYOOJON_CLIENT_PROD:
     domain: 'ayoojon.com'
     bucketName: ayoojon-client-prod # optional, S3 bucket name
     cloudfront:
-      # distributionId: E1KFW4TLTUTUW6
+      distributionId: E2SAO86QVW4SOW
       comment: 'CLIENT' # optional, describes your distribution
       # aliases: ["foo.example.com", "bar.example.com"]
       # paths: ["/*"] # which paths should be invalidated on deploy, default matches everything, empty array skips invalidation completely

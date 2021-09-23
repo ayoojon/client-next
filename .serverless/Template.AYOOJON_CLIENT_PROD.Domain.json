@@ -1,0 +1,13 @@
+{
+  "region": "us-east-1",
+  "privateZone": false,
+  "domain": "ayoojon.com",
+  "subdomains": [
+    {
+      "domain": "www.ayoojon.com",
+      "distributionId": "E2SAO86QVW4SOW",
+      "url": "https://dfmf8i0kgdt1p.cloudfront.net",
+      "type": "awsCloudFront"
+    }
+  ]
+}

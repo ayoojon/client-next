@@ -1,0 +1,96 @@
+{
+  "id": "E2SAO86QVW4SOW",
+  "arn": "arn:aws:cloudfront::188759261881:distribution/E2SAO86QVW4SOW",
+  "url": "https://dfmf8i0kgdt1p.cloudfront.net",
+  "region": "us-east-1",
+  "enabled": true,
+  "comment": "CLIENT",
+  "priceClass": "PriceClass_All",
+  "origins": [
+    {
+      "url": "http://ayoojon-client-prod.s3.us-east-1.amazonaws.com",
+      "private": true,
+      "pathPatterns": {
+        "_next/static/*": {
+          "minTTL": 0,
+          "defaultTTL": 86400,
+          "maxTTL": 31536000,
+          "forward": {
+            "headers": "none",
+            "cookies": "none",
+            "queryString": false
+          }
+        },
+        "static/*": {
+          "minTTL": 0,
+          "defaultTTL": 86400,
+          "maxTTL": 31536000,
+          "forward": {
+            "headers": "none",
+            "cookies": "none",
+            "queryString": false
+          }
+        },
+        "_next/image*": {
+          "minTTL": 0,
+          "defaultTTL": 60,
+          "maxTTL": 31536000,
+          "allowedHttpMethods": [
+            "HEAD",
+            "DELETE",
+            "POST",
+            "GET",
+            "OPTIONS",
+            "PUT",
+            "PATCH"
+          ],
+          "forward": {
+            "headers": [
+              "Accept"
+            ]
+          },
+          "lambda@edge": {
+            "origin-request": "arn:aws:lambda:us-east-1:188759261881:function:7omjlh4-amyzi9kl:1"
+          }
+        },
+        "_next/data/*": {
+          "minTTL": 0,
+          "defaultTTL": 0,
+          "maxTTL": 31536000,
+          "allowedHttpMethods": [
+            "HEAD",
+            "GET"
+          ],
+          "lambda@edge": {
+            "origin-response": "arn:aws:lambda:us-east-1:188759261881:function:7omjlh4-e9ntsis:1",
+            "origin-request": "arn:aws:lambda:us-east-1:188759261881:function:7omjlh4-e9ntsis:1"
+          }
+        }
+      }
+    }
+  ],
+  "errorPages": [],
+  "defaults": {
+    "minTTL": 0,
+    "defaultTTL": 0,
+    "maxTTL": 31536000,
+    "forward": {
+      "cookies": "all",
+      "queryString": true
+    },
+    "allowedHttpMethods": [
+      "HEAD",
+      "DELETE",
+      "POST",
+      "GET",
+      "OPTIONS",
+      "PUT",
+      "PATCH"
+    ],
+    "lambda@edge": {
+      "origin-request": "arn:aws:lambda:us-east-1:188759261881:function:7omjlh4-e9ntsis:1",
+      "origin-response": "arn:aws:lambda:us-east-1:188759261881:function:7omjlh4-e9ntsis:1"
+    },
+    "compress": true
+  }
+}

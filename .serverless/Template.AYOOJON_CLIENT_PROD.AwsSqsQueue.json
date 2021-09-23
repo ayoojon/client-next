@@ -1,0 +1,6 @@
+{
+  "name": "ayoojon-client-prod.fifo",
+  "arn": "arn:aws:sqs:us-east-1:188759261881:ayoojon-client-prod.fifo",
+  "url": "https://sqs.us-east-1.amazonaws.com/188759261881/ayoojon-client-prod.fifo",
+  "region": "us-east-1"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "ayoojon-client-prod",
+  "hash": "7e1UEcVcbp0Du2yyeEINwG3E2igcLDowerVPFEPGixc=",
+  "description": "Next.js Regeneration Lambda",
+  "memory": 512,
+  "timeout": 10,
+  "code": "D:\\Arif\\Works\\Office\\Ayojon\\project\\ayoojon-client-next\\.serverless_nextjs\\regeneration-lambda",
+  "shims": [],
+  "handler": "index.handler",
+  "runtime": "nodejs14.x",
+  "env": {},
+  "role": {
+    "arn": "arn:aws:iam::188759261881:role/7omjlh4-1mf0d57"
+  },
+  "arn": "arn:aws:lambda:us-east-1:188759261881:function:ayoojon-client-prod",
+  "region": "us-east-1"
+}

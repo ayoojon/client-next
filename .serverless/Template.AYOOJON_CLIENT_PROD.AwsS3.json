@@ -1,0 +1,6 @@
+{
+  "name": "ayoojon-client-prod",
+  "region": "us-east-1",
+  "accelerated": true,
+  "url": "https://ayoojon-client-prod.s3.amazonaws.com"
+}
