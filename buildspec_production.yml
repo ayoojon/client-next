@@ -36,8 +36,10 @@ phases:
       - yarn
   build:
     commands:
-      - echo NEXT.JS Build started on `date`
-      - npx serverless
+      # - echo NEXT.JS Build started on `date`
+      # - npx serverless
+      - echo Remove serverless on `date`
+      - npx serverless remove
   # post_build:
   #   commands:
   #     - echo Build completed on `date`
