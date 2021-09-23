@@ -1,7 +1,14 @@
 AYOOJON_CLIENT_PROD:
   component: '@sls-next/serverless-component@3.3.0'
   inputs:
+    domain: 'ayoojon.com'
+    bucketName: ayoojon-production # optional, S3 bucket name
     cloudfront:
       distributionId: ET13AZT2YT3Q1
-    domain: 'ayoojon.com'
-    bucketName: ayoojon-production
+      comment: 'CLIENT' # optional, describes your distribution
+      certificate:
+        cloudFrontDefaultCertificate: false # specify false and one of IAM/ACM certificates, or specify true and omit IAM/ACM inputs for default certificate
+        acmCertificateArn: 'arn:aws:acm:us-east-1:188759261881:certificate/94d497e4-bcbe-4c29-a9b1-2a6456601f5a'
+        # iamCertificateId: "iam-certificate-id" # specify either ACM or IAM certificate, not both
+        # sslSupportMethod: 'sni-only' # can be omitted, defaults to "sni-only"
+        # minimumProtocolVersion: 'TLSv1.2_2019' # can be omitted, defaults to "TLSv1.2_2019"
