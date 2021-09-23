@@ -18,7 +18,7 @@
       },
       {
         "Effect": "Allow",
-        "Resource": "arn:aws:s3:::w0xf02b-5tqxnyj/*",
+        "Resource": "arn:aws:s3:::ayoojon-production/*",
         "Action": [
           "s3:GetObject",
           "s3:PutObject"
@@ -26,14 +26,14 @@
       },
       {
         "Effect": "Allow",
-        "Resource": "arn:aws:sqs:us-east-1:188759261881:w0xf02b-5tqxnyj.fifo",
+        "Resource": "arn:aws:sqs:us-east-1:188759261881:ayoojon-production.fifo",
         "Action": [
           "sqs:SendMessage"
         ]
       },
       {
         "Effect": "Allow",
-        "Resource": "arn:aws:sqs:us-east-1:188759261881:w0xf02b-5tqxnyj.fifo",
+        "Resource": "arn:aws:sqs:us-east-1:188759261881:ayoojon-production.fifo",
         "Action": [
           "sqs:ReceiveMessage",
           "sqs:DeleteMessage",

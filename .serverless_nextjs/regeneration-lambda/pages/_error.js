@@ -34,7 +34,7 @@ const APP_LINKEDIN_URL = 'https://www.linkedin.com/company/ayoojon';
 
 /***/ }),
 
-/***/ 13304:
+/***/ 84914:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -128,11 +128,11 @@ __webpack_require__.r(__webpack_exports__);
         rewrites: combinedRewrites,
         i18n: undefined,
         page: "/_error",
-        buildId: "Clby2ETdoX7PvQ0JeJjdk",
-        escapedBuildId: "Clby2ETdoX7PvQ0JeJjdk",
+        buildId: "Bz7W1nWaoGVAmGhlhGyzQ",
+        escapedBuildId: "Bz7W1nWaoGVAmGhlhGyzQ",
         basePath: "",
         pageIsDynamic: false,
-        encodedPreviewProps: {previewModeId:"aac8a7f19af1b40bbeaf6a6e6bf49512",previewModeSigningKey:"5884837ed18832a1cbde761774fa1fbce0c87a953c5c8cd2b299dda49d1fcc9f",previewModeEncryptionKey:"1ac5728abdffca5b48447b4235d423df162e0e4fdecd34c3038185bd415711ca"}
+        encodedPreviewProps: {previewModeId:"20b30e69cfdb168ef34c9166dbf83371",previewModeSigningKey:"a93572b68a3438b7a65231d6f685ca832f6c766deccce41e3fc4c53810149e0d",previewModeEncryptionKey:"c8f19153929b11a3c7a630fb9e1080112b0f2c914a3843ebeea819836f1693cb"}
       })
       
     
@@ -307,7 +307,7 @@ module.exports = require("zlib");
 /******/ 	__webpack_require__.x = () => {
 /******/ 		// Load entry module and return exports
 /******/ 		// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 		var __webpack_exports__ = __webpack_require__.O(undefined, [6486,4651,639,7532,6994,8628,8974], () => (__webpack_require__(13304)))
+/******/ 		var __webpack_exports__ = __webpack_require__.O(undefined, [6486,4651,639,7532,6994,8628,8974], () => (__webpack_require__(84914)))
 /******/ 		__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 		return __webpack_exports__;
 /******/ 	};
