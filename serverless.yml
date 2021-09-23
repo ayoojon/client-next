@@ -2,9 +2,9 @@ AYOOJON_CLIENT_PROD:
   component: '@sls-next/serverless-component@3.3.0'
   inputs:
     domain: 'ayoojon.com'
-    bucketName: ayoojon-production # optional, S3 bucket name
+    bucketName: ayoojon-client-prod # optional, S3 bucket name
     cloudfront:
-      distributionId: ET13AZT2YT3Q1
+      # distributionId: ET13AZT2YT3Q1
       comment: 'CLIENT' # optional, describes your distribution
       # aliases: ["foo.example.com", "bar.example.com"]
       # paths: ["/*"] # which paths should be invalidated on deploy, default matches everything, empty array skips invalidation completely
