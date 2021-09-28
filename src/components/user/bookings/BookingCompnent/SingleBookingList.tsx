@@ -39,6 +39,7 @@ export const SingleBookingList: React.FC<Props> = ({ booking }) => {
       return <h6 className="font-bold text-lg mb-4">Your booking is completed</h6>;
     }
   };
+
   return (
     <div className="px-6 py-4 my-2 border-2 rounded-md hover:bg-gray-200 hover:shadow-lg transition duration-300 ease-in-out">
       <div className=" flex justify-between">
@@ -106,7 +107,9 @@ export const SingleBookingList: React.FC<Props> = ({ booking }) => {
                   : booking.status === 'paid'
                   ? 'text-primary'
                   : booking.status === 'completed'
-                  ? 'text-green-500'
+                  ? 'text-green-700'
+                  : booking.status === 'reserved'
+                  ? 'text-green-400'
                   : booking.status === 'rejected'
                   ? 'text-red-500'
                   : booking.status === 'canceled'
@@ -123,9 +126,19 @@ export const SingleBookingList: React.FC<Props> = ({ booking }) => {
               {/* <NavLink exact to={`/user/bookings/${booking._id}`}>
                 <span className="font-sans font-semibold">Review</span>
               </NavLink> */}
-              <Link href={`/user/bookings/${booking._id}`}>
-                <a className="font-sans font-semibold">Review</a>
-              </Link>
+              {booking.review ? (
+                <div>
+                  <Link href={`/user/bookings/${booking._id}`}>
+                    <a className="font-sans font-semibold">Completed</a>
+                  </Link>
+                </div>
+              ) : (
+                <div>
+                  <Link href={`/user/bookings/${booking._id}`}>
+                    <a className="font-sans font-semibold">Review</a>
+                  </Link>
+                </div>
+              )}
             </button>
           )}
 
