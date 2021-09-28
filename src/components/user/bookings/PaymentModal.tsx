@@ -22,12 +22,20 @@ const PaymentModal: React.FC<Props> = ({ open, setOpen, data }) => {
             <div className="">
               <div className="my-3">
                 <h6 className="font-bold text-lg mt-3">BKash</h6>
-                {data.bKash && <p>{data.bKash.number}</p>}
+
+                {data.bKashAccounts.map((item, index) => {
+                  return (
+                    <div className="" key={index}>
+                      <p>number: {item.number}</p>
+                      <p>type: {item.type}</p>
+                    </div>
+                  );
+                })}
               </div>
 
               <div className="my-3">
                 <h6 className="font-bold text-lg mt-3">Bank</h6>
-                {data.bank && (
+                {/* {data.bank && (
                   <div className="">
                     <h6 className="font-medium">Name</h6>
                     <p>{data.bank.name}</p>
@@ -38,7 +46,18 @@ const PaymentModal: React.FC<Props> = ({ open, setOpen, data }) => {
                     <h6 className="font-medium"> Expire Date</h6>
                     <p>{data.bank.expireDate}</p>
                   </div>
-                )}
+                )} */}
+                {data.bankAccounts.map((item, index) => {
+                  return (
+                    <div className="" key={index}>
+                      <p>Name: {item.name}</p>
+                      <p>Account Name: {item.accountName}</p>
+                      <p>Account Number: {item.accountNumber}</p>
+                      <p>Branch Name: {item.branchName}</p>
+                      <p>Branch District: {item.branchDistrict}</p>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
