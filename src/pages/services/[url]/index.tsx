@@ -57,7 +57,73 @@ const ServicePage: NextPage<IData> = ({ service }: IData) => {
           <div className="my-4">
             <div className="max-w-6xl mx-auto px-6 my-8">
               {/* start */}
-
+              <div className="grid grid-cols-1 sm:grid-cols-2 sm:px-8 sm:py-12 sm:gap-x-8 md:py-16">
+                <div className="relative z-10 col-start-1 row-start-1 px-4 pt-10 bg-gradient-to-t from-black sm:bg-none">
+                  <h2 className="text-xl font-semibold text-white sm:text-2xl sm:leading-7 sm:text-black md:text-3xl lg:text-4xl">
+                    {service.name}
+                  </h2>
+                  <p className="text-sm font-medium text-white sm:mb-1 sm:text-gray-500">vanue</p>
+                  <div className="flex items-center text-sm font-medium sm:mb-4">
+                    <Icon name="star" className="h-4 sm:h-4 fill-current text-primary" />
+                    <div className="ml-1">
+                      <span className="">{service.avgRating.toFixed(1)}</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-start-1 row-start-2 px-4 sm:pb-16">
+                  {/* <div className="flex items-center text-sm font-medium sm:mb-4">
+                    <div className="text-base font-normal mx-2">·</div>
+                    <div>Collingwood, Ontario</div>
+                  </div> */}
+                  <div className="flex flex-auto divide-x divide-gray-900 items-center text-sm font-medium sm:mb-4 ">
+                    <div className="flex flex-col p-4 items-center">
+                      <div className="text-lg font-medium">55000 sqft</div>
+                      <div className="text-sm font-medium text-gray-500">space area</div>
+                    </div>
+                    <div className="flex flex-col p-4 items-center">
+                      <div className="text-lg font-medium">55000 sqft</div>
+                      <div className="text-sm font-medium text-gray-500">parking size</div>
+                    </div>
+                    <div className="flex flex-col p-4 items-center">
+                      <div className="text-lg font-medium">55000 sqft</div>
+                      <p className="text-sm font-medium text-gray-500">space area</p>
+                    </div>
+                  </div>
+                  <hr className="w-16 border-gray-300 hidden sm:block" />
+                </div>
+                <div className="col-start-1 row-start-3 space-y-3 px-4">
+                  <p className="flex items-center text-black text-sm font-medium">
+                    <img
+                      src="https://images.unsplash.com/photo-1597480493259-c99b18effd75?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
+                      alt=""
+                      className="w-6 h-6 rounded-full mr-2 bg-gray-100"
+                    />
+                    Hosted by {service.ownerName}
+                  </p>
+                  {/* <button
+                    type="button"
+                    className="bg-violet-100 text-violet-700 text-base font-semibold px-6 py-2 rounded-lg"
+                  >
+                    Check availability
+                  </button> */}
+                </div>
+                <div className="flex sm:col-start-2 sm:row-span-3">
+                  <div className="w-full grid">
+                    <div className="relative row-span-2 md:col-span-2">
+                      <Image
+                        loader={imgLoader(s3FileUrl)}
+                        src={`${service.coverImage}`}
+                        alt={`${service.name}`}
+                        layout="responsive"
+                        className="absolute inset-0 w-full h-full object-cover bg-gray-100 sm:rounded-lg"
+                        width={800}
+                        height={800}
+                        priority
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
               {/* end */}
               <div className="aspect-w-9 aspect-h-3">
                 <div className="overflow-hidden border rounded-md shadow-md">
