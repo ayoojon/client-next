@@ -95,14 +95,35 @@ const UserAvatarUpload = () => {
             alt="profile"
           /> */}
 
-          <Image
+          {/* <Image
             loader={imgLoader(s3FileUrl)}
             className="inline-block w-full h-full object-cover"
             src={imagePreviewUrl ? imagePreviewUrl : user && user.avatar ? user.avatar : userImg}
             alt="location"
             width="320"
             height="320"
-          />
+          /> */}
+
+          {imagePreviewUrl ? (
+            <Image
+              className="inline-block w-full h-full object-cover"
+              src={imagePreviewUrl}
+              alt="location"
+              width="320"
+              height="320"
+            />
+          ) : user && user.avatar ? (
+            <Image
+              loader={imgLoader(s3FileUrl)}
+              className="h-full w-full object-cover"
+              src={user.avatar}
+              alt="user-img"
+              width="100%"
+              height="100%"
+            />
+          ) : (
+            <Image className="h-full w-full object-cover" src={userImg} alt="user-img" width="100%" height="100%" />
+          )}
 
           <div
             id="avatar-upload"
