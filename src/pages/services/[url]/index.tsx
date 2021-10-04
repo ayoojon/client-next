@@ -30,7 +30,6 @@ interface IData {
 const ServicePage: NextPage<IData> = ({ service, relatedServices }: IData) => {
   const router = useRouter();
 
-  console.log(relatedServices, 'related');
   const createMarkup = (data: any) => {
     return {
       __html: data,
@@ -202,8 +201,7 @@ export async function getStaticPaths() {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const { data } = await Axios.get(`${server}services/url/${params.url}`);
-    const { data: relatedData } = await Axios.get(`${server}services/related/${data.service.type}`);
-    console.log(relatedData, 'type');
+    const { data: relatedData } = await Axios.get(`${server}services/related/${data.service.type}?serviceId=${data.service._id}`);
 
     if (!data) {
       return {
