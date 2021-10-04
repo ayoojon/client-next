@@ -120,6 +120,7 @@ export interface IService {
       title: string;
     }[];
   };
+  affiliated: IService[];
   isEmailVerified: boolean;
   createdAt: string;
   updatedAt: string;

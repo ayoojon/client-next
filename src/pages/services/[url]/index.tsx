@@ -20,14 +20,17 @@ import { useRouter } from 'next/router';
 import SEO from '@/components/shared/SEO';
 import Image from 'next/image';
 import { imgLoader } from '@/utils/next';
+import RelatedServices from '@/components/services/RelatedServices';
 
 interface IData {
   service: IService;
+  relatedServices: IService[];
 }
 
-const ServicePage: NextPage<IData> = ({ service }: IData) => {
+const ServicePage: NextPage<IData> = ({ service, relatedServices }: IData) => {
   const router = useRouter();
 
+  console.log(relatedServices, 'related');
   const createMarkup = (data: any) => {
     return {
       __html: data,
@@ -146,6 +149,18 @@ const ServicePage: NextPage<IData> = ({ service }: IData) => {
                 <h6 className="font-medium text-xl mb-3">Reviews</h6>
                 <ServiceReview serviceId={service._id} />
               </div>
+
+              {service.affiliated.length > 0 && (
+                <div className="py-6 border-b border-gray-300 last:border-0">
+                  <h6 className="font-medium text-xl mb-3">Affiliated Services</h6>
+                  <RelatedServices services={service.affiliated} />
+                </div>
+              )}
+
+              <div className="py-6 border-b border-gray-300 last:border-0">
+                <h6 className="font-medium text-xl mb-3">Related Services</h6>
+                <RelatedServices services={relatedServices} />
+              </div>
             </div>
           </div>
 
@@ -187,6 +202,9 @@ export async function getStaticPaths() {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const { data } = await Axios.get(`${server}services/url/${params.url}`);
+    const { data: relatedData } = await Axios.get(`${server}services/related/${data.service.type}`);
+    console.log(relatedData, 'type');
+
     if (!data) {
       return {
         notFound: true,
@@ -194,7 +212,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
 
     return {
-      props: { service: data.service },
+      props: { service: data.service, relatedServices: relatedData.services },
       revalidate: 60,
     };
   } catch (error) {
