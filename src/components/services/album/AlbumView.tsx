@@ -49,14 +49,8 @@ export const AlbumView: React.FC<Props> = ({ data }) => {
         <Link href={`/services/${url}/albums/${photo._id}`} key={index}>
           <a
             className="mb-2 w-56 cursor-pointer  rounded-b-md border-2 rounded-lg mx-2 mb-4 relative"
-            // onClick={() => {
-            //   // dataHandeler(photo);
-            //   // Router.push(`/services/${params.serviceURL}/albums/${photo._id}`);
-            //   Router.push(`/services/${url}/albums/${photo._id}`);
-            // }}
           >
             <div className="h-40 w-full overflow-hidden rounded-md">
-              {/* <img className="inline-block w-full h-full object-cover" src={s3FileUrl + photo.photos[0]} alt="location" /> */}
               <Image
                 loader={imgLoader(s3FileUrl)}
                 className="inline-block w-full h-full object-cover"
@@ -77,8 +71,6 @@ export const AlbumView: React.FC<Props> = ({ data }) => {
           </a>
         </Link>
       ))}
-
-      {/* <SingleAlbumView isOpen={isAlbumModalOpen} onClose={toggleDataModal} data={albumModalData} /> */}
     </div>
   );
 };
