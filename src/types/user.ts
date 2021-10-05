@@ -89,3 +89,16 @@ export interface IUpdateUserAvatar {
 export interface IUserForgotPassword {
   email: IUser['email'];
 }
+
+export interface IUpdateUserIsVerified {
+  isVerified: IUser['isVerified'];
+}
+
+export interface IUpdateEmail {
+  email: IUser['email'];
+}
+
+export interface IUserResetPassword {
+  newPassword: string;
+  confirmPassword: string;
+}

@@ -14,6 +14,9 @@ export const Navbar = () => {
   const { isLogin } = useAppSelector((state) => {
     return { isLogin: !!state.userReducer.user };
   });
+  let { user } = useAppSelector((state) => {
+    return { user: state.userReducer.user };
+  });
 
   return (
     <>
@@ -47,6 +50,20 @@ export const Navbar = () => {
             </IconButton>
           </div>
         </div>
+        {user &&
+          (user.isVerified ? (
+            <div></div>
+          ) : (
+            <div className="flex bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+              <span className="block sm:inline text-base">Please Verify Your Account</span>
+              <Link href="/user/settings">
+                <a className="text-center align-middle ml-2 bg-red-500 hover:bg-red-800 text-white  px-2 pb-1 rounded">
+                  {' '}
+                  go to setting
+                </a>
+              </Link>
+            </div>
+          ))}
         <nav className={`${isOpen ? 'block' : 'hidden'} sm:block`}>
           <div className="sm:flex sm:items-center">
             {isLogin ? (
@@ -55,6 +72,14 @@ export const Navbar = () => {
               </>
             ) : (
               <>
+                <Link href="/contactus">
+                  <a
+                    className="transition duration-300 ease-in block font-medium hover:bg-gray-300 rounded px-2 py-1 sm:hover:bg-transparent sm:hover:text-teal-900 mt-1 mb-4 sm:ml-3 sm:mt-0 sm:mb-0"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Contact Us
+                  </a>
+                </Link>
                 <Link href="/signin">
                   <a
                     className="transition duration-300 ease-in block font-medium hover:bg-gray-300 rounded px-2 py-1 sm:hover:bg-transparent sm:hover:text-teal-900 mt-1 mb-4 sm:ml-3 sm:mt-0 sm:mb-0"
@@ -68,6 +93,18 @@ export const Navbar = () => {
           </div>
         </nav>
       </header>
+      {/* <div
+        className="fixed w-full mt-20 flex justify-center  bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded"
+        role="alert"
+      >
+        <span className="block sm:inline text-base">Please Verify Your Account</span>
+        <Link href="/user/settings">
+          <a className="text-center align-middle ml-2 bg-red-500 hover:bg-red-800 text-white  px-2 pb-1 rounded">
+            {' '}
+            go to setting
+          </a>
+        </Link>
+      </div> */}
     </>
   );
 };
