@@ -42,6 +42,9 @@ const ForgotPasswordForm = () => {
     formState: { errors },
   } = useForm<IUserForgotPassword>({
     resolver: yupResolver(forgotPasswordSchema),
+    defaultValues: {
+      email: '',
+    },
   });
 
   const onSubmit = async (data: IUserForgotPassword) => {
@@ -109,7 +112,6 @@ const ForgotPasswordForm = () => {
                       type="email"
                       placeholder="Enter your email"
                       {...field}
-                      readOnly={true}
                     />
                   )}
                 />

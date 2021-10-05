@@ -9,17 +9,17 @@ const Home: NextPage = () => {
     <div className="container mx-auto px-6">
       <SEO />
       <div className="py-14 min-h-screen sm:grid sm:items-center">
-        <div>
+        <div className="space-y-2">
           <h2 className="text-4xl md:text-5xl text-center font-medium mb-14 mt-20 sm:mt-0 md:font-normal md:mb-16">
             I am looking for
           </h2>
           <div className="max-w-2xl mx-auto flex justify-evenly flex-wrap">
-            <div className="flex flex-col space-y-4 w-60">
+            <div className="flex flex-col space-y-4 w-60 mb-6">
               <Image height="200px" width="200px" src="/resources/landing/event.jpg" alt="Event thumbnail" priority />
               <h2 className="text-xl font-bold">Nearby Events</h2>
               <p>Spend a unforgettable holiday in the enchanting surroundings of the town of Cistercians reachable.</p>
               <Link href="/events">
-                <a className="bg-primary text-white flex justify-between items-center py-2 px-8 rounded-md">
+                <a className="bg-primary text-white flex justify-between items-center py-2 px-8 rounded-md sm:mb-2">
                   <span className="font-semibold">Explore</span>
                   <Icon name="arrow-right" className="h-8" fill="#fff" />
                 </a>
