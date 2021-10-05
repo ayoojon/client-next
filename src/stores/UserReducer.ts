@@ -1,4 +1,12 @@
-import { ICurrentPosition, IUpdateUser, IUpdateUserAvatar, IUser, IUserSignup } from '@/types/user';
+import {
+  ICurrentPosition,
+  IUpdateEmail,
+  IUpdateUser,
+  IUpdateUserAvatar,
+  IUpdateUserIsVerified,
+  IUser,
+  IUserSignup,
+} from '@/types/user';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // Define a type for the slice state
@@ -41,10 +49,21 @@ export const userReducer = createSlice({
       window.localStorage.setItem('ayoojon-user', JSON.stringify(user));
       state.user = { ...state.user, ...action.payload };
     },
+    updateEmail: (state, action: PayloadAction<IUpdateEmail>) => {
+      const user = { ...state.user, ...action.payload };
+      window.localStorage.setItem('ayoojon-user', JSON.stringify(user));
+      state.user = { ...state.user, ...action.payload };
+    },
+    updateIsVerified: (state, action: PayloadAction<IUpdateUserIsVerified>) => {
+      const user = { ...state.user, ...action.payload };
+      window.localStorage.setItem('ayoojon-user', JSON.stringify(user));
+      state.user = { ...state.user, ...action.payload };
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { loginUser, signupUser, logoutUser, updateUser, updateAvatar } = userReducer.actions;
+export const { loginUser, signupUser, logoutUser, updateUser, updateAvatar, updateIsVerified, updateEmail } =
+  userReducer.actions;
 
 export default userReducer.reducer;
