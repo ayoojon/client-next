@@ -54,10 +54,10 @@ export const userReducer = createSlice({
       window.localStorage.setItem('ayoojon-user', JSON.stringify(user));
       state.user = { ...state.user, ...action.payload };
     },
-    updateIsVerified: (state, action: PayloadAction<IUpdateUserIsVerified>) => {
-      const user = { ...state.user, ...action.payload };
+    updateIsVerified: (state) => {
+      const user = { ...state.user, isVerified: true };
       window.localStorage.setItem('ayoojon-user', JSON.stringify(user));
-      state.user = { ...state.user, ...action.payload };
+      state.user = { ...user };
     },
   },
 });

@@ -33,7 +33,7 @@ const ConfirmationMail = () => {
       // The query will not execute until the token exists
       enabled: !!token,
       onSuccess: () => {
-        // dispatch(updateIsVerified(data));
+        dispatch(updateIsVerified());
       },
     },
   );

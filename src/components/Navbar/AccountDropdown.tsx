@@ -100,6 +100,17 @@ export const AccountDropdown: React.FC<props> = ({ className, setIsNavbarOpen })
                 My tickets
               </a>
             </Link>
+            <Link href="/user/saves">
+              <a
+                className="transition duration-300 ease-in-out block px-4 py-2 text-gray-800 hover:bg-gray-300"
+                onClick={() => {
+                  setIsOpen(false);
+                  setIsNavbarOpen(false);
+                }}
+              >
+                My saves
+              </a>
+            </Link>
             <Link href="/user/settings">
               <a
                 className="transition duration-300 ease-in-out block px-4 py-2 text-gray-800 hover:bg-gray-300"
@@ -169,6 +180,14 @@ export const AccountDropdown: React.FC<props> = ({ className, setIsNavbarOpen })
               onClick={() => setIsNavbarOpen(false)}
             >
               My tickets
+            </a>
+          </Link>
+          <Link href="/user/saves">
+            <a
+              className="transition duration-300 ease-in-out block px-2 py-1 rounded hover:bg-gray-300"
+              onClick={() => setIsNavbarOpen(false)}
+            >
+              My saves
             </a>
           </Link>
           <Link href="/user/settings">

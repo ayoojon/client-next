@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Icon from '@/components/shared/icons/index';
 import { AccountDropdown } from './AccountDropdown';
-import { IconButton } from '@mui/material';
+import { Alert, IconButton } from '@mui/material';
 import { useAppSelector } from '../shared/hooks/redux';
 // import { useSelector } from 'react-redux';
 // import { IReducer } from '../../stores/IndexReducer';
@@ -50,7 +50,7 @@ export const Navbar = () => {
             </IconButton>
           </div>
         </div>
-        {user &&
+        {/* {user &&
           (user.isVerified ? (
             <div></div>
           ) : (
@@ -63,7 +63,7 @@ export const Navbar = () => {
                 </a>
               </Link>
             </div>
-          ))}
+          ))} */}
         <nav className={`${isOpen ? 'block' : 'hidden'} sm:block`}>
           <div className="sm:flex sm:items-center">
             {isLogin ? (
@@ -105,6 +105,29 @@ export const Navbar = () => {
           </a>
         </Link>
       </div> */}
+
+      {user &&
+        (user.isVerified ? (
+          <div></div>
+        ) : (
+          <div className="fixed z-20 inset-x-0 top-0 mx-2 sm:mx-6 mt-16">
+            <Alert
+              action={
+                <Link href="/user/settings">
+                  <a className=" text-center  justify-center  align-middle bg-red-600 text-white  px-4 rounded">
+                    {' '}
+                    Verify{' '}
+                  </a>
+                </Link>
+              }
+              elevation={6}
+              variant="filled"
+              severity="error"
+            >
+              Please Verify Your Account !!
+            </Alert>
+          </div>
+        ))}
     </>
   );
 };
