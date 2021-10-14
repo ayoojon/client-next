@@ -58,7 +58,7 @@ export const FilterServices: React.FC<Props> = ({ isVisible, setVisible, searchQ
               onChange={(event) => setSearchQuery({ ...searchQuery, name: event.target.value as ISearch['name'] })}
             />
           </div>
-          <div className="my-3">
+          {/* <div className="my-3">
             <FormControl color="primary" variant="outlined" className="w-1/2 sm:w-full">
               <InputLabel id="pageSize-select-outlined-label">Type</InputLabel>
               <Select
@@ -82,7 +82,7 @@ export const FilterServices: React.FC<Props> = ({ isVisible, setVisible, searchQ
                 ))}
               </Select>
             </FormControl>
-          </div>
+          </div> */}
         </div>
       </DialogContent>
       <DialogActions>

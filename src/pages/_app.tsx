@@ -13,6 +13,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'react-dates/lib/css/_datepicker.css';
 import './../styles/globals.css';
 import './../styles/tailwind.css';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient();
