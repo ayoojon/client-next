@@ -25,7 +25,7 @@ export const ServiceCard: React.FC<Props> = ({ className = '', service }) => {
       </div>
       <div className="py-2">
         <div className="flex justify-between font-medium text-lg">
-          <h4>{service.name}</h4>
+          <h4 className="text-black">{service.name}</h4>
           <div className="flex items-center">
             <Icon name="star" className="h-6 fill-current text-primary" />
             <span className="ml-1">{service.avgRating.toFixed(1)}</span>

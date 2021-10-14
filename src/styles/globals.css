@@ -17,6 +17,9 @@
   left: 0;
 }
 
+a {
+  text-decoration: none !important;
+}
 /* Booking Modal */
 
 .booking_modal-width {
