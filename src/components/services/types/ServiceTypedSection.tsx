@@ -33,6 +33,7 @@ const fetchAllServices = async (searchQuery): Promise<IData> => {
     services: response.data.data,
     pagination: response.data.pagination,
   };
+   
 };
 
 function SamplePrevArrow(props) {
@@ -100,7 +101,7 @@ const settings = {
 export default function ServiceTypedSection({ type, title }: Props) {
   const [searchQuery, setSearchQuery] = useState({
     pageNumber: 1,
-    pageSize: 5,
+    pageSize: 10,
     serviceType: type,
   });
   const debouncedQuery = useDebounce(searchQuery);
@@ -121,10 +122,10 @@ export default function ServiceTypedSection({ type, title }: Props) {
   };
 
   const goPrev = () => {
-    sliderRef?.current.slickNext();
+    sliderRef?.current.slickPrev();
   };
 
-  if (data && data.services && data.services.length <= 4) {
+  if ((!isLoading && !data) || (data && data.services && data.services.length === 0)) {
     return null;
   }
 
